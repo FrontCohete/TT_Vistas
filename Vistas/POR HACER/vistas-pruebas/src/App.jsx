@@ -1,35 +1,60 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState } from 'react';
+import './App.css';
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+  const [activeTab, setActiveTab] = useState('Candidato');
+
+  // Datos dinámicos
+  const contentData = {
+    Candidato: { label: "Nombre Completo del Candidato", placeholder: "Ingresa el nombre..." },
+    Reclutador: { label: "Número de Empleado (Reclutador)", placeholder: "Ingresa tu ID..." },
+    Empresa: { label: "Nombre Fiscal de la Empresa", placeholder: "Ingresa la razón social..." }
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <div className="app-container">
+      
+      {/* Sidebar */}
+      <nav className="sidebar">
+        <h2>Portal</h2>
+        
+        {['Candidato', 'Reclutador', 'Empresa'].map((item) => (
+          <div
+            key={item}
+            // Agregamos la clase 'active' si coincide con el estado
+            className={`nav-item ${activeTab === item ? 'active' : ''}`}
+            onClick={() => setActiveTab(item)}
+          >
+            {item}
+          </div>
+        ))}
+      </nav>
 
-export default App
+      {/* Main Content */}
+      <main className="main-content">
+        
+        {/* KEY es vital: fuerza a React a destruir y recrear el div
+            para que la animación CSS 'cardSwipeIn' se ejecute de nuevo */}
+        <div className="card" key={activeTab}>
+          <h3 style={{ color: 'white', marginBottom: '25px', textAlign: 'center', textTransform: 'uppercase' }}>
+            Registro de <span style={{color: 'red'}}>{activeTab}</span>
+          </h3>
+
+          <div className="form-group">
+            <label>{contentData[activeTab].label}</label>
+            <input type="text" placeholder={contentData[activeTab].placeholder} />
+          </div>
+
+          <div className="form-group">
+            <button className="action-btn">
+              Guardar Datos
+            </button>
+          </div>
+        </div>
+
+      </main>
+    </div>
+  );
+};
+
+export default App;
