@@ -9,13 +9,18 @@ export default function Header(){
         <>
         <header>
             <nav>
-                <div>
-                    <h1>TT-2027 </h1>
-                    <img src={logo} alt="" />
-                    <a href="#" alt="Modal_AcercaDe">Acerca de</a>
-                    <a href="#" alt="Modal_Preguntas">Preguntas</a>
-                </div>
-                
+                <div className='navbar'>
+                    <div className='nav-item'>
+                        <a href="#" alt="Modal_Info" >¿Qué es <span>Caspita</span>?</a>
+                    </div>
+                    <div className='nav-item-logo'>
+                        <img src={logo} alt="logo-caspita" />
+                        <h1>CASPITA</h1>
+                    </div>
+                    <div className='nav-item'>
+                        <a href="#" alt="Modal_Manual">Manual de Usuario</a>
+                    </div>
+                </div> 
             </nav>
         </header>
             
