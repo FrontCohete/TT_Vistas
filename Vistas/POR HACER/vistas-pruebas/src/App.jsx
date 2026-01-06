@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import './App.css';
-import Header from './components/Header';
+import Nav from './components/Nav_index';
 
 
 function App () {
   return(
-    <Header/>
+    <>
+      <Nav/>
+    </>
 
   )
 }

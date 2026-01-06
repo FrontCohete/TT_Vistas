@@ -9,16 +9,16 @@
   --az_bld: #132f70;
   --guinda: #8b0f55;
   --amarillo: #ffbe55;
-  --blanco:#b8b8b8;
-  --negro: #252525;
-  --no_color:#24242452;
+  --blanco:#eeeeee;
+  --negro: #222222;
+  --no_color_black:#ffffff69;
 }
 header{
     background-image: url(./Admin_Login.svgs);
     height: 500px;
 }
 .navbar{
-    background-color: var(--blanco);
+    background-color: var(--no_color_black);
     font-family: "Lato", sans-serif;
     font-weight: 400;
     font-style: normal;
@@ -29,7 +29,6 @@ header{
     /* Centra los items verticalmente */
     align-items: center; 
     /* Altura opcional para el header */
-    background-color: var(--blanco);
 
     text-align: center;
     padding: 5px;
@@ -65,7 +64,7 @@ header{
 }
 
 /* Media query para Móviles (ej. menos de 480px) */
-@media (max-width: 480px) {
+@media (max-width: 510px) {
     .navbar {
         /* Una sola columna: todo al 100% de ancho */
         grid-template-columns: 1fr;
