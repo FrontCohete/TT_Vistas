@@ -35,17 +35,40 @@ main{
 .tab-btn{
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   width: 20%;
 }
 
+.tab-btn a{
+  border: 2px solid var(--az_bld);
+  background-color: var(--az_bld);
+  color: var(--blanco);
+  text-decoration: none;
+  width: 100%;
+  font-weight: 400;
+  padding: 1em 1em;
+  border-radius: 1em 0em 0em 1em;
 
+  transition: all 0.2s ease;
+}
+
+.tab-btn a:hover{
+  background-color: var(--blanco);
+  color: var(--az_bld);
+  border: 2px solid var(--az_bld);
+}
+
+.tab-btn a:focus{
+  background-color: var(--blanco);
+  color: var(--az_lgh);
+  border: 2px solid var(--az_lgh);
+}
 .tab-content{
   padding: 1em;
   background-color: var(--no_color_black);
-  border-radius: 2em;
-  border: 1px solid var(--amarillo);
+  border-radius: 0em 1em 1em 0em;
+  border: 1px solid var(--az_bld);
 
   width: 80%;
 }
@@ -64,8 +87,22 @@ main{
 
     }
 
+    .tab-btn a:nth-child(1){
+      border-radius: 1em 0em 0em 0em;
+    }
+
+    .tab-btn a:nth-child(3){
+      border-radius: 0em 1em 0em 0em;
+    }
+    .tab-btn a{
+      border-radius: 0em;
+      border: 2px solid var(--no_color_black);
+
+    }
+    
     .tab-content{
       width: 100%;
+      border-radius: 0em 0em 1em 1em;
     }
 
 }
@@ -73,7 +110,7 @@ main{
 /* Media query para Tablets (ej. menos de 768px) */
 @media (max-width: 510px) {
     .tabs {
-        flex-direction: column-reverse;
+        flex-direction: column;
     }
     
     .tab-btn{
@@ -84,7 +121,16 @@ main{
         align-items: center;
 
     }
-
+    .tab-btn a{
+      padding: 10px;
+    }
+    .tab-btn a:nth-child(1){
+      border-radius: 1em 1em 0em 0em;
+    }
+    
+    .tab-btn a:nth-child(3){
+      border-radius: 0em;
+    }
 }
 
 
