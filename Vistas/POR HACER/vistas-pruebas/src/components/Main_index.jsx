@@ -1,5 +1,5 @@
-import 'normalize.css'
-import '../assets/css/main_index.css'
+import 'normalize.css';
+import '../assets/css/main_index.css';
 import img_admin from '../assets/img-no-opt/img-adm.svg';
 import img_emp from '../assets/img-no-opt/img-rec.svg';
 import img_usr from '../assets/img-no-opt/img-usr.svg';
@@ -7,24 +7,50 @@ import { useState } from 'react';
 import { Modal, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-export default function Main_ls(){
+export default function Main_ls() {
+    // 1. Declaramos el estado para saber qué tab está visible (por defecto 'candidato')
+    const [activeTab, setActiveTab] = useState('candidato');
+
     return (
-            <main>
-                <div className='tabs'>
-                    <section className='tab-btn'>
-                        <a href="#">Candidato</a>
-                        <a href="#">Empresa</a>
-                        <a href="#">Administrador</a>
-                    </section>
-                    <section className='tab-content'>
+        <main>
+            <div className='tabs'>
+                <section className='tab-btn'>
+                    {/* 2. Agregamos el onClick para cambiar el estado */}
+                    <a 
+                        href="#" 
+                        onClick={(e) => { e.preventDefault(); setActiveTab('candidato'); }}
+                        className={activeTab === 'candidato' ? 'active' : ''} // Opcional: para estilos CSS
+                    >
+                        Candidato
+                    </a>
+                    <a 
+                        href="#" 
+                        onClick={(e) => { e.preventDefault(); setActiveTab('empresa'); }}
+                        className={activeTab === 'empresa' ? 'active' : ''}
+                    >
+                        Empresa
+                    </a>
+                    <a 
+                        href="#" 
+                        onClick={(e) => { e.preventDefault(); setActiveTab('administrador'); }}
+                        className={activeTab === 'administrador' ? 'active' : ''}
+                    >
+                        Administrador
+                    </a>
+                </section>
+
+                <section className='tab-content'>
+                    
+                    {/* 3. Renderizado Condicional: Bloque Candidato */}
+                    {activeTab === 'candidato' && (
                         <div className='container'>
-                            <div className='form-candidato'>
+                            <div className='container-content'>
                                 <h2>Iniciar Sesión</h2>
                                 <form action="">
-                                    <label htmlFor="">Usuario</label>
-                                    <input type="text" />
-                                    <label htmlFor="">Contraseña</label>
-                                    <input type="password" name="" id="" />
+                                    <label htmlFor="user-cand">Usuario</label>
+                                    <input type="text" id="user-cand" />
+                                    <label htmlFor="pass-cand">Contraseña</label>
+                                    <input type="password" name="" id="pass-cand" />
                                     <input type="submit" value="Enviar" />
                                 </form>
                             </div>
@@ -33,14 +59,18 @@ export default function Main_ls(){
                                 <a href="#">Registrarse</a>
                             </div>
                         </div>
+                    )}
+
+                    {/* 3. Renderizado Condicional: Bloque Empresa */}
+                    {activeTab === 'empresa' && (
                         <div className='container'>
-                            <div className='form-Empresa'>
+                            <div className='container-content'>
                                 <h2>Iniciar Sesión</h2>
                                 <form action="">
-                                    <label htmlFor="">Usuario</label>
-                                    <input type="text" />
-                                    <label htmlFor="">Contraseña</label>
-                                    <input type="password" name="" id="" />
+                                    <label htmlFor="user-emp">Usuario</label>
+                                    <input type="text" id="user-emp" />
+                                    <label htmlFor="pass-emp">Contraseña</label>
+                                    <input type="password" name="" id="pass-emp" />
                                     <input type="submit" value="Enviar" />
                                 </form>
                             </div>
@@ -49,14 +79,19 @@ export default function Main_ls(){
                                 <a href="#">Pre Registrarse</a>
                             </div>
                         </div>
+                    )}
+
+                    {/* 3. Renderizado Condicional: Bloque Administrador */}
+                    {activeTab === 'administrador' && (
                         <div className='container'>
-                            <div className='form-candidato'>
+                            {/* Nota: En tu código original usas 'form-candidato' aquí también, verifica si necesitas 'form-admin' */}
+                            <div className='container-content'> 
                                 <h2>Iniciar Sesión</h2>
                                 <form action="">
-                                    <label htmlFor="">Usuario</label>
-                                    <input type="text" />
-                                    <label htmlFor="">Contraseña</label>
-                                    <input type="password" name="" id="" />
+                                    <label htmlFor="user-admin">Usuario</label>
+                                    <input type="text" id="user-admin" />
+                                    <label htmlFor="pass-admin">Contraseña</label>
+                                    <input type="password" name="" id="pass-admin" />
                                     <input type="submit" value="Enviar" />
                                 </form>
                             </div>
@@ -64,9 +99,10 @@ export default function Main_ls(){
                                 <img src={img_admin} alt="Imagen decorativa" />
                             </div>
                         </div>
-                    </section>
-                </div>
-            </main>
-        );
+                    )}
 
+                </section>
+            </div>
+        </main>
+    );
 }

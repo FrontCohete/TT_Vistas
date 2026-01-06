@@ -8,7 +8,7 @@
   --amarillo: #ffbe55;
   --blanco:#eeeeee;
   --negro: #222222;
-  --no_color_black:#ffffff69;
+  --no_color_black:#3030308a;
 }
 
 main{
@@ -21,12 +21,15 @@ main{
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  margin-top: 1em;
 }
 
 .tabs{
-  width: 80%;
+  width: 90%;
   display: flex;
-  flex-direction: row;
+  justify-content: center;
+
 }
 
 .tab-btn{
@@ -34,6 +37,17 @@ main{
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+  width: 20%;
+}
+
+
+.tab-content{
+  padding: 1em;
+  background-color: var(--no_color_black);
+  border-radius: 2em;
+  border: 1px solid var(--amarillo);
+
+  width: 80%;
 }
 
 /* Media query para Tablets (ej. menos de 768px) */
@@ -50,12 +64,16 @@ main{
 
     }
 
+    .tab-content{
+      width: 100%;
+    }
+
 }
 
 /* Media query para Tablets (ej. menos de 768px) */
 @media (max-width: 510px) {
     .tabs {
-        flex-direction: column;
+        flex-direction: column-reverse;
     }
     
     .tab-btn{
@@ -70,11 +88,19 @@ main{
 }
 
 
+.container{
+  display: flex;
+  flex-direction: row;
+}
 
+.container-content{
+  width: 50%;
+}
 
-
-
-
+.container-content form{
+  display: flex;
+  flex-direction: column;
+}
 
 
 
