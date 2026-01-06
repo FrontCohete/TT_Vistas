@@ -1,7 +1,7 @@
 
 import 'normalize.css'
 import '../assets/css/main_nav.css'
-import logo from '../assets/img-no-opt/TT_IMG_Logo.png';
+import logo from '../assets/img-no-opt/logo-caspita.png';
 import { useState } from 'react';
 import { Modal, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -14,14 +14,14 @@ export default function Nav(){
             <nav>
                 <div className='navbar'>
                     <div className='nav-item'>
-                        <a href="#" alt="Modal_Info" onClick={() => setShowInfo(true)}>¿Qué es Caspita?</a>
+                        <a href="#" alt="Información sobre Caspita" onClick={() => setShowInfo(true)}>¿Qué es Caspita?</a>
                     </div>
                     <div className='nav-item-logo'>
-                        <img src={logo} alt="logo-caspita" />
+                        <img src={logo} alt="logo de Caspita" />
                         <h1>CASPITA</h1>
                     </div>
                     <div className='nav-item'onClick={() => setShowManual(true)}>
-                        <a href="#" alt="Modal_Manual">Manual de Usuario</a>
+                        <a href="#" alt="Acceso a manuales de usuario">Manual de Usuario</a>
                     </div>
                 </div> 
             </nav>

@@ -1,4 +1,6 @@
 
  body{
     background-image: url(./assets/img-no-opt/white-background.gif);
+    background-position: center;
+    background-repeat: round;
  }
