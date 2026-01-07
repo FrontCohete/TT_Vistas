@@ -8,7 +8,7 @@
   --amarillo: #ffbe55;
   --blanco:#eeeeee;
   --negro: #222222;
-  --no_color_black:#3030308a;
+  --no_color_black:#fffefe96;
 }
 
 main{
@@ -195,5 +195,14 @@ img{
     
     .tab-btn a:nth-child(3){
       border-radius: 0em;
+    }
+
+    .tab-content{
+      height: 30em;
+    }
+    .container{
+      display: flex;
+      flex-wrap: wrap;
+
     }
 }
