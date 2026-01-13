@@ -4,6 +4,7 @@
   /* Se definen con dos guiones al principio -- */
   --az_lgh: #2a94f4;
   --az_bld: #132f70;
+  --az_bld2: #122552;
   --guinda: #8b0f55;
   --amarillo: #ffbe55;
   --blanco:#eeeeee;
@@ -40,14 +41,32 @@ main{
   width: 20%;
 }
 
+  .tab-btn a:nth-child(1){
+    border-radius: 1em 0em 0em 0em;
+  }
+  
+  .tab-btn a:nth-child(2){
+    border-radius: 0em;
+  }
+
+  .tab-btn a:nth-child(3){
+    border-radius: 0em 0em 0em 1em;
+  }
+
+
 .tab-btn a{
-  border: 2px solid var(--az_bld);
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 2px solid var(--az_bld2);
   background-color: var(--az_bld);
   color: var(--blanco);
   text-decoration: none;
   width: 100%;
   font-weight: 400;
-  padding: 1em 1em;
   border-radius: 1em 0em 0em 1em;
 
   transition: all 0.2s ease;
@@ -68,7 +87,7 @@ main{
   padding: 1em;
   background-color: var(--no_color_black);
   border-radius: 0em 1em 1em 0em;
-  border: 1px solid var(--az_bld);
+  border: 2px solid var(--az_bld2);
 
   width: 80%;
   height: 20em;
@@ -81,7 +100,7 @@ main{
 }
 
 .container-content{
-  width: 50%;
+  width: 100%;
 }
 
 .container-content form{
@@ -89,7 +108,12 @@ main{
   flex-direction: column;
 }
 
-
+.container-content h2{
+  
+  font-size: clamp(10px, 6vh, 1rem );
+  font-weight: 700;
+  text-align: center;
+}
 
 
 
@@ -117,6 +141,76 @@ main{
   background-color: var(--az_lgh);
   color: var(--blanco);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.input-group {
+  position: relative;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.input-field {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+  font-size: 16px;
+}
+
+.input-label {
+  position: absolute;
+  left: 10px;
+  top: 10px; /* Posición inicial dentro del input */
+  color: gray;
+  pointer-events: none; /* Permite hacer clic a través del label */
+  transition: all 0.2s ease;
+  background-color: white; /* Para tapar la línea del borde del input */
+  padding: 0 4px;
+}
+
+/* Cuando el input tiene foco O cuando no está vacío */
+.input-field:focus + .input-label,
+.input-field:not(:placeholder-shown) + .input-label {
+  top: -10px;      /* Lo sube fuera del input */
+  left: 8px;
+  font-size: 12px; /* Reduce el tamaño */
+  color: #2563eb;  /* Cambia el color */
+}
+
+/* Color del borde del input al hacer foco */
+.input-field:focus {
+  border-color: #2563eb;
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -161,7 +255,8 @@ img{
     }
     .tab-btn a{
       border-radius: 0em;
-      border: 2px solid var(--no_color_black);
+      border: 2px solid var(--az_bld2);
+      height: 5em;
 
     }
     
@@ -187,7 +282,8 @@ img{
 
     }
     .tab-btn a{
-      padding: 10px;
+      height: 3em;
+    
     }
     .tab-btn a:nth-child(1){
       border-radius: 1em 1em 0em 0em;

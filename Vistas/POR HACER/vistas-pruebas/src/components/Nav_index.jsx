@@ -14,14 +14,14 @@ export default function Nav(){
             <nav>
                 <div className='navbar'>
                     <div className='nav-item'>
-                        <a href="#" alt="Información sobre Caspita" onClick={() => setShowInfo(true)}>¿Qué es Caspita?</a>
+                        <a href="#" alt="Información sobre Caspita" onClick={() => setShowInfo(true)} aria-label='Ver información sobre Caspita' title='Ver información sobre Caspita'>¿Qué es Caspita?</a>
                     </div>
                     <div className='nav-item-logo'>
                         <img src={logo} alt="logo de Caspita" />
                         <h1>CASPITA</h1>
                     </div>
                     <div className='nav-item'onClick={() => setShowManual(true)}>
-                        <a href="#" alt="Acceso a manuales de usuario">Manual de Usuario</a>
+                        <a href="#" alt="Acceso a manuales de usuario" aria-label='Consultar manuales de usuario' title='Consultar manuales de usuario'>Manual de Usuario</a>
                     </div>
                 </div> 
             </nav>

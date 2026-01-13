@@ -8,18 +8,17 @@ import { Modal, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function Main_ls() {
-    // 1. Declaramos el estado para saber qué tab está visible (por defecto 'candidato')
     const [activeTab, setActiveTab] = useState('candidato');
 
     return (
         <main>
             <div className='tabs'>
                 <section className='tab-btn'>
-                    {/* 2. Agregamos el onClick para cambiar el estado */}
                     <a 
                         href="#" 
                         onClick={(e) => { e.preventDefault(); setActiveTab('candidato'); }}
-                        className={activeTab === 'candidato' ? 'active' : ''} // Opcional: para estilos CSS
+                        className={activeTab === 'candidato' ? 'active' : ''}
+                        aria-label='Iniciar sesión o registrarse como candidato' title='Iniciar sesión o registrarse como candidato'
                     >
                         Candidato
                     </a>
@@ -27,6 +26,7 @@ export default function Main_ls() {
                         href="#" 
                         onClick={(e) => { e.preventDefault(); setActiveTab('empresa'); }}
                         className={activeTab === 'empresa' ? 'active' : ''}
+                        aria-label='Iniciar sesión o registrarse como reclutador o empresa' title='Iniciar sesión o registrarse como reclutador o empresa'
                     >
                         Empresa
                     </a>
@@ -34,23 +34,29 @@ export default function Main_ls() {
                         href="#" 
                         onClick={(e) => { e.preventDefault(); setActiveTab('administrador'); }}
                         className={activeTab === 'administrador' ? 'active' : ''}
+                        aria-label='Iniciar sesión como administrador o sub administrador' title='Iniciar sesión o registrarse como administrador o sub administrador'
                     >
                         Administrador
                     </a>
                 </section>
 
                 <section className='tab-content'>
-                    
-                    {/* 3. Renderizado Condicional: Bloque Candidato */}
                     {activeTab === 'candidato' && (
                         <div className='container'>
                             <div className='container-content'>
-                                <h2>Iniciar Sesión</h2>
+                                <h2>Iniciar sesión como candidato</h2>
                                 <form action="">
-                                    <label htmlFor="user-cand">Usuario</label>
-                                    <input type="text" id="user-cand" />
-                                    <label htmlFor="pass-cand">Contraseña</label>
-                                    <input type="password" name="" id="pass-cand" />
+                                    <div class="input-group">
+                                        <input type="email" id="email" className="input-field" placeholder=" " />
+                                        <label htmlFor="email" className="input-label">Correo electrónico</label>
+                                    </div>
+                                    <div class="input-group">
+                                        <input type="password" id="password" className="input-field" placeholder=" " />
+                                        <label htmlFor="email" className="input-label">Contraseña</label>
+                                    </div>
+                                    <div className="form-input">
+                                       <a href="#">Olvidé mi contraseña</a> 
+                                    </div>
                                     <input type="submit" value="Enviar" />
                                 </form>
                             </div>
@@ -61,16 +67,22 @@ export default function Main_ls() {
                         </div>
                     )}
 
-                    {/* 3. Renderizado Condicional: Bloque Empresa */}
                     {activeTab === 'empresa' && (
                         <div className='container'>
                             <div className='container-content'>
-                                <h2>Iniciar Sesión</h2>
+                                <h2>Iniciar sesión como empresa o reclutador</h2>
                                 <form action="">
-                                    <label htmlFor="user-emp">Usuario</label>
-                                    <input type="text" id="user-emp" />
-                                    <label htmlFor="pass-emp">Contraseña</label>
-                                    <input type="password" name="" id="pass-emp" />
+                                    <div class="input-group">
+                                        <input type="email" id="email" className="input-field" placeholder=" " />
+                                        <label htmlFor="email" className="input-label">Correo electrónico</label>
+                                    </div>
+                                    <div class="input-group">
+                                        <input type="password" id="password" className="input-field" placeholder=" " />
+                                        <label htmlFor="email" className="input-label">Contraseña</label>
+                                    </div>
+                                    <div className="form-input">
+                                       <a href="#">Olvidé mi contraseña</a> 
+                                    </div>
                                     <input type="submit" value="Enviar" />
                                 </form>
                             </div>
@@ -81,17 +93,22 @@ export default function Main_ls() {
                         </div>
                     )}
 
-                    {/* 3. Renderizado Condicional: Bloque Administrador */}
                     {activeTab === 'administrador' && (
                         <div className='container'>
-                            {/* Nota: En tu código original usas 'form-candidato' aquí también, verifica si necesitas 'form-admin' */}
                             <div className='container-content'> 
-                                <h2>Iniciar Sesión</h2>
+                                <h2>Iniciar sesión como administrador</h2>
                                 <form action="">
-                                    <label htmlFor="user-admin">Usuario</label>
-                                    <input type="text" id="user-admin" />
-                                    <label htmlFor="pass-admin">Contraseña</label>
-                                    <input type="password" name="" id="pass-admin" />
+                                    <div class="input-group">
+                                        <input type="email" id="email" className="input-field" placeholder=" " />
+                                        <label htmlFor="email" className="input-label">Correo electrónico</label>
+                                    </div>
+                                    <div class="input-group">
+                                        <input type="password" id="password" className="input-field" placeholder=" " />
+                                        <label htmlFor="email" className="input-label">Contraseña</label>
+                                    </div>
+                                    <div className="form-input">
+                                       <a href="#">Olvidé mi contraseña</a> 
+                                    </div>
                                     <input type="submit" value="Enviar" />
                                 </form>
                             </div>
