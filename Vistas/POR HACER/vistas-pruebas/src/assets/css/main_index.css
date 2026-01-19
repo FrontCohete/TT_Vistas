@@ -10,14 +10,11 @@
   --blanco:#eeeeee;
   --negro: #222222;
   --no_color_black:#fffefe96;
+  --no_color:#fffefe00;
 }
 
 main{
   width: 100%;
-/*  
-  height: 20em;
-  background-color: var(--no_color_black);
-*/  
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -27,7 +24,7 @@ main{
 }
 
 .tabs{
-  width: 90%;
+  width: 70%;
   display: flex;
   justify-content: center;
 
@@ -46,7 +43,7 @@ main{
   }
   
   .tab-btn a:nth-child(2){
-    border-radius: 0em;
+    border-radius: 0em 0em 0em 1em;
   }
 
   .tab-btn a:nth-child(3){
@@ -100,7 +97,7 @@ main{
 }
 
 .container-content{
-  width: 100%;
+  width: 50%;
 }
 
 .container-content form{
@@ -113,8 +110,15 @@ main{
   font-size: clamp(10px, 6vh, 1rem );
   font-weight: 700;
   text-align: center;
+  margin-bottom: 0px;
 }
-
+.container-content span{
+  display: inline-block;
+  width: 100%;
+  font-weight: 600;
+  font-size: clamp(10x, 5vh, 1rem);
+  text-align: center;
+}
 
 
 
@@ -122,11 +126,12 @@ main{
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 50%;
 }
 
 .container-aside a{
   width: 80%;
-  background-color: var(--blanco);
+  background-color: var(--no_color_black);
   color:var(--az_lgh);
   border: 2px solid var(--az_lgh);
   border-radius: 1em;
@@ -141,24 +146,6 @@ main{
   background-color: var(--az_lgh);
   color: var(--blanco);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 .input-group {
@@ -185,6 +172,7 @@ main{
   transition: all 0.2s ease;
   background-color: white; /* Para tapar la línea del borde del input */
   padding: 0 4px;
+  background-color: var(--no_color);
 }
 
 /* Cuando el input tiene foco O cuando no está vacío */
@@ -193,13 +181,47 @@ main{
   top: -10px;      /* Lo sube fuera del input */
   left: 8px;
   font-size: 12px; /* Reduce el tamaño */
-  color: #2563eb;  /* Cambia el color */
+  color: var(--az_bld);  /* Cambia el color */
 }
 
 /* Color del borde del input al hacer foco */
-.input-field:focus {
-  border-color: #2563eb;
+.input-field:not(:placeholder-shown) {
+  border-color: var(--az_bld2);
 }
+
+.input-field{
+  border: none;
+  border-bottom: 1px solid var(--az_lgh);
+  background-color: var(--no_color);
+}
+
+.form-input{
+  margin: 1em 0em;
+  text-align: center;
+}
+
+.form-input a{
+  font-weight: 600;
+  transition: all 1s ease-in-out;
+}
+.form-input a:hover{
+  color: var(--az_lgh);
+}
+.btn-azl{
+  margin-top: 1em;
+  border: none;
+  background-color:var(--az_lgh) ;
+  color: var(--blanco);
+  padding: 5px 0px;
+  font-weight: 700;
+  border-radius: 1em;
+
+  transition: all 0.3s ease-in-out;
+}
+.btn-azl:hover{
+  background-color: var(--az_bld);
+}
+
 
 
 
@@ -235,6 +257,7 @@ img{
 /* Media query para Tablets (ej. menos de 768px) */
 @media (max-width: 768px) {
     .tabs {
+      width: 80%;
         flex-direction: column;
     }
     .tab-btn{
@@ -250,7 +273,7 @@ img{
       border-radius: 1em 0em 0em 0em;
     }
 
-    .tab-btn a:nth-child(3){
+    .tab-btn a:nth-child(2){
       border-radius: 0em 1em 0em 0em;
     }
     .tab-btn a{
@@ -264,41 +287,59 @@ img{
       width: 100%;
       border-radius: 0em 0em 1em 1em;
     }
-
+    .container-content{
+      width: 60%;
+    }
+    .container-aside{
+      width: 40%;
+    }
+    .container-aside img{
+      width: 100%;
+    }
 }
 
-/* Media query para Tablets (ej. menos de 768px) */
+/* Media query para MOVIL (ej. menos de 510px) */
 @media (max-width: 510px) {
     .tabs {
+      width: 90%;
         flex-direction: column;
     }
     
     .tab-btn{
         width: 100%;
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         justify-content: space-around;
         align-items: center;
 
     }
     .tab-btn a{
       height: 3em;
-    
     }
     .tab-btn a:nth-child(1){
-      border-radius: 1em 1em 0em 0em;
+      border-radius: 1em 0em 0em 0em;
     }
     
-    .tab-btn a:nth-child(3){
-      border-radius: 0em;
+    .tab-btn a:nth-child(2){
+      border-radius: 0em 1em 0em 0em;
     }
 
     .tab-content{
-      height: 30em;
+      height: 35em;
     }
     .container{
       display: flex;
-      flex-wrap: wrap;
+      flex-direction: column;
+      align-items: center;
 
+    }
+    .container-content{
+      width: 80%;
+    }
+    .container-aside{
+      width: 80%;
+    }
+    .container-aside img{
+      width: 80%;
     }
 }

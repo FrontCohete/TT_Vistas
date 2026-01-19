@@ -30,39 +30,31 @@ export default function Main_ls() {
                     >
                         Empresa
                     </a>
-                    <a 
-                        href="#" 
-                        onClick={(e) => { e.preventDefault(); setActiveTab('administrador'); }}
-                        className={activeTab === 'administrador' ? 'active' : ''}
-                        aria-label='Iniciar sesión como administrador o sub administrador' title='Iniciar sesión o registrarse como administrador o sub administrador'
-                    >
-                        Administrador
-                    </a>
                 </section>
 
                 <section className='tab-content'>
                     {activeTab === 'candidato' && (
                         <div className='container'>
                             <div className='container-content'>
-                                <h2>Iniciar sesión como candidato</h2>
+                                <h2>Iniciar sesión</h2><span>como candidato</span>
                                 <form action="">
                                     <div class="input-group">
-                                        <input type="email" id="email" className="input-field" placeholder=" " />
+                                        <input type="email" id="email" className="input-field" placeholder=" " aria-label='Ingrese el correo electrónico con el que se registró' title='Ingrese el correo electrónico con el que se registró'/>
                                         <label htmlFor="email" className="input-label">Correo electrónico</label>
                                     </div>
                                     <div class="input-group">
-                                        <input type="password" id="password" className="input-field" placeholder=" " />
+                                        <input type="password" id="password" className="input-field" placeholder=" " aria-label='Ingrese la constraseña con la que se registró' title='Ingrese la contraseña con la que se registró'/>
                                         <label htmlFor="email" className="input-label">Contraseña</label>
                                     </div>
+                                    <input type="submit" value="Enviar" className='btn-azl' aria-label='Iniciar sesión' title='Iniciar sesión'/>
                                     <div className="form-input">
-                                       <a href="#">Olvidé mi contraseña</a> 
+                                       <a href="#" aria-label='Recuperar contraseña' title='Recuperar contraseña'>Olvidé mi contraseña</a> 
                                     </div>
-                                    <input type="submit" value="Enviar" />
                                 </form>
                             </div>
                             <div className='container-aside'>
                                 <img src={img_usr} alt="Imagen decorativa" />
-                                <a href="#">Registrarse</a>
+                                <a href="#" aria-label='Registrarse como candidato en caso de no tener una cuenta' title='Registrarse como candidato en caso de no tener una cuenta'>Registrarse</a>
                             </div>
                         </div>
                     )}
@@ -70,53 +62,29 @@ export default function Main_ls() {
                     {activeTab === 'empresa' && (
                         <div className='container'>
                             <div className='container-content'>
-                                <h2>Iniciar sesión como empresa o reclutador</h2>
+                                <h2>Iniciar sesión</h2><span>como empresa o reclutador</span>
                                 <form action="">
                                     <div class="input-group">
-                                        <input type="email" id="email" className="input-field" placeholder=" " />
-                                        <label htmlFor="email" className="input-label">Correo electrónico</label>
+                                        <input type="email" id="email" className="input-field" placeholder=" " aria-label='Ingrese el correo electrónico con el que fué registrado' title='Ingrese el correo electrónico con el que fué registrado'/>
+                                        <label htmlFor="email" className="input-label" >Correo electrónico</label>
                                     </div>
                                     <div class="input-group">
-                                        <input type="password" id="password" className="input-field" placeholder=" " />
+                                        <input type="password" id="password" className="input-field" placeholder=" " aria-label='Ingrese la contraseña con el que fué registrado' title='Ingrese la contraseña con el que fué registrado'/>
                                         <label htmlFor="email" className="input-label">Contraseña</label>
                                     </div>
+                                    <input type="submit" value="Enviar" className='btn-azl'aria-label='Iniciar Sesión' title='Iniciar sesión'/>
                                     <div className="form-input">
-                                       <a href="#">Olvidé mi contraseña</a> 
+                                       <a href="#" aria-label='Recuperar contraseña' title='Recuperar contraseña'>Olvidé mi contraseña</a> 
                                     </div>
-                                    <input type="submit" value="Enviar" />
                                 </form>
                             </div>
                             <div className='container-aside'>
                                 <img src={img_emp} alt="Imagen decorativa" />
-                                <a href="#">Pre Registrarse</a>
+                                <a href="#" aria-label='Realizar pre registro para una empresa' title='Realizar pre registro para una empresa'>Pre Registrarse</a>
                             </div>
                         </div>
                     )}
 
-                    {activeTab === 'administrador' && (
-                        <div className='container'>
-                            <div className='container-content'> 
-                                <h2>Iniciar sesión como administrador</h2>
-                                <form action="">
-                                    <div class="input-group">
-                                        <input type="email" id="email" className="input-field" placeholder=" " />
-                                        <label htmlFor="email" className="input-label">Correo electrónico</label>
-                                    </div>
-                                    <div class="input-group">
-                                        <input type="password" id="password" className="input-field" placeholder=" " />
-                                        <label htmlFor="email" className="input-label">Contraseña</label>
-                                    </div>
-                                    <div className="form-input">
-                                       <a href="#">Olvidé mi contraseña</a> 
-                                    </div>
-                                    <input type="submit" value="Enviar" />
-                                </form>
-                            </div>
-                            <div className='container-aside'>
-                                <img src={img_admin} alt="Imagen decorativa" />
-                            </div>
-                        </div>
-                    )}
 
                 </section>
             </div>
