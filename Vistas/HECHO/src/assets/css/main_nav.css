@@ -1,0 +1,163 @@
+
+/*Font-Logo*/
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Inline&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Monoton&display=swap');
+
+:root {
+  /* Se definen con dos guiones al principio -- */
+  --az_lgh: #2a94f4;
+  --az_bld: #132f70;
+  --guinda: #8b0f55;
+  --amarillo: #ffbe55;
+  --blanco:#eeeeee;
+  --negro: #222222;
+  --no_color_white:#ffffffa1;
+}
+header{
+    background-image: url(./Admin_Login.svgs);
+    height: 500px;
+}
+.navbar{
+    background-color: var(--no_color_white);
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    
+    display: grid;
+    /* Crea 3 columnas de igual tamaño */
+    grid-template-columns: repeat(3, 1fr); 
+    /* Centra los items verticalmente */
+    align-items: center; 
+    /* Altura opcional para el header */
+
+    text-align: center;
+    padding: 5px;
+
+}
+
+
+
+.nav-item-logo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.nav-item-logo img {
+    width: 3em;
+    height: 3em;
+
+    transition: all 0.4s ease-in-out;
+}
+.nav-item-logo h1{
+    margin: 0em;
+    color: var(--az_bld);
+    font-family: "Bungee Inline", sans-serif;
+    font-size: 1rem;
+    font-weight: 400px;
+    font-style: normal;
+    cursor:default;
+    
+}
+.nav-item-logo:has(h1:hover) img {
+    filter: brightness(1.8) contrast(1.1);
+    transform: scale(1.05); 
+}
+
+.nav-item{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.nav-item a{
+    background-color: var(--guinda);
+    color: var(--blanco);
+    text-decoration: none;
+    font-weight: 600;
+
+    width: 70%;
+    padding: 1em;
+    border-radius: 5px;
+    transition: all 0.2s ease-in-out;
+    border: 2px solid var(--guinda);
+}
+
+.nav-item a:hover{
+    background-color: var(--no_color);
+    border: 2px solid var(--guinda);
+    color: var(--guinda);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Media query para Tablets (ej. menos de 768px) */
+@media (max-width: 768px) {
+    .navbar {
+        display: grid;
+        /* Definimos 2 columnas de igual tamaño */
+        grid-template-columns: 1fr 1fr; 
+        /* Creamos el mapa de áreas */
+        grid-template-areas: 
+            "logo logo"
+            "item1 item2";
+        gap: 1px;
+    }
+
+    .nav-item-logo {
+        grid-area: logo; /* Asignamos el logo a la fila superior completa */
+    }
+
+    /* Asignamos cada enlace a su lugar en la fila inferior */
+    .nav-item:first-of-type {
+        grid-area: item1;
+        justify-content: center;
+        
+    }
+
+    .nav-item:last-of-type {
+        grid-area: item2;
+        justify-content: center;
+    }
+
+    .nav-item a{
+        padding: 10px;
+    }
+    
+}
+
+/* Media query para Móviles (ej. menos de 510px) */
+@media (max-width: 510px) {
+    .navbar {
+        /* Una sola columna: todo al 100% de ancho */
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+            "logo"
+            "item1"
+            "item2";
+        text-align: center;
+        gap: 5px;
+    }
+
+    .nav-item-logo img {
+        max-width: 120px; /* Reducimos un poco el logo en móvil */
+    }
+    .nav-item a{
+        padding: 5px;
+        background-color: var(--amarillo);
+        border: 2px solid var(--amarillo);
+    }
+}
