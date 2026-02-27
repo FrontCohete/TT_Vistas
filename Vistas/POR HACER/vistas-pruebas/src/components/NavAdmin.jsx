@@ -1,53 +1,103 @@
-import 'normalize.css'
-import '../assets/css/main_index.css'
-import img_admin from '../assets/img-no-opt/img-adm.svg';
-import img_emp from '../assets/img-no-opt/img-rec.svg';
-import img_usr from '../assets/img-no-opt/img-usr.svg';
+import { useState, useRef } from "react";
+import { Link } from "react-router-dom"; // Mantenemos este para el dropdown
+import 'normalize.css';
+import '../assets/css/nav_admin.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../assets/css/global_nav.css'
+import avatar from "../assets/img-no-opt/logo-caspita.png";
 
+const items = [
+  { name: "Inicio", path: "/" },
+  { 
+    name: "Empresas", 
+    items: [
+      { name: "Visualizar Preregistros", path: "/empresas/preregistros" },
+      { name: "Visualizar Existentes", path: "/empresas/existentes" }
+    ] 
+  },
+  { 
+    name: "Reclutadores", 
+    items: [
+      { name: "Visualizar Existentes", path: "/reclutadores/existentes" },
+      { name: "Emitir Reportes", path: "/reclutadores/reportes" }
+    ] 
+  },
+  { 
+    name: "Vacantes", 
+    items: [
+      { name: "Aprobar Publicaciones", path: "/vacantes/aprobar" },
+      { name: "Corrección de Publicaciones", path: "/vacantes/corregir" },
+      { name: "Visualizar Reportes", path: "/vacantes/reportes" }
+    ] 
+  },
+];
 
-const Navbar = () => {
+// Renombramos esto a 'NavItem' para evitar conflicto con 'Link' de react-router-dom
+const NavItem = ({ item, activeItem, onHover }) => {
+  const linkRef = useRef();
+
+  const handleHover = () => {
+    const rect = linkRef.current.getBoundingClientRect();
+    onHover(item, `${rect.x}px`);
+  };
+
   return (
-    <nav className="navbar-container">
-      <div className="top-bar">
-        <div className="top-bar-content">
-          <div className="contact-info">
-            <span className="info-item">
-              <i className="location-icon"></i> 4578 Marmora Road, Glasgow, D04 89GR
-            </span>
-            <span className="info-item">
-              <i className="phone-icon"></i> (800) 123-0045 ; (800) 123-0045
-            </span>
-          </div>
-          <div className="social-icons">
-            <a href="#facebook">f</a>
-            <a href="#twitter">t</a>
-            <a href="#google">G+</a>
-            <a href="#vimeo">v</a>
-            <a href="#youtube">y</a>
-            <a href="#pinterest">p</a>
-          </div>
-        </div>
-      </div>
-
-      <div className="main-nav">
-        <div className="main-nav-content">
-          <div className="logo">
-            <span className="logo-icon">▲</span>
-            <span className="logo-text">Element</span>
-            <span className="logo-badge">FREE</span>
-          </div>
-          <ul className="nav-links">
-            <li><a href="#home" className="active">HOME</a></li>
-            <li><a href="#about">ABOUT</a></li>
-            <li><a href="#typography">TYPOGRAPHY</a></li>
-            <li><a href="#contacts">CONTACTS</a></li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+    <a
+      className={item?.name === activeItem?.name ? "active" : ""}
+      ref={linkRef}
+      onMouseEnter={handleHover}
+      style={{ cursor: "pointer" }}
+    >
+      {item.name}
+    </a>
   );
 };
 
-export default Navbar;
+const Search = () => (
+  <div className="navbar-3-search">
+    <span className="material-symbols-outlined">search</span>
+    <input type="text" placeholder="Search" />
+  </div>
+);
+
+// Lo cambiamos a 'export default function NavAdmin' para que coincida con App.jsx
+export default function NavAdmin() {
+  const [translateX, setTranslateX] = useState("0");
+  const [activeItem, setActiveItem] = useState(null);
+
+  const handleLinkHover = (item, x) => {
+    setActiveItem(item || null);
+    setTranslateX(x);
+  };
+
+  return (
+    <section className="page navbar-3-page">
+      <nav className="navbar-3">
+        <img src={avatar} alt="Logo Caspita" />
+        <div className="navbar-3-menu">
+          {items.map((item) => (
+            <NavItem
+              key={item.name} // Siempre agrega un 'key' único al usar .map()
+              activeItem={activeItem}
+              item={item}
+              onHover={handleLinkHover}
+            />
+          ))}
+          <div
+            style={{
+              translate: `${translateX} 0`,
+            }}
+            className={`navbar-3-dropdown ${activeItem ? "visible" : ""}`}
+          >
+            {/* Corrección: 'subItem' es un objeto, renderizamos subItem.name */}
+            {activeItem?.items?.map((subItem) => (
+              <Link key={subItem.name} to={subItem.path}>
+                {subItem.name}
+              </Link>
+            ))}
+          </div>
+        </div>
+        <Search />
+      </nav>
+    </section>
+  );
+}
