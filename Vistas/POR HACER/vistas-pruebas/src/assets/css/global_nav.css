@@ -1,0 +1,103 @@
+/* Configuración General */
+.navbar-container {
+  font-family: 'Arial', sans-serif;
+  width: 100%;
+}
+
+/* --- Top Bar --- */
+.top-bar {
+  background-color: #1a2432; /* Azul oscuro */
+  color: #7bd5f5; /* Azul claro/cyan */
+  padding: 10px 0;
+  font-size: 13px;
+}
+
+.top-bar-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.info-item {
+  margin-right: 25px;
+}
+
+.social-icons a {
+  color: #fff;
+  text-decoration: none;
+  margin-left: 15px;
+  opacity: 0.8;
+  font-weight: bold;
+}
+
+.social-icons a:hover {
+  opacity: 1;
+}
+
+/* --- Main Nav --- */
+.main-nav {
+  background-color: #1a2432; /* Fondo para que resalte el contenedor blanco */
+  padding: 20px 0;
+}
+
+.main-nav-content {
+  max-width: 1100px;
+  margin: 0 auto;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 40px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Opcional: para dar profundidad */
+}
+
+/* Logo */
+.logo {
+  display: flex;
+  align-items: center;
+  font-size: 28px;
+  font-weight: 800;
+  color: #222;
+}
+
+.logo-icon {
+  color: #7bd5f5;
+  margin-right: 5px;
+  transform: rotate(-15deg);
+}
+
+.logo-badge {
+  background-color: #f7e018; /* Amarillo */
+  color: #000;
+  font-size: 10px;
+  padding: 2px 4px;
+  border-radius: 2px;
+  margin-left: 5px;
+  align-self: flex-start;
+  margin-top: 5px;
+}
+
+/* Enlaces */
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #333;
+  font-size: 14px;
+  font-weight: 600;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover, 
+.nav-links a.active {
+  color: #7bd5f5;
+}

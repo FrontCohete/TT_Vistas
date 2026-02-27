@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import './App.css';
-import Registro from './components/Registro/Registro';
+import NavAdmin from './components/NavAdmin';
 
 function App () {
   return(
     <>
-      <Registro/>
+      <NavAdmin/>
     </>
 
   )
