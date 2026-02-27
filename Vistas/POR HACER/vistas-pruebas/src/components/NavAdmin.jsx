@@ -31,7 +31,6 @@ const items = [
   },
 ];
 
-// Renombramos esto a 'NavItem' para evitar conflicto con 'Link' de react-router-dom
 const NavItem = ({ item, activeItem, onHover }) => {
   const linkRef = useRef();
 
@@ -54,7 +53,7 @@ const NavItem = ({ item, activeItem, onHover }) => {
 
 const Search = () => (
   <div className="navbar-3-search">
-    <span className="material-symbols-outlined">search</span>
+    <span className="material-symbols-outlined"></span>
     <input type="text" placeholder="Search" />
   </div>
 );
@@ -73,6 +72,7 @@ export default function NavAdmin() {
     <section className="page navbar-3-page">
       <nav className="navbar-3">
         <img src={avatar} alt="Logo Caspita" />
+        
         <div className="navbar-3-menu">
           {items.map((item) => (
             <NavItem
