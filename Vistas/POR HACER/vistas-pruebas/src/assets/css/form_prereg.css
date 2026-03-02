@@ -1,0 +1,17 @@
+
+:root {
+  /* Se definen con dos guiones al principio -- */
+  --az_lgh: #2a94f4;
+  --az_bld: #132f70;
+  --az_bld2: #122552;
+  --guinda: #8b0f55;
+  --amarillo: #ffbe55;
+  --blanco:#eeeeee;
+  --negro: #222222;
+  --no_color_black:#fffefe96;
+  --no_color:#fffefe00;
+}
+
+h1{
+    color: var(--guinda);
+}
