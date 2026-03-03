@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import { Link } from "react-router-dom"; // Mantenemos este para el dropdown
+import { Link } from "react-router-dom";
 import 'normalize.css';
 import '../assets/css/nav_admin.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -31,19 +31,20 @@ const items = [
   },
 ];
 
-const NavItem = ({ item, activeItem, onHover }) => {
+const NavItem = ({ item, activeItem, onEnter, onLeave }) => {
   const linkRef = useRef();
 
-  const handleHover = () => {
+  const handleMouseEnter = () => {
     const rect = linkRef.current.getBoundingClientRect();
-    onHover(item, `${rect.x}px`);
+    onEnter(item, `${rect.x}px`);
   };
 
   return (
     <a
       className={item?.name === activeItem?.name ? "active" : ""}
       ref={linkRef}
-      onMouseEnter={handleHover}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={onLeave} 
       style={{ cursor: "pointer" }}
     >
       {item.name}
@@ -58,28 +59,43 @@ const Search = () => (
   </div>
 );
 
-// Lo cambiamos a 'export default function NavAdmin' para que coincida con App.jsx
 export default function NavAdmin() {
   const [translateX, setTranslateX] = useState("0");
   const [activeItem, setActiveItem] = useState(null);
+  
+  const timeoutRef = useRef(null);
 
-  const handleLinkHover = (item, x) => {
+  const handleMouseEnter = (item, x) => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    
     setActiveItem(item || null);
-    setTranslateX(x);
+    if (x) setTranslateX(x);
+  };
+
+  
+  const handleMouseLeave = () => {
+    timeoutRef.current = setTimeout(() => {
+      setActiveItem(null); 
+    }, 1000); 
+  };
+
+  const handleDropdownEnter = () => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
   };
 
   return (
-    <section className="page navbar-3-page">
-      <nav className="navbar-3">
+    <nav className="page navbar">
+      <section className="navbar-3">
         <img src={avatar} alt="Logo Caspita" />
         
         <div className="navbar-3-menu">
           {items.map((item) => (
             <NavItem
-              key={item.name} // Siempre agrega un 'key' único al usar .map()
+              key={item.name}
               activeItem={activeItem}
               item={item}
-              onHover={handleLinkHover}
+              onEnter={handleMouseEnter}
+              onLeave={handleMouseLeave} 
             />
           ))}
           <div
@@ -87,8 +103,9 @@ export default function NavAdmin() {
               translate: `${translateX} 0`,
             }}
             className={`navbar-3-dropdown ${activeItem ? "visible" : ""}`}
+            onMouseEnter={handleDropdownEnter} 
+            onMouseLeave={handleMouseLeave}    
           >
-            {/* Corrección: 'subItem' es un objeto, renderizamos subItem.name */}
             {activeItem?.items?.map((subItem) => (
               <Link key={subItem.name} to={subItem.path}>
                 {subItem.name}
@@ -97,7 +114,7 @@ export default function NavAdmin() {
           </div>
         </div>
         <Search />
-      </nav>
-    </section>
+      </section>
+    </nav>
   );
 }
