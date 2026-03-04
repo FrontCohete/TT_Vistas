@@ -52,13 +52,6 @@ const NavItem = ({ item, activeItem, onEnter, onLeave }) => {
   );
 };
 
-const Search = () => (
-  <div className="navbar-3-search">
-    <span className="material-symbols-outlined"></span>
-    <input type="text" placeholder="Search" />
-  </div>
-);
-
 export default function NavAdmin() {
   const [translateX, setTranslateX] = useState("0");
   const [activeItem, setActiveItem] = useState(null);
@@ -85,35 +78,37 @@ export default function NavAdmin() {
 
   return (
     <nav className="page navbar">
-      <section className="navbar-3">
-        <img src={avatar} alt="Logo Caspita" />
-        
-        <div className="navbar-3-menu">
-          {items.map((item) => (
-            <NavItem
-              key={item.name}
-              activeItem={activeItem}
-              item={item}
-              onEnter={handleMouseEnter}
-              onLeave={handleMouseLeave} 
-            />
-          ))}
-          <div
-            style={{
-              translate: `${translateX} 0`,
-            }}
-            className={`navbar-3-dropdown ${activeItem ? "visible" : ""}`}
-            onMouseEnter={handleDropdownEnter} 
-            onMouseLeave={handleMouseLeave}    
-          >
-            {activeItem?.items?.map((subItem) => (
-              <Link key={subItem.name} to={subItem.path}>
-                {subItem.name}
-              </Link>
+      <section className="navbar-container">
+        <div className="nvbar-item menu">
+          <div className="item-menu">
+            {items.map((item) => (
+              <NavItem
+                key={item.name}
+                activeItem={activeItem}
+                item={item}
+                onEnter={handleMouseEnter}
+                onLeave={handleMouseLeave} 
+              />
             ))}
+            <div
+              style={{
+                translate: `${translateX} 0`,
+              }}
+              className={`item-dropdown ${activeItem ? "visible" : ""}`}
+              onMouseEnter={handleDropdownEnter} 
+              onMouseLeave={handleMouseLeave}    
+            >
+              {activeItem?.items?.map((subItem) => (
+                <Link key={subItem.name} to={subItem.path}>
+                  {subItem.name}
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
-        <Search />
+        <div className="nvbar-item img">
+          <img src={avatar} alt="Logo Caspita" />
+        </div>
       </section>
     </nav>
   );
