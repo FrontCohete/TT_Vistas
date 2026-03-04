@@ -4,7 +4,6 @@ import 'normalize.css';
 import '../assets/css/form_prereg.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-// Componente auxiliar de MUI para renderizar el contenido de cada pestaña
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
   return (
@@ -21,7 +20,6 @@ function TabPanel(props) {
 }
 
 export default function Form_PreR() {
-  // 1. Estados del formulario
   const [tabIndex, setTabIndex] = useState(0);
   const [formData, setFormData] = useState({
     correo: '',
@@ -31,10 +29,6 @@ export default function Form_PreR() {
     archivo: null
   });
 
-  // (Opcional) Si importaste useRef para algo en específico, puedes declararlo aquí
-  // const fileInputRef = useRef(null);
-
-  // 2. Funciones manejadoras
   const handleTabChange = (event, newValue) => {
     setTabIndex(newValue);
   };
@@ -53,10 +47,8 @@ export default function Form_PreR() {
     // Lógica para enviar al backend
   };
 
-  // 3. Renderizado del componente
   return (
     <>
-      {/* Usando una clase de Bootstrap 'container' y 'mt-4' para centrar y dar margen si lo deseas */}
       <main className="container mt-4">
         <h1 className="text-center mb-4">Preregistro</h1>
         
@@ -64,7 +56,6 @@ export default function Form_PreR() {
           <Paper elevation={3} sx={{ p: 4, borderRadius: 2 }}>
             <form onSubmit={handleSubmit}>
               
-              {/* Navegación de Pestañas */}
               <Tabs 
                 value={tabIndex} 
                 onChange={handleTabChange} 
@@ -76,7 +67,6 @@ export default function Form_PreR() {
                 <Tab label="2. Datos Personales" />
               </Tabs>
 
-              {/* PANEL 1: Correo y Contraseña */}
               <TabPanel value={tabIndex} index={0}>
                 <TextField
                   fullWidth
@@ -108,7 +98,6 @@ export default function Form_PreR() {
                 </Button>
               </TabPanel>
 
-              {/* PANEL 2: Nombre, RFC y Archivo */}
               <TabPanel value={tabIndex} index={1}>
                 <TextField
                   fullWidth
