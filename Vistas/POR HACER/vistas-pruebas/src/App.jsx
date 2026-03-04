@@ -8,26 +8,6 @@ function App () {
     <>
       <NavAdmin/>
       <Form_PreR/>
-      <Form_PreR/>
-      <Form_PreR/>
-      <Form_PreR/>
-      <Form_PreR/>
-      <Form_PreR/>
-      <Form_PreR/>
-      <Form_PreR/>
-      <Form_PreR/>
-      <Form_PreR/>
-      <Form_PreR/>
-      <Form_PreR/>
-      <Form_PreR/>
-      <Form_PreR/>
-      <Form_PreR/>
-      <Form_PreR/>
-      <Form_PreR/>
-      <Form_PreR/>
-      <Form_PreR/>
-      <Form_PreR/>
-      <Form_PreR/>
     </>
 
   )
