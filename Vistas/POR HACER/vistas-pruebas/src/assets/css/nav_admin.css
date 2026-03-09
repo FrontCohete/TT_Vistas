@@ -8,9 +8,10 @@
   --az_bld: #132f70;
   --guinda: #8b0f55;
   --amarillo: #ffbe55;
-  --blanco:#eeeeee;
+  --blanco:#fbfbfb;
   --negro: #222222;
   --no_color_white:#ffffff5b;
+  --no_color_white2:#ffffffde;
 }
 
 .page.navbar{
@@ -38,7 +39,7 @@
   width: 100%;
   padding: 1em;
 
-  background: var(--no_color_white);
+  background: var(--no_color_white2);
   box-shadow: 0 10px 50px rgb(0 0 0 / 2%);
 }
 .nvbar-item.menu{
@@ -120,4 +121,32 @@
   height: 40px;
   font-size: 14px;
   white-space: nowrap;
+}
+
+.mobile-menu-dropdown{
+  position: fixed; 
+  top: 50px; 
+  left: 0;
+  padding: 1em 2em;
+  width: 100%;
+  background-color: var(--no_color_white2);
+  
+  overflow-y: auto; 
+  max-height: calc(100vh - 50px);
+}
+
+.home-label{
+  text-decoration: none;
+  font-weight: 900;
+  color: var(--az_lgh);
+}
+
+.page-label{
+  text-decoration: none;
+  color: var(--az_lgh);
+}
+.title-page{
+  text-decoration: none;
+  font-weight: 900;
+  color: var(--az_bld);
 }

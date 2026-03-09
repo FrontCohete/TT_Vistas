@@ -56,16 +56,17 @@ export default function NavAdmin() {
   const [translateX, setTranslateX] = useState("0");
   const [activeItem, setActiveItem] = useState(null);
   
+  // Nuevo estado para el menú móvil
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  
   const timeoutRef = useRef(null);
 
   const handleMouseEnter = (item, x) => {
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
-    
     setActiveItem(item || null);
     if (x) setTranslateX(x);
   };
 
-  
   const handleMouseLeave = () => {
     timeoutRef.current = setTimeout(() => {
       setActiveItem(null); 
@@ -76,10 +77,25 @@ export default function NavAdmin() {
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
   };
 
+  // Función para cerrar el menú móvil al hacer click en un enlace
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+  };
+
   return (
-    <nav className="page navbar">
-      <section className="navbar-container">
-        <div className="nvbar-item menu">
+    <nav className="page navbar position-relative">
+      <section className="navbar-container ">
+        
+        <button 
+          className="d-lg-none btn btn-outline-secondary" 
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          aria-label="Toggle navigation"
+        >
+          ☰
+        </button>
+
+        {/* Menú de Escritorio (Oculto en móviles) */}
+        <div className="nvbar-item menu d-none d-lg-block">
           <div className="item-menu">
             {items.map((item) => (
               <NavItem
@@ -106,10 +122,40 @@ export default function NavAdmin() {
             </div>
           </div>
         </div>
+
         <div className="nvbar-item img">
           <img src={avatar} alt="Logo Caspita" />
         </div>
       </section>
+
+      {isMobileMenuOpen && (
+        <div className="mobile-menu-dropdown d-lg-none start-0" style={{ zIndex: 1000 }}>
+          <ul className="list-unstyled mb-0">
+            {items.map((item) => (
+              <li key={item.name} className=" mb-3">
+                {item.path ? (
+                  <Link to={item.path} className="home-label fw-bold " onClick={closeMobileMenu}>
+                    {item.name}
+                  </Link>
+                ) : (
+                  <>
+                    <span className="title-page ">{item.name}</span>
+                    <ul className="list-unstyled ms-3 mt-2">
+                      {item.items.map((subItem) => (
+                        <li key={subItem.name} className="mb-2">
+                          <Link to={subItem.path} className="page-label " onClick={closeMobileMenu}>
+                            {subItem.name}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </>
+                )}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </nav>
   );
 }
