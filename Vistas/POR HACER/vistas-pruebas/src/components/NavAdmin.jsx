@@ -58,11 +58,8 @@ export default function NavAdmin() {
   const [activeItem, setActiveItem] = useState(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
-  
-  // Referencias para las animaciones
   const profileMenuRef = useRef(null);
   const mainDropdownRef = useRef(null);
-  // NUEVO: Referencia para el menú móvil
   const mobileMenuRef = useRef(null); 
   const timeoutRef = useRef(null);
 
@@ -93,8 +90,6 @@ export default function NavAdmin() {
   return (
     <nav className="page navbar position-relative">
       <section className="navbar-container">
-        
-        {/* Botón menú móvil */}
         <button 
           className="d-lg-none btn btn-outline-secondary" 
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -103,9 +98,7 @@ export default function NavAdmin() {
           ☰
         </button>
 
-        {/* Menú de Escritorio */}
         <div className="nvbar-item menu d-none d-lg-block">
-          {/* ... (Tu código del menú de escritorio se mantiene exactamente igual) ... */}
           <div className="item-menu">
             {items.map((item) => (
               <NavItem
@@ -141,9 +134,7 @@ export default function NavAdmin() {
           </div>
         </div>
 
-        {/* Contenedor del Avatar y Dropdown de Perfil */}
         <div className="nvbar-item img position-relative" style={{ cursor: "pointer" }}>
-          {/* ... (Tu código del avatar se mantiene exactamente igual) ... */}
           <img 
             src={avatar} 
             alt="Logo Caspita" 
@@ -183,7 +174,6 @@ export default function NavAdmin() {
         </div>
       </section>
 
-      {/* Menú Móvil con CSSTransition */}
       <CSSTransition
         in={isMobileMenuOpen}
         nodeRef={mobileMenuRef}
@@ -198,7 +188,7 @@ export default function NavAdmin() {
         >
           <ul className="list-unstyled mb-0">
             {items.map((item) => (
-              <li key={item.name} className=" mb-3">
+              <li key={item.name} className="ref-a mb-3">
                 {item.path ? (
                   <Link to={item.path} className="home-label fw-bold " onClick={closeMobileMenu}>
                     {item.name}
