@@ -1,5 +1,6 @@
 import { useState, useRef } from "react";
 import { Link } from "react-router-dom";
+import { CSSTransition } from "react-transition-group";
 import 'normalize.css';
 import '../assets/css/nav_admin.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -55,10 +56,14 @@ const NavItem = ({ item, activeItem, onEnter, onLeave }) => {
 export default function NavAdmin() {
   const [translateX, setTranslateX] = useState("0");
   const [activeItem, setActiveItem] = useState(null);
-  
-  // Nuevo estado para el menú móvil
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
   
+  // Referencias para las animaciones
+  const profileMenuRef = useRef(null);
+  const mainDropdownRef = useRef(null);
+  // NUEVO: Referencia para el menú móvil
+  const mobileMenuRef = useRef(null); 
   const timeoutRef = useRef(null);
 
   const handleMouseEnter = (item, x) => {
@@ -77,15 +82,19 @@ export default function NavAdmin() {
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
   };
 
-  // Función para cerrar el menú móvil al hacer click en un enlace
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
   };
 
+  const closeProfileMenu = () => {
+    setIsProfileMenuOpen(false);
+  };
+
   return (
     <nav className="page navbar position-relative">
-      <section className="navbar-container ">
+      <section className="navbar-container">
         
+        {/* Botón menú móvil */}
         <button 
           className="d-lg-none btn btn-outline-secondary" 
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -94,8 +103,9 @@ export default function NavAdmin() {
           ☰
         </button>
 
-        {/* Menú de Escritorio (Oculto en móviles) */}
+        {/* Menú de Escritorio */}
         <div className="nvbar-item menu d-none d-lg-block">
+          {/* ... (Tu código del menú de escritorio se mantiene exactamente igual) ... */}
           <div className="item-menu">
             {items.map((item) => (
               <NavItem
@@ -106,30 +116,86 @@ export default function NavAdmin() {
                 onLeave={handleMouseLeave} 
               />
             ))}
-            <div
-              style={{
-                translate: `${translateX} 0`,
-              }}
-              className={`item-dropdown ${activeItem ? "visible" : ""}`}
-              onMouseEnter={handleDropdownEnter} 
-              onMouseLeave={handleMouseLeave}    
+            
+            <CSSTransition
+              in={!!activeItem}
+              nodeRef={mainDropdownRef}
+              timeout={300}
+              classNames="main-dropdown"
+              unmountOnExit
             >
-              {activeItem?.items?.map((subItem) => (
-                <Link key={subItem.name} to={subItem.path}>
-                  {subItem.name}
-                </Link>
-              ))}
-            </div>
+              <div
+                ref={mainDropdownRef}
+                style={{ translate: `${translateX} 0` }}
+                className="item-dropdown" 
+                onMouseEnter={handleDropdownEnter} 
+                onMouseLeave={handleMouseLeave}    
+              >
+                {activeItem?.items?.map((subItem) => (
+                  <Link key={subItem.name} to={subItem.path}>
+                    {subItem.name}
+                  </Link>
+                ))}
+              </div>
+            </CSSTransition>
           </div>
         </div>
 
-        <div className="nvbar-item img">
-          <img src={avatar} alt="Logo Caspita" />
+        {/* Contenedor del Avatar y Dropdown de Perfil */}
+        <div className="nvbar-item img position-relative" style={{ cursor: "pointer" }}>
+          {/* ... (Tu código del avatar se mantiene exactamente igual) ... */}
+          <img 
+            src={avatar} 
+            alt="Logo Caspita" 
+            onClick={() => setIsProfileMenuOpen(!isProfileMenuOpen)}
+          />
+          
+          <CSSTransition
+            in={isProfileMenuOpen}
+            nodeRef={profileMenuRef}
+            timeout={300}
+            classNames="profile-dropdown"
+            unmountOnExit
+          >
+            <div 
+              ref={profileMenuRef}
+              className="dropdown-menu position-absolute end-0 shadow-sm" 
+              style={{ zIndex: 950, display: 'block' }}
+            >
+              <Link to="/perfil/editar" className="dropdown-item" onClick={closeProfileMenu}>
+                Editar Perfil
+              </Link>
+              <Link to="/subadministradores" className="dropdown-item" onClick={closeProfileMenu}>
+                Ver Sub administradores
+              </Link>
+              <div className="dropdown-divider"></div>
+              <button 
+                className="dropdown-item text-danger" 
+                onClick={() => {
+                  closeProfileMenu();
+                  console.log("Cerrando sesión...");
+                }}
+              >
+                Cerrar sesión
+              </button>
+            </div>
+          </CSSTransition>
         </div>
       </section>
 
-      {isMobileMenuOpen && (
-        <div className="mobile-menu-dropdown d-lg-none start-0" style={{ zIndex: 1000 }}>
+      {/* Menú Móvil con CSSTransition */}
+      <CSSTransition
+        in={isMobileMenuOpen}
+        nodeRef={mobileMenuRef}
+        timeout={300}
+        classNames="mobile-menu"
+        unmountOnExit
+      >
+        <div 
+          ref={mobileMenuRef} 
+          className="mobile-menu-dropdown d-lg-none start-0" 
+          style={{ zIndex: 1000 }}
+        >
           <ul className="list-unstyled mb-0">
             {items.map((item) => (
               <li key={item.name} className=" mb-3">
@@ -155,7 +221,7 @@ export default function NavAdmin() {
             ))}
           </ul>
         </div>
-      )}
+      </CSSTransition>
     </nav>
   );
 }

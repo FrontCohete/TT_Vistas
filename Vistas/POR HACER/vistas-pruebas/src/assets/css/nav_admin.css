@@ -150,3 +150,78 @@
   font-weight: 900;
   color: var(--az_bld);
 }
+
+/* --- '../assets/css/nav_admin.css' --- */
+
+/* 1. Estado inicial antes de entrar (Invisible y un poco más abajo) */
+.profile-dropdown-enter {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+/* 2. Estado activo durante la entrada (Definimos la transición) */
+.profile-dropdown-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms ease-out, transform 300ms ease-out;
+}
+
+/* 3. Estado inicial antes de salir (Visible y en su sitio) */
+.profile-dropdown-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 4. Estado activo durante la salida (Definimos la transición hacia invisible) */
+.profile-dropdown-exit-active {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 300ms ease-in, transform 300ms ease-in;
+}
+
+/* --- Animaciones del Dropdown Principal --- */
+.item-dropdown {
+  /* Añade esta línea a tus estilos existentes de .item-dropdown para un movimiento fluido en el eje X */
+  transition: translate 300ms ease; 
+}
+
+.main-dropdown-enter {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+.main-dropdown-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms ease, transform 300ms ease;
+}
+.main-dropdown-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+.main-dropdown-exit-active {
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 300ms ease, transform 300ms ease;
+}
+/* --- Animaciones del Menú Móvil --- */
+.mobile-menu-enter {
+  opacity: 0;
+  transform: translateY(-20px);
+}
+
+.mobile-menu-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms ease-out, transform 300ms ease-out;
+}
+
+.mobile-menu-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.mobile-menu-exit-active {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 300ms ease-in, transform 300ms ease-in;
+}
