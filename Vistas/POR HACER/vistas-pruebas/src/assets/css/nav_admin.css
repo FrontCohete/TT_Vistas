@@ -20,7 +20,7 @@
   padding: 0em;
   height: 50px;
   background-color: var(--blanco);
-  position: relative; /* Reemplaza position-relative */
+  position: relative; 
 }
 
 .navbar-container {
@@ -64,6 +64,7 @@
 
 .item-menu a{
   outline: none;
+  transition: all 0.3s ease-in-out;
 }
 
 .nvbar-item > img {
@@ -77,8 +78,8 @@
   align-items: center;
   justify-content: center;
   font-weight: 500;
-  position: relative; /* Reemplaza position-relative */
-  height: 100%; /* Reemplaza h-100 */
+  position: relative; 
+  height: 100%;
 }
 
 .item-dropdown {
@@ -93,6 +94,7 @@
   border-radius: 6px;
   background: #ffffff;
   box-shadow: 0 5px 30px rgb(0 0 0 / 10%);
+  transition: all 0.2s ease-in-out;
 }
 
 .item-dropdown::after {
@@ -104,7 +106,7 @@
 
 .item-dropdown a:hover{
   background-color: var(--blanco);
-  transition: 0.3s;
+  transition: all 0.3s ease-in-out;
 }
 
 .item-dropdown > a {
@@ -125,11 +127,12 @@
   overflow-y: auto; 
   max-height: calc(100vh - 50px);
   z-index: 1000;
+  transition: all 0.5s ease-in-out;
 }
 
 .home-label{
   text-decoration: none;
-  font-weight: 900; /* Reemplaza fw-bold */
+  font-weight: 900;
   color: var(--az_lgh);
   transition: all 0.2s ease-in-out;
 }
@@ -145,11 +148,6 @@
   color: var(--az_bld);
 }
 
-/* =========================================
-   NUEVAS REGLAS (REEMPLAZO DE BOOTSTRAP) 
-   ========================================= */
-
-/* Botón toggle móvil (btn btn-outline-secondary) */
 .mobile-toggle-btn {
   padding: 0.375rem 0.75rem;
   font-size: 1.25rem;
@@ -166,19 +164,16 @@
   color: #ffffff;
 }
 
-/* Enlaces dentro del dropdown principal (d-block px-3 py-2) */
 .dropdown-link {
   display: block;
   padding: 0.5rem 1rem;
 }
 
-/* Contenedor del perfil (position-relative) */
 .user-profile-container {
   position: relative;
   cursor: pointer;
 }
 
-/* Dropdown del perfil (position-absolute end-0 shadow-sm) */
 .profile-dropdown-menu {
   position: absolute;
   right: 0;
@@ -192,7 +187,6 @@
   display: block;
 }
 
-/* Ítems del perfil (dropdown-item) */
 .profile-item {
   display: block;
   width: 100%;
@@ -209,11 +203,10 @@
 }
 
 .profile-item:hover {
-  background-color: #f8f9fa;
-  color: #1e2125;
+  background-color: var(--blanco);
+  color: var(--negro);
 }
 
-/* Separador del perfil (dropdown-divider) */
 .profile-divider {
   height: 0;
   margin: 0.5rem 0;
@@ -221,17 +214,15 @@
   border-top: 1px solid #e9ecef;
 }
 
-/* Botón cerrar sesión (text-danger) */
 .logout-btn {
   color: #dc3545;
 }
 
 .logout-btn:hover {
   color: #dc3545;
-  background-color: #ffe6e6; /* Un sutil fondo rojo al pasar el cursor */
+  background-color: #ffe6e6; 
 }
 
-/* Estructura del Menú Móvil (list-unstyled, mb-0, ms-3, mt-2, etc) */
 .mobile-menu-list {
   list-style: none;
   padding-left: 0;
@@ -239,45 +230,37 @@
 }
 
 .mobile-menu-item {
-  margin-bottom: 1rem; /* mb-3 */
+  margin-bottom: 1rem;
 }
 
 .mobile-sub-list {
   list-style: none;
   padding-left: 0;
-  margin-left: 1rem;   /* ms-3 */
-  margin-top: 0.5rem;  /* mt-2 */
+  margin-left: 1rem;
+  margin-top: 0.5rem;
 }
 
 .mobile-sub-item {
   margin-bottom: 0.5rem; /* mb-2 */
 }
 
-/* =========================================
-   MEDIA QUERIES (REEMPLAZO d-none d-lg-block) 
-   ========================================= */
-
-/* Estilos por defecto (Móvil) */
 .desktop-menu {
   display: none; 
 }
 
-/* Pantallas grandes (lg en Bootstrap es >= 992px) */
+
 @media (min-width: 992px) {
   .desktop-menu {
     display: block; 
   }
   .mobile-toggle-btn {
-    display: none; /* Ocultamos el botón hamburguesa */
+    display: none; 
   }
   .mobile-menu-dropdown {
-    display: none !important; /* Aseguramos que el menú móvil no se vea en PC */
+    display: none !important; 
   }
 }
 
-/* =========================================
-   ANIMACIONES (CSSTransition) 
-   ========================================= */
 
 .profile-dropdown-enter {
   opacity: 0;

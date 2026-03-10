@@ -10,15 +10,13 @@ const items = [
   { 
     name: "Empresas", 
     items: [
-      { name: "Visualizar Preregistros", path: "/empresas/preregistros" },
-      { name: "Visualizar Existentes", path: "/empresas/existentes" }
+      { name: "Visualizar Preregistros", path: "/empresas/preregistros" }
     ] 
   },
   { 
     name: "Reclutadores", 
     items: [
-      { name: "Visualizar Existentes", path: "/reclutadores/existentes" },
-      { name: "Emitir Reportes", path: "/reclutadores/reportes" }
+      { name: "Visualizar Existentes", path: "/reclutadores/existentes" }
     ] 
   },
   { 
@@ -90,6 +88,7 @@ export default function NavAdmin() {
   return (
     <nav className="page navbar">
       <section className="navbar-container">
+        {/* Toggle para menú móvil */}
         <button 
           className="mobile-toggle-btn" 
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -98,6 +97,7 @@ export default function NavAdmin() {
           ☰
         </button>
 
+        {/* Menú de escritorio */}
         <div className="nvbar-item menu desktop-menu">
           <div className="item-menu">
             {items.map((item) => (
@@ -134,6 +134,7 @@ export default function NavAdmin() {
           </div>
         </div>
 
+        {/* Perfil de usuario */}
         <div className="nvbar-item img user-profile-container">
           <img 
             src={avatar} 
@@ -173,6 +174,7 @@ export default function NavAdmin() {
         </div>
       </section>
 
+      {/* Menú Móvil */}
       <CSSTransition
         in={isMobileMenuOpen}
         nodeRef={mobileMenuRef}
