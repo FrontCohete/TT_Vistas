@@ -10,13 +10,15 @@ const items = [
   { 
     name: "Empresas", 
     items: [
-      { name: "Visualizar Preregistros", path: "/empresas/preregistros" }
+      { name: "Visualizar Preregistros", path: "/empresas/preregistros" },
+      { name: "Visualizar Existentes", path: "/empresas/existentes" }
     ] 
   },
   { 
     name: "Reclutadores", 
     items: [
-      { name: "Visualizar Existentes", path: "/reclutadores/existentes" }
+      { name: "Visualizar Existentes", path: "/reclutadores/existentes" },
+      { name: "Emitir Reportes", path: "/reclutadores/reportes" }
     ] 
   },
   { 
@@ -50,7 +52,7 @@ const NavItem = ({ item, activeItem, onEnter, onLeave }) => {
   );
 };
 
-export default function NavSubAdmin() {
+export default function NavAdmin() {
   const [translateX, setTranslateX] = useState("0px");
   const [activeItem, setActiveItem] = useState(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -152,6 +154,9 @@ export default function NavSubAdmin() {
             >
               <Link to="/perfil/editar" className="profile-item" onClick={closeProfileMenu}>
                 Editar Perfil
+              </Link>
+              <Link to="/subadministradores" className="profile-item" onClick={closeProfileMenu}>
+                Ver Sub administradores
               </Link>
               <div className="profile-divider"></div>
               <button 
