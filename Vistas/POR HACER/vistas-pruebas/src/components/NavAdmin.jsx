@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { CSSTransition } from "react-transition-group";
 import 'normalize.css';
 import '../assets/css/nav_admin.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import avatar from "../assets/img-no-opt/logo-caspita.png";
 
 const items = [
@@ -36,8 +35,8 @@ const NavItem = ({ item, activeItem, onEnter, onLeave }) => {
   const linkRef = useRef();
 
   const handleMouseEnter = () => {
-    const rect = linkRef.current.getBoundingClientRect();
-    onEnter(item, `${rect.x}px`);
+    const leftPosition = linkRef.current.offsetLeft;
+    onEnter(item, `${leftPosition}px`);
   };
 
   return (
@@ -54,10 +53,11 @@ const NavItem = ({ item, activeItem, onEnter, onLeave }) => {
 };
 
 export default function NavAdmin() {
-  const [translateX, setTranslateX] = useState("0");
+  const [translateX, setTranslateX] = useState("0px");
   const [activeItem, setActiveItem] = useState(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
+  
   const profileMenuRef = useRef(null);
   const mainDropdownRef = useRef(null);
   const mobileMenuRef = useRef(null); 
@@ -88,17 +88,19 @@ export default function NavAdmin() {
   };
 
   return (
-    <nav className="page navbar position-relative">
+    <nav className="page navbar">
       <section className="navbar-container">
+        {/* Toggle para menú móvil */}
         <button 
-          className="d-lg-none btn btn-outline-secondary" 
+          className="mobile-toggle-btn" 
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           aria-label="Toggle navigation"
         >
           ☰
         </button>
 
-        <div className="nvbar-item menu d-none d-lg-block">
+        {/* Menú de escritorio */}
+        <div className="nvbar-item menu desktop-menu">
           <div className="item-menu">
             {items.map((item) => (
               <NavItem
@@ -111,7 +113,7 @@ export default function NavAdmin() {
             ))}
             
             <CSSTransition
-              in={!!activeItem}
+              in={!!activeItem?.items && activeItem.items.length > 0}
               nodeRef={mainDropdownRef}
               timeout={300}
               classNames="main-dropdown"
@@ -119,13 +121,13 @@ export default function NavAdmin() {
             >
               <div
                 ref={mainDropdownRef}
-                style={{ translate: `${translateX} 0` }}
+                style={{ transform: `translateX(${translateX})` }}
                 className="item-dropdown" 
                 onMouseEnter={handleDropdownEnter} 
                 onMouseLeave={handleMouseLeave}    
               >
                 {activeItem?.items?.map((subItem) => (
-                  <Link key={subItem.name} to={subItem.path}>
+                  <Link key={subItem.name} to={subItem.path} className="dropdown-link">
                     {subItem.name}
                   </Link>
                 ))}
@@ -134,7 +136,8 @@ export default function NavAdmin() {
           </div>
         </div>
 
-        <div className="nvbar-item img position-relative" style={{ cursor: "pointer" }}>
+        {/* Perfil de usuario */}
+        <div className="nvbar-item img user-profile-container">
           <img 
             src={avatar} 
             alt="Logo Caspita" 
@@ -150,18 +153,17 @@ export default function NavAdmin() {
           >
             <div 
               ref={profileMenuRef}
-              className="dropdown-menu position-absolute end-0 shadow-sm" 
-              style={{ zIndex: 950, display: 'block' }}
+              className="profile-dropdown-menu" 
             >
-              <Link to="/perfil/editar" className="dropdown-item" onClick={closeProfileMenu}>
+              <Link to="/perfil/editar" className="profile-item" onClick={closeProfileMenu}>
                 Editar Perfil
               </Link>
-              <Link to="/subadministradores" className="dropdown-item" onClick={closeProfileMenu}>
+              <Link to="/subadministradores" className="profile-item" onClick={closeProfileMenu}>
                 Ver Sub administradores
               </Link>
-              <div className="dropdown-divider"></div>
+              <div className="profile-divider"></div>
               <button 
-                className="dropdown-item text-danger" 
+                className="profile-item logout-btn" 
                 onClick={() => {
                   closeProfileMenu();
                   console.log("Cerrando sesión...");
@@ -174,6 +176,7 @@ export default function NavAdmin() {
         </div>
       </section>
 
+      {/* Menú Móvil */}
       <CSSTransition
         in={isMobileMenuOpen}
         nodeRef={mobileMenuRef}
@@ -183,23 +186,22 @@ export default function NavAdmin() {
       >
         <div 
           ref={mobileMenuRef} 
-          className="mobile-menu-dropdown d-lg-none start-0" 
-          style={{ zIndex: 1000 }}
+          className="mobile-menu-dropdown" 
         >
-          <ul className="list-unstyled mb-0">
+          <ul className="mobile-menu-list">
             {items.map((item) => (
-              <li key={item.name} className="ref-a mb-3">
+              <li key={item.name} className="mobile-menu-item">
                 {item.path ? (
-                  <Link to={item.path} className="home-label fw-bold " onClick={closeMobileMenu}>
+                  <Link to={item.path} className="home-label" onClick={closeMobileMenu}>
                     {item.name}
                   </Link>
                 ) : (
                   <>
-                    <span className="title-page ">{item.name}</span>
-                    <ul className="list-unstyled ms-3 mt-2">
+                    <span className="title-page">{item.name}</span>
+                    <ul className="mobile-sub-list">
                       {item.items.map((subItem) => (
-                        <li key={subItem.name} className="mb-2">
-                          <Link to={subItem.path} className="page-label " onClick={closeMobileMenu}>
+                        <li key={subItem.name} className="mobile-sub-item">
+                          <Link to={subItem.path} className="page-label" onClick={closeMobileMenu}>
                             {subItem.name}
                           </Link>
                         </li>

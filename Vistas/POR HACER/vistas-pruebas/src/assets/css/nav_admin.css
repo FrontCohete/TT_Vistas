@@ -3,7 +3,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Monoton&display=swap');
 
 :root {
-  /* Se definen con dos guiones al principio -- */
   --az_lgh: #2a94f4;
   --az_bld: #132f70;
   --guinda: #8b0f55;
@@ -15,13 +14,13 @@
 }
 
 .page.navbar{
-    font-family: "Lato", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-    padding: 0em;
-    background-color: var(--no_color_white);
-    height: 50px;
-    background-color: var(--blanco);
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  padding: 0em;
+  height: 50px;
+  background-color: var(--blanco);
+  position: relative; /* Reemplaza position-relative */
 }
 
 .navbar-container {
@@ -29,80 +28,71 @@
   flex-direction: row;
   justify-content: space-between ;
   align-items: center;
-  
-  position:fixed;
+  position: fixed;
   top: 0;
   left: 0;
-  z-index: 1;
-  
+  z-index: 100; 
   height: 50px;
   width: 100%;
   padding: 1em;
-
   background: var(--no_color_white2);
   box-shadow: 0 10px 50px rgb(0 0 0 / 2%);
 }
+
 .nvbar-item.menu{
   background-color: var(--no_color_white);
   height: 50px;
   width: 50%;
 }
+
 .navbar-container a {
   width: 100%;
   height: 50px;
   padding: 0 1em;
-
   display: flex;
   align-items: center;
-
   color: var(--negro);
   text-align: center;
   text-decoration: none;
   font-weight: 700;
   font-size: 15px;
 }
+
 .navbar-container a:is(:hover, .active) {
   color: var(--az_lgh);
 }
+
 .item-menu a{
   outline: none;
 }
+
 .nvbar-item > img {
   margin: 0;
   height: 36px;
   width: 36px;
 }
+
 .item-menu {
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 500;
+  position: relative; /* Reemplaza position-relative */
+  height: 100%; /* Reemplaza h-100 */
 }
 
 .item-dropdown {
-  position: fixed;
-  z-index: 1;
-  top: 3em;
+  position: absolute;
+  z-index: 1000;
+  top: 50px; 
   left: 0;
-  height: 0;
-  width: 13em;
+  width: max-content; 
+  min-width: 13em;
   padding: 6px 0;
-  overflow: hidden;
   display: grid;
-  opacity: 0;
-  visibility: hidden;
-  transition: 0.3s ;
   border-radius: 6px;
   background: #ffffff;
-  box-shadow: 0 0 30px rgb(0 0 0 / 4%);
-  transition: 0.3s;
-}
-
-
-.item-dropdown.visible {
-  opacity: 1;
-  visibility: visible;
-  height: max-content;
+  box-shadow: 0 5px 30px rgb(0 0 0 / 10%);
 }
 
 .item-dropdown::after {
@@ -111,10 +101,12 @@
   inset: 0;
   top: -12px;
 }
+
 .item-dropdown a:hover{
   background-color: var(--blanco);
   transition: 0.3s;
 }
+
 .item-dropdown > a {
   position: relative;
   z-index: 1;
@@ -130,53 +122,180 @@
   padding: 1em 2em;
   width: 100%;
   background-color: var(--no_color_white2);
-  
   overflow-y: auto; 
   max-height: calc(100vh - 50px);
+  z-index: 1000;
 }
 
 .home-label{
   text-decoration: none;
-  font-weight: 900;
+  font-weight: 900; /* Reemplaza fw-bold */
   color: var(--az_lgh);
   transition: all 0.2s ease-in-out;
 }
-
 
 .page-label{
   text-decoration: none;
   color: var(--az_lgh);
 }
+
 .title-page{
   text-decoration: none;
   font-weight: 900;
   color: var(--az_bld);
 }
 
+/* =========================================
+   NUEVAS REGLAS (REEMPLAZO DE BOOTSTRAP) 
+   ========================================= */
+
+/* Botón toggle móvil (btn btn-outline-secondary) */
+.mobile-toggle-btn {
+  padding: 0.375rem 0.75rem;
+  font-size: 1.25rem;
+  border: 1px solid #6c757d;
+  border-radius: 0.25rem;
+  background: transparent;
+  color: #6c757d;
+  cursor: pointer;
+  display: block;
+}
+
+.mobile-toggle-btn:hover {
+  background-color: #6c757d;
+  color: #ffffff;
+}
+
+/* Enlaces dentro del dropdown principal (d-block px-3 py-2) */
+.dropdown-link {
+  display: block;
+  padding: 0.5rem 1rem;
+}
+
+/* Contenedor del perfil (position-relative) */
+.user-profile-container {
+  position: relative;
+  cursor: pointer;
+}
+
+/* Dropdown del perfil (position-absolute end-0 shadow-sm) */
+.profile-dropdown-menu {
+  position: absolute;
+  right: 0;
+  z-index: 950;
+  background-color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 0.25rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  padding: 0.5rem 0;
+  min-width: 12rem;
+  display: block;
+}
+
+/* Ítems del perfil (dropdown-item) */
+.profile-item {
+  display: block;
+  width: 100%;
+  padding: 0.25rem 1rem;
+  clear: both;
+  font-weight: 400;
+  color: #212529;
+  text-align: left;
+  text-decoration: none;
+  white-space: nowrap;
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+.profile-item:hover {
+  background-color: #f8f9fa;
+  color: #1e2125;
+}
+
+/* Separador del perfil (dropdown-divider) */
+.profile-divider {
+  height: 0;
+  margin: 0.5rem 0;
+  overflow: hidden;
+  border-top: 1px solid #e9ecef;
+}
+
+/* Botón cerrar sesión (text-danger) */
+.logout-btn {
+  color: #dc3545;
+}
+
+.logout-btn:hover {
+  color: #dc3545;
+  background-color: #ffe6e6; /* Un sutil fondo rojo al pasar el cursor */
+}
+
+/* Estructura del Menú Móvil (list-unstyled, mb-0, ms-3, mt-2, etc) */
+.mobile-menu-list {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 0;
+}
+
+.mobile-menu-item {
+  margin-bottom: 1rem; /* mb-3 */
+}
+
+.mobile-sub-list {
+  list-style: none;
+  padding-left: 0;
+  margin-left: 1rem;   /* ms-3 */
+  margin-top: 0.5rem;  /* mt-2 */
+}
+
+.mobile-sub-item {
+  margin-bottom: 0.5rem; /* mb-2 */
+}
+
+/* =========================================
+   MEDIA QUERIES (REEMPLAZO d-none d-lg-block) 
+   ========================================= */
+
+/* Estilos por defecto (Móvil) */
+.desktop-menu {
+  display: none; 
+}
+
+/* Pantallas grandes (lg en Bootstrap es >= 992px) */
+@media (min-width: 992px) {
+  .desktop-menu {
+    display: block; 
+  }
+  .mobile-toggle-btn {
+    display: none; /* Ocultamos el botón hamburguesa */
+  }
+  .mobile-menu-dropdown {
+    display: none !important; /* Aseguramos que el menú móvil no se vea en PC */
+  }
+}
+
+/* =========================================
+   ANIMACIONES (CSSTransition) 
+   ========================================= */
+
 .profile-dropdown-enter {
   opacity: 0;
   transform: translateY(10px);
 }
-
 .profile-dropdown-enter-active {
   opacity: 1;
   transform: translateY(0);
   transition: opacity 300ms ease-out, transform 300ms ease-out;
 }
-
 .profile-dropdown-exit {
   opacity: 1;
   transform: translateY(0);
 }
-
 .profile-dropdown-exit-active {
   opacity: 0;
   transform: translateY(10px);
   transition: opacity 300ms ease-in, transform 300ms ease-in;
-}
-
-.item-dropdown {
-  transition: translate 300ms ease; 
 }
 
 .main-dropdown-enter {
@@ -197,22 +316,20 @@
   transform: translateY(-10px);
   transition: opacity 300ms ease, transform 300ms ease;
 }
+
 .mobile-menu-enter {
   opacity: 0;
   transform: translateY(-20px);
 }
-
 .mobile-menu-enter-active {
   opacity: 1;
   transform: translateY(0);
   transition: opacity 300ms ease-out, transform 300ms ease-out;
 }
-
 .mobile-menu-exit {
   opacity: 1;
   transform: translateY(0);
 }
-
 .mobile-menu-exit-active {
   opacity: 0;
   transform: translateY(-20px);
