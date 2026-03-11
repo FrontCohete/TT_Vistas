@@ -9,26 +9,20 @@ import avatar from "../assets/img-no-opt/logo-caspita.png";
 const items = [
   { name: "Inicio", path: "/", icon: "fi fi-rr-home" },
   { 
-    name: "Reclutadores", 
-    icon: "fi fi-rr-users",
-    items: [
-      { name: "Visualizar Existentes", path: "/reclutadores/existentes", icon: "fi fi-rr-eye" },
-      { name: "Visualizar Reportes", path: "/reclutadores/existentes", icon: "fi fi-rs-comment-info" }
-    ] 
-  },
-  { 
     name: "Vacantes", 
     icon: "fi fi-rr-briefcase",
     items: [
       { name: "Publicaciones Activas", path: "/vacantes/aprobar", icon: "fi fi-rr-check-circle" },
-      { name: "Visualizar Reportes", path: "/vacantes/reportes", icon: "fi fi-rs-comment-info" }
+      { name: "Crear Publicación", path: "/vacantes/reportes", icon: "fi fi-rr-add-document" },
+      { name: "Visualizar Reportes", path: "/vacantes/reportes", icon: "fi fi-rs-comment-info" },
     ] 
   },
   { 
     name: "Pruebas", 
     icon: "fi fi-rs-book-bookmark",
     items: [
-      { name: "Ver Pruebas", path: "/vacantes/aprobar", icon: "fi fi-rs-assept-document" }
+      { name: "Ver Pruebas", path: "/vacantes/aprobar", icon: "fi fi-rs-book-bookmark" },
+      { name: "Crear Pruebas", path: "/vacantes/aprobar", icon: "fi fi-rs-book-plus" },
     ] 
   },
 ];
@@ -54,7 +48,7 @@ const NavItem = ({ item, activeItem, onEnter, onLeave }) => {
   );
 };
 
-export default function NavEmp() {
+export default function NavReclu() {
   const [translateX, setTranslateX] = useState("0px");
   const [activeItem, setActiveItem] = useState(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);

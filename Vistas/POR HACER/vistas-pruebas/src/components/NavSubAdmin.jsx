@@ -1,30 +1,35 @@
 import { useState, useRef } from "react";
 import { Link } from "react-router-dom";
+import '@flaticon/flaticon-uicons/css/all/all.css';
 import { CSSTransition } from "react-transition-group";
 import 'normalize.css';
 import '../assets/css/nav_admin.css';
 import avatar from "../assets/img-no-opt/logo-caspita.png";
 
 const items = [
-  { name: "Inicio", path: "/" },
+  { name: "Inicio", path: "/", icon: "fi fi-rr-home" },
   { 
     name: "Empresas", 
+    icon: "fi fi-rr-building",
     items: [
-      { name: "Visualizar Preregistros", path: "/empresas/preregistros" }
+      { name: "Visualizar Preregistros", path: "/empresas/preregistros", icon: "fi fi-rr-eye" },
+      { name: "Visualizar Existentes", path: "/empresas/existentes", icon: "fi fi-rr-list-check" }
     ] 
   },
   { 
     name: "Reclutadores", 
+    icon: "fi fi-rr-users",
     items: [
-      { name: "Visualizar Existentes", path: "/reclutadores/existentes" }
+      { name: "Visualizar Existentes", path: "/reclutadores/existentes", icon: "fi fi-rr-eye" }
     ] 
   },
   { 
     name: "Vacantes", 
+    icon: "fi fi-rr-briefcase",
     items: [
-      { name: "Aprobar Publicaciones", path: "/vacantes/aprobar" },
-      { name: "Corrección de Publicaciones", path: "/vacantes/corregir" },
-      { name: "Visualizar Reportes", path: "/vacantes/reportes" }
+      { name: "Aprobar Publicaciones", path: "/vacantes/aprobar", icon: "fi fi-rr-check-circle" },
+      { name: "Corrección de Publicaciones", path: "/vacantes/corregir", icon: "fi fi-rr-edit" },
+      { name: "Visualizar Reportes", path: "/vacantes/reportes", icon: "fi fi-rr-document" }
     ] 
   },
 ];
@@ -39,18 +44,18 @@ const NavItem = ({ item, activeItem, onEnter, onLeave }) => {
 
   return (
     <a
-      className={item?.name === activeItem?.name ? "active" : ""}
+      className={`nav-main-link ${item?.name === activeItem?.name ? "active" : ""}`}
       ref={linkRef}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={onLeave} 
-      style={{ cursor: "pointer" }}
     >
+      {item.icon && <i className={item.icon}></i>}
       {item.name}
     </a>
   );
 };
 
-export default function NavSubAdmin() {
+export default function NavAdmin() {
   const [translateX, setTranslateX] = useState("0px");
   const [activeItem, setActiveItem] = useState(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -93,7 +98,7 @@ export default function NavSubAdmin() {
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           aria-label="Toggle navigation"
         >
-          ☰
+          <i className="fi fi-rr-menu-burger"></i>
         </button>
 
         <div className="nvbar-item menu desktop-menu">
@@ -124,6 +129,7 @@ export default function NavSubAdmin() {
               >
                 {activeItem?.items?.map((subItem) => (
                   <Link key={subItem.name} to={subItem.path} className="dropdown-link">
+                    {subItem.icon && <i className={subItem.icon}></i>}
                     {subItem.name}
                   </Link>
                 ))}
@@ -151,7 +157,7 @@ export default function NavSubAdmin() {
               className="profile-dropdown-menu" 
             >
               <Link to="/perfil/editar" className="profile-item" onClick={closeProfileMenu}>
-                Editar Perfil
+                <i className="fi fi-rr-user-pen"></i> Editar Perfil
               </Link>
               <div className="profile-divider"></div>
               <button 
@@ -161,7 +167,7 @@ export default function NavSubAdmin() {
                   console.log("Cerrando sesión...");
                 }}
               >
-                Cerrar sesión
+                <i className="fi fi-rr-sign-out-alt"></i> Cerrar sesión
               </button>
             </div>
           </CSSTransition>
@@ -184,15 +190,20 @@ export default function NavSubAdmin() {
               <li key={item.name} className="mobile-menu-item">
                 {item.path ? (
                   <Link to={item.path} className="home-label" onClick={closeMobileMenu}>
+                    {item.icon && <i className={item.icon}></i>}
                     {item.name}
                   </Link>
                 ) : (
                   <>
-                    <span className="title-page">{item.name}</span>
+                    <span className="title-page">
+                      {item.icon && <i className={item.icon}></i>}
+                      {item.name}
+                    </span>
                     <ul className="mobile-sub-list">
                       {item.items.map((subItem) => (
                         <li key={subItem.name} className="mobile-sub-item">
                           <Link to={subItem.path} className="page-label" onClick={closeMobileMenu}>
+                            {subItem.icon && <i className={subItem.icon}></i>}
                             {subItem.name}
                           </Link>
                         </li>
