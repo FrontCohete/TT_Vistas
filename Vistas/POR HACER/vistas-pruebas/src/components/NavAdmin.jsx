@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import '@flaticon/flaticon-uicons/css/all/all.css';
 import { CSSTransition } from "react-transition-group";
@@ -60,12 +60,43 @@ export default function NavAdmin() {
   const [translateX, setTranslateX] = useState("0px");
   const [activeItem, setActiveItem] = useState(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
   
+  const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
+  const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
+  const [notifications, setNotifications] = useState([]); 
+  
+  // Novedad: Estados para controlar el scroll
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
   const profileMenuRef = useRef(null);
   const mainDropdownRef = useRef(null);
   const mobileMenuRef = useRef(null); 
+  const notificationsRef = useRef(null);
   const timeoutRef = useRef(null);
+
+  // Novedad: Lógica para ocultar/mostrar la navbar al hacer scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      // Si hacemos scroll hacia abajo y superamos los 50px de la altura de la barra
+      if (currentScrollY > lastScrollY && currentScrollY > 50) {
+        setIsVisible(false);
+        // Opcional: Cerrar menús desplegables al hacer scroll hacia abajo
+        setIsProfileMenuOpen(false);
+        setIsNotificationsOpen(false);
+      } else {
+        // Si hacemos scroll hacia arriba
+        setIsVisible(true);
+      }
+
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY]);
 
   const handleMouseEnter = (item, x) => {
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
@@ -83,24 +114,73 @@ export default function NavAdmin() {
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
   };
 
-  const closeMobileMenu = () => {
-    setIsMobileMenuOpen(false);
+  const closeMobileMenu = () => setIsMobileMenuOpen(false);
+  const closeProfileMenu = () => setIsProfileMenuOpen(false);
+
+  const toggleNotifications = () => {
+    setIsNotificationsOpen(!isNotificationsOpen);
+    setIsProfileMenuOpen(false);
   };
 
-  const closeProfileMenu = () => {
-    setIsProfileMenuOpen(false);
+  const toggleProfile = () => {
+    setIsProfileMenuOpen(!isProfileMenuOpen);
+    setIsNotificationsOpen(false);
   };
 
   return (
     <nav className="page navbar">
-      <section className="navbar-container">
-        <button 
-          className="mobile-toggle-btn" 
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          aria-label="Toggle navigation"
-        >
-          <i className="fi fi-rr-menu-burger"></i>
-        </button>
+      {/* Añadimos la clase dinámica basada en isVisible */}
+      <section className={`navbar-container ${isVisible ? "" : "navbar-hidden"}`}>
+        
+        <div className="nav-left-section">
+          <button 
+            className="mobile-toggle-btn" 
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label="Toggle navigation"
+          >
+            <i className="fi fi-rr-menu-burger"></i>
+          </button>
+
+          <div className="notifications-wrapper">
+            <button 
+              className="notifications-btn" 
+              aria-label="Notificaciones"
+              onClick={toggleNotifications}
+            >
+              <i className="fi fi-rr-bell"></i>
+              {notifications.length > 0 && (
+                <span className="notification-badge">{notifications.length}</span>
+              )}
+            </button>
+
+            <CSSTransition
+              in={isNotificationsOpen}
+              nodeRef={notificationsRef}
+              timeout={300}
+              classNames="profile-dropdown"
+              unmountOnExit
+            >
+              <div ref={notificationsRef} className="notifications-dropdown-menu">
+                <h4 className="notifications-header">Notificaciones</h4>
+                <div className="notifications-divider"></div>
+                
+                {notifications.length > 0 ? (
+                  <ul className="notifications-list">
+                    {notifications.map((notif, index) => (
+                      <li key={index} className="notification-item">
+                        {notif.text}
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <div className="empty-notifications">
+                    No hay notificaciones disponibles
+                  </div>
+                )}
+              </div>
+            </CSSTransition>
+          </div>
+        </div>
 
         <div className="nvbar-item menu desktop-menu">
           <div className="item-menu">
@@ -143,7 +223,7 @@ export default function NavAdmin() {
           <img 
             src={avatar} 
             alt="Logo Caspita" 
-            onClick={() => setIsProfileMenuOpen(!isProfileMenuOpen)}
+            onClick={toggleProfile}
           />
           
           <CSSTransition

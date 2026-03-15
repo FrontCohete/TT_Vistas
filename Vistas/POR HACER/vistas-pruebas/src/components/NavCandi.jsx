@@ -7,30 +7,9 @@ import '../assets/css/nav_admin.css';
 import avatar from "../assets/img-no-opt/logo-caspita.png";
 
 const items = [
-  { name: "Inicio", path: "/", icon: "fi fi-rr-home" },
-  { 
-    name: "Reclutadores", 
-    icon: "fi fi-rr-users",
-    items: [
-      { name: "Visualizar Existentes", path: "/reclutadores/existentes", icon: "fi fi-rr-eye" },
-      { name: "Visualizar Reportes", path: "/reclutadores/existentes", icon: "fi fi-rs-comment-info" }
-    ] 
-  },
-  { 
-    name: "Vacantes", 
-    icon: "fi fi-rr-briefcase",
-    items: [
-      { name: "Publicaciones Activas", path: "/vacantes/aprobar", icon: "fi fi-rr-check-circle" },
-      { name: "Visualizar Reportes", path: "/vacantes/reportes", icon: "fi fi-rs-comment-info" }
-    ] 
-  },
-  { 
-    name: "Pruebas", 
-    icon: "fi fi-rs-book-bookmark",
-    items: [
-      { name: "Ver Pruebas", path: "/vacantes/aprobar", icon: "fi fi-rs-assept-document" }
-    ] 
-  },
+  { name: " Inicio", path: "/", icon: "fi fi-rr-home" },
+  { name: " Vacantes", path:"/", icon: "fi fi-rr-briefcase"},
+  { name: " Perfil", path:"/", icon: "fi fi-rr-graduation-cap"},
 ];
 
 const NavItem = ({ item, activeItem, onEnter, onLeave }) => {
@@ -54,37 +33,36 @@ const NavItem = ({ item, activeItem, onEnter, onLeave }) => {
   );
 };
 
-export default function NavEmp() {
+export default function NavAdmin() {
   const [translateX, setTranslateX] = useState("0px");
   const [activeItem, setActiveItem] = useState(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  
-  // Estados de menús y notificaciones
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
   const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
   const [notifications, setNotifications] = useState([]); 
-  
-  // Estados para el Hide-on-Scroll
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
-  
   const profileMenuRef = useRef(null);
   const mainDropdownRef = useRef(null);
   const mobileMenuRef = useRef(null); 
   const notificationsRef = useRef(null);
   const timeoutRef = useRef(null);
 
-  // Hook para detectar el scroll
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
+
+      // Si hacemos scroll hacia abajo y superamos los 50px de la altura de la barra
       if (currentScrollY > lastScrollY && currentScrollY > 50) {
         setIsVisible(false);
+        // Opcional: Cerrar menús desplegables al hacer scroll hacia abajo
         setIsProfileMenuOpen(false);
         setIsNotificationsOpen(false);
       } else {
+        // Si hacemos scroll hacia arriba
         setIsVisible(true);
       }
+
       setLastScrollY(currentScrollY);
     };
 
@@ -111,7 +89,6 @@ export default function NavEmp() {
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
   const closeProfileMenu = () => setIsProfileMenuOpen(false);
 
-  // Funciones para alternar menús asegurando que solo haya uno abierto
   const toggleNotifications = () => {
     setIsNotificationsOpen(!isNotificationsOpen);
     setIsProfileMenuOpen(false);
@@ -124,10 +101,8 @@ export default function NavEmp() {
 
   return (
     <nav className="page navbar">
-      {/* Contenedor dinámico según el scroll */}
       <section className={`navbar-container ${isVisible ? "" : "navbar-hidden"}`}>
         
-        {/* SECCIÓN IZQUIERDA */}
         <div className="nav-left-section">
           <button 
             className="mobile-toggle-btn" 
@@ -178,7 +153,6 @@ export default function NavEmp() {
           </div>
         </div>
 
-        {/* SECCIÓN CENTRAL */}
         <div className="nvbar-item menu desktop-menu">
           <div className="item-menu">
             {items.map((item) => (
@@ -216,7 +190,6 @@ export default function NavEmp() {
           </div>
         </div>
 
-        {/* SECCIÓN DERECHA */}
         <div className="nvbar-item img user-profile-container">
           <img 
             src={avatar} 
@@ -235,7 +208,6 @@ export default function NavEmp() {
               ref={profileMenuRef}
               className="profile-dropdown-menu" 
             >
-              {/* Menú original conservado */}
               <Link to="/perfil/editar" className="profile-item" onClick={closeProfileMenu}>
                 <i className="fi fi-rr-user-pen"></i> Editar Perfil
               </Link>
@@ -254,7 +226,6 @@ export default function NavEmp() {
         </div>
       </section>
 
-      {/* Menú Móvil */}
       <CSSTransition
         in={isMobileMenuOpen}
         nodeRef={mobileMenuRef}
