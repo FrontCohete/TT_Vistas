@@ -12,7 +12,7 @@ function App () {
   return(
     <Router> 
       <>
-        <NavCandi/> 
+        <NavAdmin/> 
         <Form_PreR />
         <Form_PreR />
         <Form_PreR />

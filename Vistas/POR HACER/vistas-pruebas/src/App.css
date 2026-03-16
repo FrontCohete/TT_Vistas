@@ -1,6 +1,31 @@
+html {
+   scroll-behavior: smooth;
+}
 
  body{
     background-image: url(./assets/img-no-opt/white-background.gif);
     background-position: center;
     background-repeat: round;
  }
+ 
+::-webkit-scrollbar {
+  width: 16px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(3, 16, 90, 0.2); 
+  border-radius: 20px; 
+  border: 2px solid transparent;
+  background-clip: content-box; 
+  transition: all 0.2s ease-in-out;
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.4);
+}
