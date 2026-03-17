@@ -107,3 +107,46 @@ h1{
   flex: 2;
   font-weight: bold !important;
 }
+
+/* Nuevas clases para limpiar el componente React */
+
+.preregistro-progress-wrapper {
+  width: 100%;
+  margin-bottom: 16px; /* Equivalente a mb: 2 */
+}
+
+.preregistro-progress-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px; /* Equivalente a mb: 1 */
+}
+
+.preregistro-fields-container {
+  flex-grow: 1;
+}
+
+.preregistro-action-area {
+  margin-top: auto;
+}
+
+.preregistro-image-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 16px; /* Equivalente a mb: 2 */
+}
+
+.preregistro-document-img {
+  width: 60px;
+  height: 60px;
+  opacity: 0.8;
+}
+
+.preregistro-dropzone-btn {
+  margin-top: 8px !important; /* Equivalente a mt: 1 */
+}
+
+.preregistro-dropzone-text {
+  display: block;
+  text-align: center;
+  margin-top: 8px;
+}

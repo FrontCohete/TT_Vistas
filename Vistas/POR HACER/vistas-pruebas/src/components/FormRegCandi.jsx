@@ -1,24 +1,23 @@
 import { useState } from "react";
 import { 
   Tabs, Tab, Box, TextField, Button, Typography, 
-  Paper, LinearProgress, InputAdornment, IconButton 
+  Paper, LinearProgress, InputAdornment, IconButton, MenuItem 
 } from '@mui/material';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import 'normalize.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../assets/css/form_tabs.css';
+// Reutilizamos los gifs que ya tenías
 import documentoGif from '../assets/img-no-opt/documento.gif'; 
 import contrasenaGif from '../assets/img-no-opt/contrasena.gif'; 
 
+// 1. Esquema de validación actualizado
 const validationSchema = yup.object({
-  nombre: yup.string().required('El nombre o razón social es obligatorio'),
-  giro: yup.string().required('El giro es obligatorio'),
-  sector: yup.string().required('El sector es obligatorio'),
-  rfc: yup.string()
-    .matches(/^[A-Z&Ñ]{3,4}\d{6}[A-Z0-9]{3}$/i, 'Formato de RFC inválido')
-    .required('El RFC es obligatorio'),
-  constancia: yup.mixed().required('Debes adjuntar tu constancia'),
+  nombre: yup.string().required('El nombre es obligatorio'),
+  apellidoPaterno: yup.string().required('El apellido paterno es obligatorio'),
+  apellidoMaterno: yup.string().required('El apellido materno es obligatorio'),
+  carrera: yup.string().required('Debes seleccionar una carrera'),
   correo: yup.string().email('Ingresa un correo electrónico válido').required('El correo es obligatorio'),
   contrasena: yup.string()
     .min(8, 'La contraseña debe tener al menos 8 caracteres')
@@ -28,6 +27,7 @@ const validationSchema = yup.object({
     .required('Debes confirmar tu contraseña'),
 });
 
+// Componente TabPanel (Sin cambios)
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
   return (
@@ -49,50 +49,52 @@ function TabPanel(props) {
   );
 }
 
-export default function Form_PreR() {
+export default function Form_RegistroEstudiante() {
   const [tabIndex, setTabIndex] = useState(0);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-  const progress = tabIndex === 0 ? 33 : tabIndex === 1 ? 66 : 100;
+  // 2. Progreso ajustado para 2 pasos
+  const progress = tabIndex === 0 ? 50 : 100;
 
   const formik = useFormik({
     initialValues: {
-      nombre: '', giro: '', sector: '', rfc: '', constancia: null, correo: '', contrasena: '', confirmarContrasena: ''
+      nombre: '', apellidoPaterno: '', apellidoMaterno: '', carrera: '', correo: '', contrasena: '', confirmarContrasena: ''
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      console.log("Registro completado con éxito:", values);
-      alert("¡Preregistro enviado!");
+      console.log("Registro de estudiante completado:", values);
+      alert("¡Registro enviado con éxito!");
     },
   });
 
   const handleTabChange = (event, newValue) => {};
 
+  // 3. Lógica de validación ajustada para 2 pasos
   const handleNext = async () => {
     const errors = await formik.validateForm();
     if (tabIndex === 0) {
       formik.setFieldTouched('nombre', true);
-      formik.setFieldTouched('giro', true);
-      formik.setFieldTouched('sector', true);
-      if (!errors.nombre && !errors.giro && !errors.sector) setTabIndex(1);
-    } else if (tabIndex === 1) {
-      formik.setFieldTouched('rfc', true);
-      formik.setFieldTouched('constancia', true);
-      if (!errors.rfc && !errors.constancia) setTabIndex(2);
+      formik.setFieldTouched('apellidoPaterno', true);
+      formik.setFieldTouched('apellidoMaterno', true);
+      formik.setFieldTouched('carrera', true);
+      
+      if (!errors.nombre && !errors.apellidoPaterno && !errors.apellidoMaterno && !errors.carrera) {
+        setTabIndex(1);
+      }
     }
   };
 
-  const handleDrop = (e) => {
-    e.preventDefault();
-    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
-      formik.setFieldValue('constancia', e.dataTransfer.files[0]);
-    }
-  };
+  // Opciones para el selector de carrera
+  const carreras = [
+    { value: 'ISC', label: 'Ingeniería en Sistemas Computacionales (ISC)' },
+    { value: 'IIA', label: 'Ingeniería en Inteligencia Artificial (IIA)' },
+    { value: 'LCD', label: 'Licenciatura en Ciencia de Datos (LCD)' }
+  ];
 
   return (
     <main className="container mt-5">
-      <h1 className="text-center mb-3 preregistro-title">Preregistro para Empresas </h1>
+      <h1 className="text-center mb-3 preregistro-title">Registro de Estudiante</h1>
       
       <Box className="preregistro-container">
         <Box className="preregistro-progress-wrapper">
@@ -119,16 +121,36 @@ export default function Form_PreR() {
               className="preregistro-tabs"
             >
               <Tab label="General" />
-              <Tab label="Fiscal" />
               <Tab label="Acceso" />
             </Tabs>
 
-            {/* General*/}
+            {/* TAB 1: General */}
             <TabPanel value={tabIndex} index={0}>
               <Box className="preregistro-fields-container">
-                <TextField fullWidth size="small" margin="normal" label="Nombre / Razón Social" name="nombre" value={formik.values.nombre} onChange={formik.handleChange} onBlur={formik.handleBlur} error={formik.touched.nombre && Boolean(formik.errors.nombre)} helperText={formik.touched.nombre && formik.errors.nombre} />
-                <TextField fullWidth size="small" margin="normal" label="Giro" name="giro" value={formik.values.giro} onChange={formik.handleChange} onBlur={formik.handleBlur} error={formik.touched.giro && Boolean(formik.errors.giro)} helperText={formik.touched.giro && formik.errors.giro} />
-                <TextField fullWidth size="small" margin="normal" label="Sector" name="sector" value={formik.values.sector} onChange={formik.handleChange} onBlur={formik.handleBlur} error={formik.touched.sector && Boolean(formik.errors.sector)} helperText={formik.touched.sector && formik.errors.sector} />
+                <TextField fullWidth size="small" margin="normal" label="Nombre(s)" name="nombre" value={formik.values.nombre} onChange={formik.handleChange} onBlur={formik.handleBlur} error={formik.touched.nombre && Boolean(formik.errors.nombre)} helperText={formik.touched.nombre && formik.errors.nombre} />
+                <TextField fullWidth size="small" margin="normal" label="Apellido Paterno" name="apellidoPaterno" value={formik.values.apellidoPaterno} onChange={formik.handleChange} onBlur={formik.handleBlur} error={formik.touched.apellidoPaterno && Boolean(formik.errors.apellidoPaterno)} helperText={formik.touched.apellidoPaterno && formik.errors.apellidoPaterno} />
+                <TextField fullWidth size="small" margin="normal" label="Apellido Materno" name="apellidoMaterno" value={formik.values.apellidoMaterno} onChange={formik.handleChange} onBlur={formik.handleBlur} error={formik.touched.apellidoMaterno && Boolean(formik.errors.apellidoMaterno)} helperText={formik.touched.apellidoMaterno && formik.errors.apellidoMaterno} />
+                
+                {/* Selector de Carrera */}
+                <TextField 
+                  select 
+                  fullWidth 
+                  size="small" 
+                  margin="normal" 
+                  label="Carrera" 
+                  name="carrera" 
+                  value={formik.values.carrera} 
+                  onChange={formik.handleChange} 
+                  onBlur={formik.handleBlur} 
+                  error={formik.touched.carrera && Boolean(formik.errors.carrera)} 
+                  helperText={formik.touched.carrera && formik.errors.carrera}
+                >
+                  {carreras.map((option) => (
+                    <MenuItem key={option.value} value={option.value}>
+                      {option.label}
+                    </MenuItem>
+                  ))}
+                </TextField>
               </Box>
               
               <Box className="preregistro-action-area">
@@ -139,44 +161,8 @@ export default function Form_PreR() {
               </Box>
             </TabPanel>
 
-            {/*Fiscal*/}
+            {/* TAB 2: Acceso */}
             <TabPanel value={tabIndex} index={1}>
-              <Box className="preregistro-fields-container">
-                <TextField fullWidth size="small" margin="normal" label="RFC" name="rfc" value={formik.values.rfc} onChange={formik.handleChange} onBlur={formik.handleBlur} error={formik.touched.rfc && Boolean(formik.errors.rfc)} helperText={formik.touched.rfc && formik.errors.rfc} />
-                
-                <Box 
-                  onDragOver={(e) => e.preventDefault()}
-                  onDrop={handleDrop}
-                  className={`preregistro-dropzone ${formik.values.constancia ? 'has-file' : 'is-empty'} ${formik.touched.constancia && formik.errors.constancia ? 'has-error' : ''}`}
-                  component="label"
-                >
-                  <Typography variant="body2" color="text.secondary" gutterBottom>Arrastra aquí tu Constancia de Situación Fiscal o haz clic para subirla</Typography>
-                  <input type="file" name="constancia" hidden onChange={(event) => formik.setFieldValue("constancia", event.currentTarget.files[0])} />
-                  <Button variant="outlined" component="span" size="small" className="preregistro-dropzone-btn">Seleccionar Archivo</Button>
-                </Box>
-                
-                {formik.touched.constancia && formik.errors.constancia ? (
-                  <Typography variant="caption" color="error" className="preregistro-dropzone-text">{formik.errors.constancia}</Typography>
-                ) : (
-                  <Typography variant="caption" color={formik.values.constancia ? "success.main" : "text.secondary"} className="preregistro-dropzone-text">
-                    {formik.values.constancia ? `✓ Archivo cargado: ${formik.values.constancia.name}` : 'Ningún archivo seleccionado'}
-                  </Typography>
-                )}
-              </Box>
-              
-              <Box className="preregistro-action-area">
-                <Box className="preregistro-image-wrapper">
-                  <img src={documentoGif} alt="Documento Animado" className="preregistro-document-img" />
-                </Box>
-                <Box className="preregistro-button-container">
-                  <Button variant="outlined" onClick={() => setTabIndex(0)} className="preregistro-btn preregistro-btn-back">Atrás</Button>
-                  <Button variant="contained" onClick={handleNext} className="preregistro-btn preregistro-btn-next">Siguiente paso</Button>
-                </Box>
-              </Box>
-            </TabPanel>
-
-            {/*Acceso */}
-            <TabPanel value={tabIndex} index={2}>
               <Box className="preregistro-fields-container">
                 <TextField fullWidth size="small" margin="normal" label="Correo Electrónico" name="correo" type="email" value={formik.values.correo} onChange={formik.handleChange} onBlur={formik.handleBlur} error={formik.touched.correo && Boolean(formik.errors.correo)} helperText={formik.touched.correo && formik.errors.correo} />
                 
@@ -229,10 +215,10 @@ export default function Form_PreR() {
               
               <Box className="preregistro-action-area">
                 <Box className="preregistro-image-wrapper">
-                  <img src={contrasenaGif} alt="Documento Animado" className="preregistro-document-img" />
+                  <img src={contrasenaGif} alt="Contraseña Animada" className="preregistro-document-img" />
                 </Box>
                 <Box className="preregistro-button-container">
-                  <Button variant="outlined" onClick={() => setTabIndex(1)} className="preregistro-btn preregistro-btn-back">Atrás</Button>
+                  <Button variant="outlined" onClick={() => setTabIndex(0)} className="preregistro-btn preregistro-btn-back">Atrás</Button>
                   <Button type="submit" variant="contained" color="success" className="preregistro-btn preregistro-btn-next">Finalizar Registro</Button>
                 </Box>
               </Box>
