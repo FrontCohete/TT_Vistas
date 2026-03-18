@@ -149,6 +149,14 @@ export default function Form_PreR() {
                   onDrop={handleDrop}
                   className={`preregistro-dropzone ${formik.values.constancia ? 'has-file' : 'is-empty'} ${formik.touched.constancia && formik.errors.constancia ? 'has-error' : ''}`}
                   component="label"
+                  sx={{ 
+                    display: 'flex', 
+                    flexDirection: 'column', 
+                    width: '100%', 
+                    height: '10em',
+                    mt: 2, 
+                    cursor: 'pointer'
+                }}
                 >
                   <Typography variant="body2" color="text.secondary" gutterBottom>Arrastra aquí tu Constancia de Situación Fiscal o haz clic para subirla</Typography>
                   <input type="file" name="constancia" hidden onChange={(event) => formik.setFieldValue("constancia", event.currentTarget.files[0])} />
