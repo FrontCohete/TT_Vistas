@@ -13,7 +13,7 @@ function App () {
   return(
     <Router> 
       <>
-        <NavCandi/> 
+        <NavAdmin/> 
         <Form_RegCadi/>
         <Form_RegCadi/>
         <Form_RegCadi/>
