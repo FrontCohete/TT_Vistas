@@ -36,9 +36,6 @@
   width: 100%;
 }
 
-/* =========================================
-   2. BARRA DE BÚSQUEDA PRINCIPAL
-   ========================================= */
 .search-material-bar {
   display: flex;
   align-items: center;
@@ -50,8 +47,6 @@
   box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.3s ease, transform 0.3s ease;
   box-sizing: border-box;
-  
-  /* 👈 FIX: Fuerza a que esta barra esté por encima de los filtros */
   position: relative; 
   z-index: 10; 
 }
@@ -140,14 +135,9 @@
   outline: 3px solid rgba(42, 148, 244, 0.5);
   outline-offset: 2px;
 }
-
-/* =========================================
-   3. AUTOCOMPLETADO DE UBICACIÓN
-   ========================================= */
 .autocomplete-group {
   position: relative;
 }
-
 .autocomplete-suggestions {
   position: absolute;
   top: 130%;
@@ -163,7 +153,6 @@
   margin: 0;
   z-index: 105;
 }
-
 .autocomplete-suggestions::-webkit-scrollbar {
   width: 6px;
 }
@@ -197,9 +186,6 @@
   color: var(--az_lgh);
 }
 
-/* =========================================
-   4. PANEL DE FILTROS (Button Group)
-   ========================================= */
 .search-filters-bar {
   display: flex;
   width: 100%;
@@ -267,11 +253,7 @@
 .filter-input-number::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
 .filter-input-number[type=number] { appearance: textfield; }
 
-/* =========================================
-   5. DROPDOWNS PERSONALIZADOS
-   ========================================= */
 .custom-dropdown-container { cursor: pointer; }
-
 .custom-dropdown-trigger {
   display: flex;
   align-items: center;
@@ -344,9 +326,6 @@
 .search-anim-exit-active { opacity: 0; transform: translateY(-20px); transition: opacity 300ms ease-in, transform 300ms ease-in; }
 .explore-btn-container, .close-panel-btn { display: none; }
 
-/* =========================================
-   8. RESPONSIVE DESIGN (< 1000px) - ULTRA COMPACTO
-   ========================================= */
 @media (max-width: 1000px) {
   
   .explore-btn-container {
@@ -401,7 +380,6 @@
   .close-panel-btn:active { transform: scale(0.95); }
   .close-panel-btn:focus-visible { outline: 3px solid var(--blanco); outline-offset: 2px; }
 
-  /* TRANSICIONES DESINCRONIZADAS PARA EVITAR EL "SQUISH" */
   .search-wrapper { 
     position: relative; 
     width: 100%;
@@ -422,7 +400,6 @@
     transition: max-height 0.5s ease-in-out, opacity 0.4s ease-in-out;
   }
 
-  /* ESPACIADO COMPACTO PARA NO ABARCAR TODA LA PANTALLA */
   .search-material-bar { 
     flex-direction: column; 
     border-radius: 16px; 
@@ -469,4 +446,4 @@
     width: 100%; 
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); 
   }
-}
+} 

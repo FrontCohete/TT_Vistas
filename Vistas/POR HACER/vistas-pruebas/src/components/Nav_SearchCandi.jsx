@@ -3,10 +3,7 @@ import '../assets/css/nav_search.css';
 
 const Nav_SearchCandi = forwardRef(({ isNavbarVisible, navHeight }, ref) => {
   const topPosition = isNavbarVisible ? `${navHeight}px` : "0px";
-
   const [isMobilePanelOpen, setIsMobilePanelOpen] = useState(false);
-
-  // Estados actualizados para incluir Puesto y Ubicación
   const [filters, setFilters] = useState({
     puesto: "",
     ubicacion: "",
@@ -23,8 +20,6 @@ const Nav_SearchCandi = forwardRef(({ isNavbarVisible, navHeight }, ref) => {
   
   const filterGroupRef = useRef(null);
   const locationRef = useRef(null);
-
-  // Lista estática de Alcaldías (CDMX) y Municipios principales (Edomex)
   const zonasCdmxEdomex = [
     "Álvaro Obregón, CDMX", "Azcapotzalco, CDMX", "Benito Juárez, CDMX", "Coyoacán, CDMX",
     "Cuajimalpa de Morelos, CDMX", "Cuauhtémoc, CDMX", "Gustavo A. Madero, CDMX", "Iztacalco, CDMX",
@@ -39,11 +34,9 @@ const Nav_SearchCandi = forwardRef(({ isNavbarVisible, navHeight }, ref) => {
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      // Cierra los dropdowns de filtros
       if (filterGroupRef.current && !filterGroupRef.current.contains(event.target)) {
         setActiveDropdown(null);
       }
-      // Cierra las sugerencias de ubicación
       if (locationRef.current && !locationRef.current.contains(event.target)) {
         setShowSuggestions(false);
       }
@@ -63,13 +56,11 @@ const Nav_SearchCandi = forwardRef(({ isNavbarVisible, navHeight }, ref) => {
 
 const handleInputChange = (e) => {
     let { name, value } = e.target;
-
-    // Validación estricta para el porcentaje de afinidad
     if (name === "afinidad") {
       if (value !== "" && Number(value) > 100) {
         value = "100"; // Si se pasa de 100, lo topamos en 100
       } else if (value !== "" && Number(value) < 0) {
-        value = "0"; // Si pone números negativos, lo dejamos en 0
+        value = "0";
       }
     }
 
@@ -119,8 +110,7 @@ const handleInputChange = (e) => {
       ref={ref}
       className="search-candi-container"
       style={{ 
-        top: topPosition, 
-        marginTop: "0px" /* 👈 Ajuste exacto solicitado */
+        top: topPosition 
       }} 
     >
       {!isMobilePanelOpen && (
@@ -147,7 +137,7 @@ const handleInputChange = (e) => {
               name="puesto"
               value={filters.puesto}
               onChange={handleInputChange}
-              placeholder="Puesto, empresa o palabra clave" 
+              placeholder="Puesto, Vacante o Palabra Clave" 
               className="search-input"
             />
           </div>
@@ -194,7 +184,6 @@ const handleInputChange = (e) => {
           </button>
         </div>
 
-        {/* --- PANEL DE FILTROS --- */}
         <div className="search-filters-bar">
           <div className="filter-button-group" ref={filterGroupRef}>
             
