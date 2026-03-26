@@ -1,18 +1,13 @@
 import { useState } from "react";
-import { 
-  Tabs, Tab, Box, TextField, Button, Typography, 
-  Paper, LinearProgress, InputAdornment, IconButton, MenuItem 
-} from '@mui/material';
+import { Tabs, Tab, Box, TextField, Button, Typography,Paper, LinearProgress, InputAdornment, IconButton, MenuItem } from '@mui/material';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import 'normalize.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../assets/css/form_tabs.css';
-// Reutilizamos los gifs que ya tenías
 import documentoGif from '../assets/img-no-opt/documento.gif'; 
 import contrasenaGif from '../assets/img-no-opt/contrasena.gif'; 
 
-// 1. Esquema de validación actualizado
 const validationSchema = yup.object({
   nombre: yup.string().required('El nombre es obligatorio'),
   apellidoPaterno: yup.string().required('El apellido paterno es obligatorio'),
@@ -27,7 +22,6 @@ const validationSchema = yup.object({
     .required('Debes confirmar tu contraseña'),
 });
 
-// Componente TabPanel (Sin cambios)
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
   return (
@@ -53,10 +47,7 @@ export default function Form_RegistroEstudiante() {
   const [tabIndex, setTabIndex] = useState(0);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-
-  // 2. Progreso ajustado para 2 pasos
   const progress = tabIndex === 0 ? 50 : 100;
-
   const formik = useFormik({
     initialValues: {
       nombre: '', apellidoPaterno: '', apellidoMaterno: '', carrera: '', correo: '', contrasena: '', confirmarContrasena: ''
@@ -67,10 +58,7 @@ export default function Form_RegistroEstudiante() {
       alert("¡Registro enviado con éxito!");
     },
   });
-
   const handleTabChange = (event, newValue) => {};
-
-  // 3. Lógica de validación ajustada para 2 pasos
   const handleNext = async () => {
     const errors = await formik.validateForm();
     if (tabIndex === 0) {
@@ -85,7 +73,6 @@ export default function Form_RegistroEstudiante() {
     }
   };
 
-  // Opciones para el selector de carrera
   const carreras = [
     { value: 'ISC', label: 'Ingeniería en Sistemas Computacionales (ISC)' },
     { value: 'IIA', label: 'Ingeniería en Inteligencia Artificial (IIA)' },
@@ -124,14 +111,14 @@ export default function Form_RegistroEstudiante() {
               <Tab label="Acceso" />
             </Tabs>
 
-            {/* TAB 1: General */}
+            {/*General*/}
             <TabPanel value={tabIndex} index={0}>
               <Box className="preregistro-fields-container">
                 <TextField fullWidth size="small" margin="normal" label="Nombre(s)" name="nombre" value={formik.values.nombre} onChange={formik.handleChange} onBlur={formik.handleBlur} error={formik.touched.nombre && Boolean(formik.errors.nombre)} helperText={formik.touched.nombre && formik.errors.nombre} />
                 <TextField fullWidth size="small" margin="normal" label="Apellido Paterno" name="apellidoPaterno" value={formik.values.apellidoPaterno} onChange={formik.handleChange} onBlur={formik.handleBlur} error={formik.touched.apellidoPaterno && Boolean(formik.errors.apellidoPaterno)} helperText={formik.touched.apellidoPaterno && formik.errors.apellidoPaterno} />
                 <TextField fullWidth size="small" margin="normal" label="Apellido Materno" name="apellidoMaterno" value={formik.values.apellidoMaterno} onChange={formik.handleChange} onBlur={formik.handleBlur} error={formik.touched.apellidoMaterno && Boolean(formik.errors.apellidoMaterno)} helperText={formik.touched.apellidoMaterno && formik.errors.apellidoMaterno} />
                 
-                {/* Selector de Carrera */}
+                {/*Carreras*/}
                 <TextField 
                   select 
                   fullWidth 
@@ -161,7 +148,7 @@ export default function Form_RegistroEstudiante() {
               </Box>
             </TabPanel>
 
-            {/* TAB 2: Acceso */}
+            {/*Acceso */}
             <TabPanel value={tabIndex} index={1}>
               <Box className="preregistro-fields-container">
                 <TextField fullWidth size="small" margin="normal" label="Correo Electrónico" name="correo" type="email" value={formik.values.correo} onChange={formik.handleChange} onBlur={formik.handleBlur} error={formik.touched.correo && Boolean(formik.errors.correo)} helperText={formik.touched.correo && formik.errors.correo} />
