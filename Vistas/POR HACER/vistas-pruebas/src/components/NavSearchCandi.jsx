@@ -1,7 +1,7 @@
 import React, { forwardRef, useState, useRef, useEffect } from "react";
 import '../assets/css/nav_search.css';
 
-const Nav_SearchCandi = forwardRef(({ isNavbarVisible, navHeight }, ref) => {
+const NavSearchCandi = forwardRef(({ isNavbarVisible, navHeight }, ref) => {
   const topPosition = isNavbarVisible ? `${navHeight}px` : "0px";
   const [isMobilePanelOpen, setIsMobilePanelOpen] = useState(false);
   const [filters, setFilters] = useState({
@@ -284,4 +284,4 @@ const handleInputChange = (e) => {
   );
 });
 
-export default Nav_SearchCandi;
+export default NavSearchCandi;

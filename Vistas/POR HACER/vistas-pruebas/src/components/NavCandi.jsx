@@ -5,7 +5,7 @@ import { CSSTransition } from "react-transition-group";
 import 'normalize.css';
 import '../assets/css/nav_admin.css';
 import avatar from "../assets/img-no-opt/logo-caspita.png";
-import Nav_SearchCandi from "./Nav_SearchCandi";
+import NavSearchCandi from "./NavSearchCandi";
 
 const items = [
   { name: " Inicio", path: "/", icon: "fi fi-rr-home" },
@@ -295,7 +295,7 @@ export default function NavAdmin() {
         classNames="search-anim"
         unmountOnExit
       >
-        <Nav_SearchCandi ref={searchRef} isNavbarVisible={isVisible} navHeight={navHeight} />
+        <NavSearchCandi ref={searchRef} isNavbarVisible={isVisible} navHeight={navHeight} />
       </CSSTransition>
     </>
   );
