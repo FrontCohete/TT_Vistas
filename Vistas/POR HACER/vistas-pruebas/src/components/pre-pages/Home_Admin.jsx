@@ -1,6 +1,6 @@
 import React from 'react';
 import AdminAside from '../AsideAdmin.jsx'
-import Page_Test_Components from '../Page_Test_Components.jsx';
+import Page_Test_Components from '../GraphAdmin.jsx';
 
 const Home_Admin = () => {
   return (

@@ -21,12 +21,9 @@ function App () {
             {/* Cuando la ruta sea "/" (que es el path de "Inicio"), dibuja HomeAdmin */}
             <Route path="/" element={<HomeAdmin />} />
             
-            {/* Aquí irás agregando tus futuras vistas, por ejemplo: */}
-            {/* <Route path="/empresas/preregistros" element={<VistaPreregistros />} /> */}
           </Routes>
         </main>
 
-        {/* 3. El footer siempre al final */}
         <Footer/>
         
       </div>
