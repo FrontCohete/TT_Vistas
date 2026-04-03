@@ -3,10 +3,10 @@ import '../assets/css/pre_pages/home_Admin.css';
 
 const AsideAdmin = () => {
   const adminProfile = {
-    nombre: "Ana Martínez",
+    nombre: "Francisco Serrano",
     rol: "Administrador",
     // Servicio para generación de avatar 
-    avatarUrl: "https://ui-avatars.com/api/?name=Ana+Martinez&background=3B82F6&color=fff&size=150"
+    avatarUrl: "https://ui-avatars.com/api/?name=Francisco+Serrano&background=3B82F6&color=fff&size=150"
   };
 
   const metricasRapidas = {
