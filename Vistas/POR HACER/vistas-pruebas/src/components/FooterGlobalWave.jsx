@@ -1,7 +1,7 @@
 import React from 'react';
 import '../assets/css/wave_footer.css';
 
-const WaveFooter = () => {
+const FooterGlobalWave = () => {
   const currentYear = new Date().getFullYear();
   const textCaspita = "Caspita - Por y para alumnos de la Escuela Superior de Cómputo";
 
@@ -33,20 +33,18 @@ const WaveFooter = () => {
         
         {/* Contenedor principal del carrusel */}
         <div className="ticker-wrap">
-          {/* La "pista" que se moverá completa con los 3 textos */}
           <div className="ticker-track">
+            <p>&copy; {currentYear} {textCaspita}</p>
+            <p>&copy; {currentYear} {textCaspita}</p>
             <p>&copy; {currentYear} {textCaspita}</p>
             <p>&copy; {currentYear} {textCaspita}</p>
             <p>&copy; {currentYear} {textCaspita}</p>
           </div>
         </div>
 
-        <ul className="footer-links">
-          <li><a href="#">Manual de Usuario</a></li>
-        </ul>
       </div>
     </footer>
   );
 };
 
-export default WaveFooter;
+export default FooterGlobalWave;
