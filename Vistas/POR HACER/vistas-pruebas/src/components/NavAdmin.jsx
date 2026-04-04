@@ -4,6 +4,7 @@ import '@flaticon/flaticon-uicons/css/all/all.css';
 import { CSSTransition } from "react-transition-group";
 import 'normalize.css';
 import '../assets/css/nav_admin.css';
+// Asegúrate de que la ruta de tu logo sea correcta
 import avatar from "../assets/img-no-opt/logo-caspita.png";
 
 const items = [
@@ -43,12 +44,28 @@ const NavItem = ({ item, activeItem, onEnter, onLeave }) => {
     onEnter(item, `${leftPosition}px`);
   };
 
+  if (item.path) {
+    return (
+      <Link
+        to={item.path}
+        className={`nav-main-link ${item?.name === activeItem?.name ? "active" : ""}`}
+        ref={linkRef}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={onLeave} 
+      >
+        {item.icon && <i className={item.icon}></i>}
+        {item.name}
+      </Link>
+    );
+  }
+
   return (
     <a
       className={`nav-main-link ${item?.name === activeItem?.name ? "active" : ""}`}
       ref={linkRef}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={onLeave} 
+      style={{ cursor: "pointer" }}
     >
       {item.icon && <i className={item.icon}></i>}
       {item.name}
@@ -65,7 +82,6 @@ export default function NavAdmin() {
   const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
   const [notifications, setNotifications] = useState([]); 
   
-  // Novedad: Estados para controlar el scroll
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
@@ -75,19 +91,15 @@ export default function NavAdmin() {
   const notificationsRef = useRef(null);
   const timeoutRef = useRef(null);
 
-  // Novedad: Lógica para ocultar/mostrar la navbar al hacer scroll
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
-      // Si hacemos scroll hacia abajo y superamos los 50px de la altura de la barra
       if (currentScrollY > lastScrollY && currentScrollY > 50) {
         setIsVisible(false);
-        // Opcional: Cerrar menús desplegables al hacer scroll hacia abajo
         setIsProfileMenuOpen(false);
         setIsNotificationsOpen(false);
       } else {
-        // Si hacemos scroll hacia arriba
         setIsVisible(true);
       }
 
@@ -129,7 +141,6 @@ export default function NavAdmin() {
 
   return (
     <nav className="page navbar">
-      {/* Añadimos la clase dinámica basada en isVisible */}
       <section className={`navbar-container ${isVisible ? "" : "navbar-hidden"}`}>
         
         <div className="nav-left-section">
