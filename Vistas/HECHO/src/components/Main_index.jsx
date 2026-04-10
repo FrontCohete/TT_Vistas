@@ -4,7 +4,9 @@ import img_emp from '../assets/img-no-opt/img-rec.svg';
 import img_usr from '../assets/img-no-opt/img-usr.svg';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { loginUser } from '../services/authService';
+import { ENV } from '../config/env';
+
+fetch(`${ENV.API_URL}/auth/login`)
 
 export default function Main_ls() {
     const [activeTab, setActiveTab] = useState('candidato');
@@ -113,3 +115,42 @@ export default function Main_ls() {
                                             value={formData.email}
                                             onChange={handleChange}
                                         />
+                                        <label htmlFor={`email-${activeTab}`} className="input-label">
+                                            Correo electrónico
+                                        </label>
+                                    </div>
+
+                                    <div className="input-group">
+                                        <input
+                                            type="password"
+                                            name="password"
+                                            id={`password-${activeTab}`}
+                                            className="input-field"
+                                            placeholder=" "
+                                            value={formData.password}
+                                            onChange={handleChange}
+                                        />
+                                        <label htmlFor={`password-${activeTab}`} className="input-label">
+                                            Contraseña
+                                        </label>
+                                    </div>
+
+                                    <input type="submit" value="Enviar" className='btn-azl' />
+
+                                    <div className="form-input">
+                                        <a href="#">Olvidé mi contraseña</a>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <div className='container-aside'>
+                                <img src={currentTab.image} alt="Imagen decorativa" />
+                                <a href="#">{currentTab.sideLinkText}</a>
+                            </div>
+                        </motion.div>
+                    </AnimatePresence>
+                </section>
+            </div>
+        </main>
+    );
+}
