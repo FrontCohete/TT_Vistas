@@ -1,0 +1,235 @@
+/* =========================================
+   ESTILOS GLOBALES PARA TABLAS REUTILIZABLES
+   ========================================= */
+
+.table-responsive-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  background: #ffffff;
+  border-radius: 8px 8px 0 0; /* Ajustado para que la paginación encaje abajo */
+}
+
+.custom-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-family: inherit;
+  min-width: 600px; 
+}
+
+/* Encabezados y Ordenamiento */
+.custom-table th {
+  background-color: #F9FAFB;
+  color: #4B5563;
+  padding: 14px 16px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 2px solid #E5E7EB;
+  white-space: nowrap;
+  transition: background-color 0.2s;
+}
+
+.sortable-header {
+  cursor: pointer;
+  user-select: none;
+}
+
+.sortable-header:hover {
+  background-color: #F3F4F6;
+}
+
+.sort-icon {
+  font-size: 10px;
+  color: #D1D5DB;
+  transition: color 0.2s;
+}
+
+.sort-icon.active {
+  color: #132f70;
+}
+
+.custom-table td {
+  padding: 16px;
+  font-size: 14px;
+  color: #374151;
+  border-bottom: 1px solid #F3F4F6;
+  vertical-align: middle;
+}
+
+.custom-table tbody tr {
+  transition: background-color 0.2s ease;
+}
+
+.custom-table tbody tr:hover {
+  background-color: #F9FAFB;
+}
+
+.empty-state-cell {
+  text-align: center;
+  padding: 48px 16px !important;
+  color: #6B7280;
+  font-style: italic;
+  font-size: 14px;
+}
+
+/* =========================================
+   COMPONENTES UI DENTRO DE LAS TABLAS
+   ========================================= */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.badge-success { background-color: #DEF7EC; color: #03543F; } 
+.badge-warning { background-color: #FEF3C7; color: #92400E; } 
+.badge-danger  { background-color: #FDE8E8; color: #9B1C1C; } 
+.badge-default { background-color: #E5E7EB; color: #374151; } 
+
+.table-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.btn-action {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-view { background-color: #E0E7FF; color: #132f70; }
+.btn-view:hover { background-color: #C7D2FE; }
+
+.btn-edit { background-color: #F3F4F6; color: #4B5563; }
+.btn-edit:hover { background-color: #E5E7EB; }
+
+/* =========================================
+   BARRA DE FILTROS Y PAGINACIÓN
+   ========================================= */
+
+.table-toolbar {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.filter-input,
+.filter-select {
+  padding: 10px 14px;
+  border: 1px solid #D1D5DB;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #374151;
+  background-color: #ffffff;
+  outline: none;
+  font-family: inherit;
+  transition: all 0.2s ease;
+}
+
+.filter-input:focus,
+.filter-select:focus {
+  border-color: #132f70;
+  box-shadow: 0 0 0 3px rgba(19, 47, 112, 0.1); 
+}
+
+.filter-input { flex: 1; min-width: 200px; }
+.filter-select { min-width: 160px; cursor: pointer; }
+
+.pagination-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  background-color: #ffffff;
+  border-top: 1px solid #E5E7EB;
+  border-radius: 0 0 8px 8px;
+  font-size: 13px;
+  color: #6B7280;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.pagination-btn-group {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.btn-paginate {
+  padding: 8px 16px;
+  border: 1px solid #D1D5DB;
+  background-color: #ffffff;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  color: #374151;
+  transition: all 0.2s ease;
+}
+
+.btn-paginate:hover:not(:disabled) {
+  background-color: #F3F4F6;
+  border-color: #9CA3AF;
+}
+
+.btn-paginate:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: #F9FAFB;
+}
+
+/* =========================================
+   📱 UX MÓVIL: TRANSFORMACIÓN A TARJETAS
+   ========================================= */
+
+@media screen and (max-width: 768px) {
+  .custom-table { min-width: unset; }
+  .custom-table thead { display: none; }
+  
+  .custom-table tbody tr {
+    display: block;
+    margin-bottom: 16px;
+    background-color: #ffffff;
+    border: 1px solid #E5E7EB;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    padding: 8px 0;
+  }
+
+  .custom-table td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: right;
+    padding: 12px 16px;
+    border-bottom: 1px dashed #E5E7EB;
+    gap: 16px;
+  }
+
+  .custom-table td:last-child { border-bottom: none; }
+
+  .custom-table td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #6B7280;
+    text-align: left;
+    min-width: 100px;
+  }
+
+  .table-actions { justify-content: flex-end; width: 100%; }
+}

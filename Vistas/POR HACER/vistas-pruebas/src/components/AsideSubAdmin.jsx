@@ -40,7 +40,7 @@ const AsideSubAdmin = () => {
         </div>
         <div className="info-card">
           <span className="info-label">Empresas por Validar</span>
-          <span className="info-value alerta">{metricasRapidas.empresasValidar}</span>
+          <span className="info-value">{metricasRapidas.empresasValidar}</span>
         </div>
         <div className="info-card">
           <span className="info-label">Vacantes Activas</span>
@@ -48,7 +48,7 @@ const AsideSubAdmin = () => {
         </div>
         <div className="info-card">
           <span className="info-label">Vacantes por Validar</span>
-          <span className="info-value alerta">{metricasRapidas.vacantesValidar}</span>
+          <span className="info-value">{metricasRapidas.vacantesValidar}</span>
         </div>
         <div className="info-card">
           <span className="info-label">Alumnos Registrados</span>

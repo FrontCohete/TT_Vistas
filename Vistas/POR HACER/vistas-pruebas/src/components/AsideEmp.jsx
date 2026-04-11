@@ -2,7 +2,7 @@ import React from 'react';
 import '../assets/css/pre_pages/home_Admin.css';
 
 const AsideEmp = () => {
-  const adminProfile = {
+  const empProfile = {
     nombre: "Mercedes Benz",
     rol: "Empresa",
     estado: "Verificada", /*Opciones: "Verificada", "En Revisión", "Suspendida"*/
@@ -37,12 +37,12 @@ const AsideEmp = () => {
       <div className="aside-image">
         <p className="greeting-text">Bienvenido</p>
         <img 
-          src={adminProfile.avatarUrl} 
+          src={empProfile.avatarUrl} 
           alt="Avatar del Administrador" 
           className="profile-avatar"
         />
-        <h3 className="profile-role">{adminProfile.rol}</h3>
-        <p className="profile-name">{adminProfile.nombre}</p>
+        <h3 className="profile-role">{empProfile.rol}</h3>
+        <p className="profile-name">{empProfile.nombre}</p>
       </div>
 
       {/*INFORMACIÓN*/}
@@ -53,7 +53,7 @@ const AsideEmp = () => {
         </div>
         <div className="info-card">
           <span className="info-label">Reclutadores Reportados</span>
-          <span className="info-value alerta">{metricasRapidas.reclutadoresReportados}</span>
+          <span className="info-value">{metricasRapidas.reclutadoresReportados}</span>
         </div>
         <div className="info-card">
           <span className="info-label">Vacantes Aprobadas</span>
@@ -61,13 +61,13 @@ const AsideEmp = () => {
         </div>
         <div className="info-card">
           <span className="info-label">Vacantes Reportadas</span>
-          <span className="info-value alerta">{metricasRapidas.vacantesReportadas}</span>
+          <span className="info-value">{metricasRapidas.vacantesReportadas}</span>
         </div>
         
         <div className="info-card">
           <span className="info-label">Estado</span>
-          <span className={`info-value ${obtenerClaseEstado(adminProfile.estado)}`}>
-            {adminProfile.estado}
+          <span className={`info-value ${obtenerClaseEstado(empProfile.estado)}`}>
+            {empProfile.estado}
           </span>
         </div>
       </div>

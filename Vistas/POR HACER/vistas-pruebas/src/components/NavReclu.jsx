@@ -35,12 +35,26 @@ const NavItem = ({ item, activeItem, onEnter, onLeave }) => {
     onEnter(item, `${leftPosition}px`);
   };
 
-  return (
+  // Si el item tiene un 'path' (como Inicio), usamos Link. 
+  // Si no tiene 'path' (es solo un menú desplegable), usamos una etiqueta normal.
+  return item.path ? (
+    <Link
+      to={item.path}
+      className={`nav-main-link ${item?.name === activeItem?.name ? "active" : ""}`}
+      ref={linkRef}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={onLeave}
+    >
+      {item.icon && <i className={item.icon}></i>}
+      {item.name}
+    </Link>
+  ) : (
     <a
       className={`nav-main-link ${item?.name === activeItem?.name ? "active" : ""}`}
       ref={linkRef}
       onMouseEnter={handleMouseEnter}
-      onMouseLeave={onLeave} 
+      onMouseLeave={onLeave}
+      style={{ cursor: 'pointer' }}
     >
       {item.icon && <i className={item.icon}></i>}
       {item.name}

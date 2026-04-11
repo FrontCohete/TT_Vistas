@@ -129,11 +129,11 @@
 .info-value {
   font-size: 18px;
   font-weight: 700;
-  color: var(--color-primario-suave); 
+  color: var(--guinda); 
 }
 
 .info-value.alerta {
-  color: var(--color-alerta);
+  color: #daa619;
 }
 
 @media (max-width: 990px) {
