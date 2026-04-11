@@ -1,5 +1,5 @@
 import React from 'react';
-import AdminAside from '../AsideAdmin.jsx'
+import SubAdminAside from '../AsideSubAdmin.jsx'
 import GraphAdmin from '../GraphAdmin.jsx';
 
 const Home_Admin = () => {
@@ -7,7 +7,7 @@ const Home_Admin = () => {
     <div className="home-admin-layout">
       
       <aside className="home-admin-sidebar-wrapper">
-        <AdminAside />
+        <SubAdminAside />
       </aside>
       <section className="home-admin-main-wrapper">
         <GraphAdmin />

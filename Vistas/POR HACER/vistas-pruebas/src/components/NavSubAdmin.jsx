@@ -33,7 +33,6 @@ const items = [
     ] 
   },
 ];
-
 const NavItem = ({ item, activeItem, onEnter, onLeave }) => {
   const linkRef = useRef();
 
@@ -42,12 +41,28 @@ const NavItem = ({ item, activeItem, onEnter, onLeave }) => {
     onEnter(item, `${leftPosition}px`);
   };
 
+  if (item.path) {
+    return (
+      <Link
+        to={item.path}
+        className={`nav-main-link ${item?.name === activeItem?.name ? "active" : ""}`}
+        ref={linkRef}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={onLeave} 
+      >
+        {item.icon && <i className={item.icon}></i>}
+        {item.name}
+      </Link>
+    );
+  }
+
   return (
     <a
       className={`nav-main-link ${item?.name === activeItem?.name ? "active" : ""}`}
       ref={linkRef}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={onLeave} 
+      style={{ cursor: "pointer" }}
     >
       {item.icon && <i className={item.icon}></i>}
       {item.name}
@@ -60,12 +75,10 @@ export default function SubAdmin() {
   const [activeItem, setActiveItem] = useState(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   
-  // Estados de menús y notificaciones
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
   const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
   const [notifications, setNotifications] = useState([]); 
   
-  // Estados para el Hide-on-Scroll
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
@@ -75,7 +88,6 @@ export default function SubAdmin() {
   const notificationsRef = useRef(null);
   const timeoutRef = useRef(null);
 
-  // Hook para detectar el scroll
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
@@ -125,10 +137,7 @@ export default function SubAdmin() {
 
   return (
     <nav className="page navbar">
-      {/* Contenedor dinámico según el scroll */}
       <section className={`navbar-container ${isVisible ? "" : "navbar-hidden"}`}>
-        
-        {/* SECCIÓN IZQUIERDA */}
         <div className="nav-left-section">
           <button 
             className="mobile-toggle-btn" 
@@ -179,7 +188,6 @@ export default function SubAdmin() {
           </div>
         </div>
 
-        {/* SECCIÓN CENTRAL */}
         <div className="nvbar-item menu desktop-menu">
           <div className="item-menu">
             {items.map((item) => (
@@ -217,7 +225,6 @@ export default function SubAdmin() {
           </div>
         </div>
 
-        {/* SECCIÓN DERECHA */}
         <div className="nvbar-item img user-profile-container">
           <img 
             src={avatar} 
@@ -254,7 +261,6 @@ export default function SubAdmin() {
         </div>
       </section>
 
-      {/* Menú Móvil */}
       <CSSTransition
         in={isMobileMenuOpen}
         nodeRef={mobileMenuRef}
