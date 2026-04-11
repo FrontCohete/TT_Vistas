@@ -159,3 +159,18 @@
     text-align: center;
   }
 }
+
+.estado-verificada {
+  color: #01c986; 
+  font-weight: bold;
+}
+
+.estado-revision {
+  color: #ff6f2c; 
+  font-weight: bold;
+}
+
+.estado-suspendida {
+  color: #ff3949e1; 
+  font-weight: bold;
+}

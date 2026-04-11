@@ -1,34 +1,30 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
-import NavCandi from './components/NavCandi.jsx';
+// Prueben con estas rutas en page-contaniner
 import NavSubAdmin from './components/NavSubAdmin.jsx';
 import NavAdmin from './components/NavAdmin.jsx';
-import Footer from './components/FooterGlobalWave.jsx';
-//NO SE PORQUE ME MANDA ERROR CUANDO LA RUTA ES "./components/pre-pages/Home_Admin.jsx"
-import HomeAdmin from './components/pre-pages/home_Admin.jsx';
+import NavEmp from './components/NavEmp.jsx';
+// También prueben con estas en la sección main-content dentro de routes
+import HomeAdmin from './components/pre-pages/Home_Admin.jsx';
 import HomeSubAdmin from './components/pre-pages/Home_SubAdmin.jsx';
-import SubAdmin from './components/NavSubAdmin.jsx';
+import HomeEmp from './components/pre-pages/Home_Emp.jsx';
+//Solo hay un footer y es este :3
+import Footer from './components/FooterGlobalWave.jsx';
 
 
 function App () {
   return(
     <Router> 
       <div className="page-container">
-        
-        <NavSubAdmin/> 
-        
+        <NavEmp/> 
         <main className="main-content">
           {/*El enrutador decide qué componente mostrar basado en la URL */}
           <Routes>
-            {/* Cuando la ruta sea "/" (que es el path de "Inicio"), dibuja HomeAdmin */}
-            <Route path="/" element={<HomeSubAdmin />} />
-            
+            <Route path="/" element={<HomeEmp />} />
           </Routes>
         </main>
-
         <Footer/>
-        
       </div>
     </Router>
   )
