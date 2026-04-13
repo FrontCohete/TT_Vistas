@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "formik": "^2.4.9",
     "react-transition-group": "^4.4.5"
   }
 }
