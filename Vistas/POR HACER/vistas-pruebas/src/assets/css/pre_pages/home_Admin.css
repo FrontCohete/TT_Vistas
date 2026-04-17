@@ -7,6 +7,7 @@
   --color-exito: #00f5a3;
   --color-alerta: #ffbe55;
   --color-peligro: #d31131;
+  
   /*Fondos*/
   --fondo-pantalla: #ffffff50;      
   --fondo-tarjeta: #ffffffc5;       
@@ -24,6 +25,9 @@
   --sombra-boton: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
+/* =========================================
+   LAYOUT PRINCIPAL
+========================================= */
 .home-admin-layout {
   display: grid;
   grid-template-columns: 20% 80%; 
@@ -41,19 +45,9 @@
   background-color: var(--fondo-pantalla);
 }
 
-@media (max-width: 990px) {
-  
-  .home-admin-layout {
-    grid-template-columns: 1fr;
-  }
-
-  .home-admin-sidebar-wrapper {
-    position: relative;
-    height: auto; 
-    overflow-y: visible;
-  }
-}
-
+/* =========================================
+   ASIDE GLOBAL
+========================================= */
 .admin-sidebar {
   display: flex;
   flex-direction: column; 
@@ -62,10 +56,13 @@
   background-color: var(--fondo-tarjeta, #FFFFFF);
   border-right: 1px solid var(--borde-tarjeta, #F3F4F6);
   padding: 32px 24px;
-  gap: 40px; 
+  gap: 20px; /* Reducido un poco para acomodar más secciones */
   box-sizing: border-box;
 }
 
+/* =========================================
+   SECCIÓN: IDENTIDAD Y PERFIL
+========================================= */
 .aside-image {
   display: flex;
   flex-direction: column;
@@ -102,8 +99,127 @@
   font-size: 15px;
   color: var(--texto-cuerpo, #4B5563);
   margin: 0;
+  font-weight: 600;
 }
 
+/* Nuevas clases para Candidato */
+.profile-career {
+  font-size: 13px;
+  color: var(--color-secundario);
+  margin: 6px 0 2px 0;
+  font-weight: 600;
+}
+
+.profile-location {
+  font-size: 12px;
+  color: var(--texto-secundario);
+  margin: 0;
+}
+
+/* =========================================
+   DIVISOR
+========================================= */
+.aside-divider {
+  border: none;
+  border-top: 2px solid var(--borde-tarjeta);
+  width: 100%;
+  margin: 5px 0;
+}
+
+.section-subtitle {
+  font-size: 13px;
+  color: var(--texto-subtitulo);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0 0 15px 0;
+  font-weight: 700;
+  text-align: center;
+}
+
+/* =========================================
+   SECCIÓN: GESTIÓN DE CV (Candidato)
+========================================= */
+.aside-cv-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cv-link-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background-color: var(--fondo-pantalla);
+  color: var(--texto-cuerpo);
+  padding: 12px;
+  border-radius: 8px;
+  text-decoration: none;
+  border: 1px solid var(--borde-tarjeta);
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.cv-link-item:hover {
+  background-color: var(--borde-hover);
+  color: var(--color-primario);
+}
+
+.cv-link-item i {
+  font-size: 18px;
+  color: var(--guinda);
+}
+
+
+.create-cv-btn {
+  display: block;
+  background-color: var(--color-primario);
+  color: #fff;
+  text-align: center;
+  padding: 12px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+  box-shadow: var(--sombra-boton);
+}
+
+.create-cv-btn:hover {
+  background-color: var(--color-primario-suave);
+}
+
+/* =========================================
+   SECCIÓN: REDES SOCIALES (Candidato)
+========================================= */
+.aside-social {
+  display: flex;
+  flex-direction: column;
+}
+
+.social-icons-grid {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.social-icons-grid a {
+  color: var(--texto-secundario);
+  font-size: 24px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.social-icons-grid a:hover {
+  color: var(--color-primario);
+  transform: translateY(-3px);
+}
+
+/* =========================================
+   ESTILOS DE ADMINISTRADOR (Mantenidos)
+========================================= */
 .aside-info {
   display: flex;
   flex-direction: column;
@@ -136,30 +252,6 @@
   color: #daa619;
 }
 
-@media (max-width: 990px) {
-  
-  .admin-sidebar {
-    flex-direction: column; 
-    min-height: auto; 
-    border-right: none;
-    border-bottom: 1px solid var(--borde-tarjeta );
-    padding: 24px;
-    gap: 24px;
-  }
-
-  .aside-info {
-    flex-direction: row;
-    flex-wrap: wrap; 
-    justify-content: center;
-  }
-
-  .info-card {
-    flex: 1 1 150px; 
-    align-items: center;
-    text-align: center;
-  }
-}
-
 .estado-verificada {
   color: #01c986; 
   font-weight: bold;
@@ -173,4 +265,46 @@
 .estado-suspendida {
   color: #ff3949e1; 
   font-weight: bold;
+}
+
+/* =========================================
+   MEDIA QUERIES (< 990px)
+========================================= */
+@media (max-width: 990px) {
+  
+  .home-admin-layout {
+    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .home-admin-sidebar-wrapper {
+    position: relative;
+    height: auto; 
+    overflow-y: visible;
+    order: -1; /* FUERZA AL ASIDE A ESTAR POR ENCIMA DEL MAIN */
+    width: 100%;
+  }
+
+  .admin-sidebar {
+    flex-direction: column; 
+    min-height: auto; 
+    border-right: none;
+    border-bottom: 1px solid var(--borde-tarjeta);
+    padding: 24px;
+    gap: 24px;
+  }
+
+  /* Ajustes responsivos para Admin */
+  .aside-info {
+    flex-direction: row;
+    flex-wrap: wrap; 
+    justify-content: center;
+  }
+
+  .info-card {
+    flex: 1 1 150px; 
+    align-items: center;
+    text-align: center;
+  }
 }

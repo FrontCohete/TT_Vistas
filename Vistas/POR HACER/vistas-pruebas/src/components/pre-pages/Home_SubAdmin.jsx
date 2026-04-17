@@ -2,7 +2,7 @@ import React from 'react';
 import EmpAside from '../AsideSubAdmin.jsx'
 import GraphEmp from '../GraphAdmin.jsx';
 
-const Home_Emp = () => {
+const Home_SubAdmin = () => {
   return (
     <div className="home-admin-layout">
       
@@ -17,4 +17,4 @@ const Home_Emp = () => {
   );
 };
 
-export default Home_Emp;
+export default Home_SubAdmin;
