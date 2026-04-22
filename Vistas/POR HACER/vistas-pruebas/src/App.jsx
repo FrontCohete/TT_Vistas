@@ -14,7 +14,7 @@ import HomeEmp from './components/pre-pages/Home_Emp.jsx';
 import HomeReclu from './components/pre-pages/Home_Reclu.jsx';
 import HomeCandi from './components/pre-pages/Home_Candi.jsx';
 // COMPONENTES YA HECHOS
-import PreReg from './components/FormPreReg.jsx';
+import PreReg from './components/PreReg_Viewer.jsx';
 //Solo hay un footer y es este :3
 import Footer from './components/FooterGlobalWave.jsx';
 import Home_Admin from './components/pre-pages/Home_Admin.jsx';
