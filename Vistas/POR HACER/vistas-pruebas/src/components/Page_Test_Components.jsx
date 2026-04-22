@@ -55,7 +55,7 @@ const ModalCorreccion = ({ empresa, alCerrar, onEnviar }) => {
               <strong>Empresa:</strong> {empresa.razonSocial}
             </div>
             
-            {/* APLICAMOS LA NUEVA CLASE RESPONSIVA AQUÍ */}
+            {/* NUEVA CLASE RESPONSIVA */}
             <div className="grid-campos">
               {campos.map((campo) => (
                 <div key={campo.clave} style={styles.cardCampo}>

@@ -5,8 +5,8 @@ import ModalCorreccion from './Page_Test_Components';
 
 const AprobacionEmpresas = () => {
   const [datosPendientes, setDatosPendientes] = useState([
-    { id: 1, razonSocial: 'Industrias Iztapalapa S.A. de C.V.', correo: 'contacto@indiztapalapa.com.mx', giro: 'Manufactura', sector: 'Secundario', telefono: '5512345678', constanciaUrl: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf' },
-    { id: 2, razonSocial: 'Tecnologías Iztacalco S. de R.L.', correo: 'admin@teciztacalco.mx', giro: 'Desarrollo de Software', sector: 'Terciario', telefono: '5587654321', constanciaUrl: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf' }
+    { id: 1, razonSocial: 'Industrias Iztapalapa S.A. de C.V.', correo: 'contacto@indiztapalapa.com.mx', giro: 'Manufactura', sector: 'Público', telefono: '5512345678', constanciaUrl: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf' },
+    { id: 2, razonSocial: 'Tecnologías Iztacalco S. de R.L.', correo: 'admin@teciztacalco.mx', giro: 'Desarrollo de Software', sector: 'Privado', telefono: '5587654321', constanciaUrl: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf' }
   ]);
 
   const [sortConfig, setSortConfig] = useState({ clave: null, direccion: 'asc' });
