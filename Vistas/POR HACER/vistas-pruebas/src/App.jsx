@@ -13,19 +13,22 @@ import HomeSubAdmin from './components/pre-pages/Home_SubAdmin.jsx';
 import HomeEmp from './components/pre-pages/Home_Emp.jsx';
 import HomeReclu from './components/pre-pages/Home_Reclu.jsx';
 import HomeCandi from './components/pre-pages/Home_Candi.jsx';
+// COMPONENTES YA HECHOS
+import PreReg from './components/FormPreReg.jsx';
 //Solo hay un footer y es este :3
 import Footer from './components/FooterGlobalWave.jsx';
+import Home_Admin from './components/pre-pages/Home_Admin.jsx';
 
 
 function App () {
   return(
     <Router> 
       <div className="page-container">
-        <NavCandi/> 
+        <NavAdmin/> 
         <main className="main-content">
           {/*El enrutador decide qué componente mostrar basado en la URL */}
           <Routes>
-            <Route path="/" element={<HomeCandi />} />
+            <Route path="/" element={<PreReg />} />
           </Routes>
         </main>
         <Footer/>

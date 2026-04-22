@@ -11,14 +11,29 @@ import '../assets/css/form_tabs.css';
 import documentoGif from '../assets/img-no-opt/documento.gif'; 
 import contrasenaGif from '../assets/img-no-opt/contrasena.gif'; 
 
+const MAX_FILE_SIZE = 2097152; // 2MB
+const SUPPORTED_FORMATS = ['application/pdf']; // Solo PDF
+
 const validationSchema = yup.object({
   nombre: yup.string().required('El nombre o razón social es obligatorio'),
   giro: yup.string().required('El giro es obligatorio'),
   sector: yup.string().required('El sector es obligatorio'),
+  telefono: yup.string()
+    .matches(/^[0-9]{10}$/, 'El número debe tener exactamente 10 dígitos')
+    .required('El número telefónico es obligatorio'),
   rfc: yup.string()
     .matches(/^[A-Z&Ñ]{3,4}\d{6}[A-Z0-9]{3}$/i, 'Formato de RFC inválido')
     .required('El RFC es obligatorio'),
-  constancia: yup.mixed().required('Debes adjuntar tu constancia'),
+  constancia: yup.mixed()
+    .required('Debes adjuntar tu constancia')
+    .test('fileFormat', 'Solo se permite formato PDF', (value) => {
+      if (!value) return true; 
+      return SUPPORTED_FORMATS.includes(value.type);
+    })
+    .test('fileSize', 'El archivo supera el límite de 2MB', (value) => {
+      if (!value) return true; 
+      return value.size <= MAX_FILE_SIZE;
+    }),
   correo: yup.string().email('Ingresa un correo electrónico válido').required('El correo es obligatorio'),
   contrasena: yup.string()
     .min(8, 'La contraseña debe tener al menos 8 caracteres')
@@ -58,7 +73,7 @@ export default function Form_PreR() {
 
   const formik = useFormik({
     initialValues: {
-      nombre: '', giro: '', sector: '', rfc: '', constancia: null, correo: '', contrasena: '', confirmarContrasena: ''
+      nombre: '', giro: '', sector: '', telefono: '', rfc: '', constancia: null, correo: '', contrasena: '', confirmarContrasena: ''
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
@@ -75,7 +90,8 @@ export default function Form_PreR() {
       formik.setFieldTouched('nombre', true);
       formik.setFieldTouched('giro', true);
       formik.setFieldTouched('sector', true);
-      if (!errors.nombre && !errors.giro && !errors.sector) setTabIndex(1);
+      formik.setFieldTouched('telefono', true);
+      if (!errors.nombre && !errors.giro && !errors.sector && !errors.telefono) setTabIndex(1);
     } else if (tabIndex === 1) {
       formik.setFieldTouched('rfc', true);
       formik.setFieldTouched('constancia', true);
@@ -86,13 +102,31 @@ export default function Form_PreR() {
   const handleDrop = (e) => {
     e.preventDefault();
     if (e.dataTransfer.files && e.dataTransfer.files[0]) {
-      formik.setFieldValue('constancia', e.dataTransfer.files[0]);
+      const file = e.dataTransfer.files[0];
+      
+      formik.setFieldTouched('constancia', true, false);
+      
+      // 1. Validar Formato
+      if (!SUPPORTED_FORMATS.includes(file.type)) {
+        formik.setFieldError('constancia', 'Solo se permite formato PDF');
+        formik.setFieldValue('constancia', null);
+        return;
+      }
+
+      // 2. Validar Tamaño
+      if (file.size > MAX_FILE_SIZE) {
+        formik.setFieldError('constancia', 'El archivo supera el límite de 2MB');
+        formik.setFieldValue('constancia', null); 
+        return; 
+      }
+      
+      formik.setFieldValue('constancia', file);
     }
   };
 
   return (
     <main className="container mt-5">
-      <h1 className="text-center mb-3 preregistro-title">Preregistro para Empresas </h1>
+      <h1 className="text-center mb-3 preregistro-title">Preregistro para Empresas</h1>
       
       <Box className="preregistro-container">
         <Box className="preregistro-progress-wrapper">
@@ -123,12 +157,13 @@ export default function Form_PreR() {
               <Tab label="Acceso" />
             </Tabs>
 
-            {/* General*/}
+            {/* General */}
             <TabPanel value={tabIndex} index={0}>
               <Box className="preregistro-fields-container">
                 <TextField fullWidth size="small" margin="normal" label="Nombre / Razón Social" name="nombre" value={formik.values.nombre} onChange={formik.handleChange} onBlur={formik.handleBlur} error={formik.touched.nombre && Boolean(formik.errors.nombre)} helperText={formik.touched.nombre && formik.errors.nombre} />
                 <TextField fullWidth size="small" margin="normal" label="Giro" name="giro" value={formik.values.giro} onChange={formik.handleChange} onBlur={formik.handleBlur} error={formik.touched.giro && Boolean(formik.errors.giro)} helperText={formik.touched.giro && formik.errors.giro} />
                 <TextField fullWidth size="small" margin="normal" label="Sector" name="sector" value={formik.values.sector} onChange={formik.handleChange} onBlur={formik.handleBlur} error={formik.touched.sector && Boolean(formik.errors.sector)} helperText={formik.touched.sector && formik.errors.sector} />
+                <TextField fullWidth size="small" margin="normal" label="Número Telefónico" name="telefono" value={formik.values.telefono} onChange={formik.handleChange} onBlur={formik.handleBlur} error={formik.touched.telefono && Boolean(formik.errors.telefono)} helperText={formik.touched.telefono && formik.errors.telefono} />
               </Box>
               
               <Box className="preregistro-action-area">
@@ -139,7 +174,7 @@ export default function Form_PreR() {
               </Box>
             </TabPanel>
 
-            {/*Fiscal*/}
+            {/* Fiscal */}
             <TabPanel value={tabIndex} index={1}>
               <Box className="preregistro-fields-container">
                 <TextField fullWidth size="small" margin="normal" label="RFC" name="rfc" value={formik.values.rfc} onChange={formik.handleChange} onBlur={formik.handleBlur} error={formik.touched.rfc && Boolean(formik.errors.rfc)} helperText={formik.touched.rfc && formik.errors.rfc} />
@@ -158,8 +193,34 @@ export default function Form_PreR() {
                     cursor: 'pointer'
                 }}
                 >
-                  <Typography variant="body2" color="text.secondary" gutterBottom>Arrastra aquí tu Constancia de Situación Fiscal o haz clic para subirla</Typography>
-                  <input type="file" name="constancia" hidden onChange={(event) => formik.setFieldValue("constancia", event.currentTarget.files[0])} />
+                  <Typography variant="body2" color="text.secondary" gutterBottom>Arrastra aquí tu Constancia de Situación Fiscal (Solo PDF) o haz clic para subirla</Typography>
+                  <input 
+                    type="file" 
+                    name="constancia" 
+                    hidden 
+                    accept=".pdf" 
+                    onChange={(event) => {
+                      const file = event.currentTarget.files[0];
+                      if (file) {
+                        formik.setFieldTouched('constancia', true, false);
+                        
+                        // 1. Validar Formato
+                        if (!SUPPORTED_FORMATS.includes(file.type)) {
+                          formik.setFieldError('constancia', 'Solo se permite formato PDF');
+                          formik.setFieldValue('constancia', null);
+                        } 
+                        // 2. Validar Tamaño
+                        else if (file.size > MAX_FILE_SIZE) {
+                          formik.setFieldError('constancia', 'El archivo supera el límite de 2MB');
+                          formik.setFieldValue('constancia', null);
+                        } 
+                        // Archivo válido
+                        else {
+                          formik.setFieldValue("constancia", file);
+                        }
+                      }
+                    }} 
+                  />
                   <Button variant="outlined" component="span" size="small" className="preregistro-dropzone-btn">Seleccionar Archivo</Button>
                 </Box>
                 
@@ -183,7 +244,7 @@ export default function Form_PreR() {
               </Box>
             </TabPanel>
 
-            {/*Acceso */}
+            {/* Acceso */}
             <TabPanel value={tabIndex} index={2}>
               <Box className="preregistro-fields-container">
                 <TextField fullWidth size="small" margin="normal" label="Correo Electrónico" name="correo" type="email" value={formik.values.correo} onChange={formik.handleChange} onBlur={formik.handleBlur} error={formik.touched.correo && Boolean(formik.errors.correo)} helperText={formik.touched.correo && formik.errors.correo} />
