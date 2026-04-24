@@ -17,7 +17,6 @@ import HomeCandi from './components/pre-pages/Home_Candi.jsx';
 import PreReg from './components/PreReg_Viewer.jsx';
 //Solo hay un footer y es este :3
 import Footer from './components/FooterGlobalWave.jsx';
-import Home_Admin from './components/pre-pages/Home_Admin.jsx';
 
 
 function App () {
@@ -26,9 +25,13 @@ function App () {
       <div className="page-container">
         <NavAdmin/> 
         <main className="main-content">
-          {/*El enrutador decide qué componente mostrar basado en la URL */}
+          {/* El enrutador decide qué componente mostrar basado en la URL */}
           <Routes>
-            <Route path="/" element={<PreReg />} />
+            {/* Ruta por defecto (Inicio) */}
+            <Route path="/" element={<HomeAdmin />} />
+            
+            {/* Ruta que coincide con el 'path' de NavAdmin para Preregistros */}
+            <Route path="/empresas/preregistros" element={<PreReg />} />
           </Routes>
         </main>
         <Footer/>

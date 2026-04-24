@@ -1,12 +1,30 @@
 import React, { useState, useMemo } from 'react';
 import FigureTable from './FigureTable';
 import ModalVisualizacion from './ModalPreRegView';
-import ModalCorreccion from './Page_Test_Components';
+import ModalCorreccion from './ModalPreRegReq';
 
 const AprobacionEmpresas = () => {
   const [datosPendientes, setDatosPendientes] = useState([
-    { id: 1, razonSocial: 'Industrias Iztapalapa S.A. de C.V.', correo: 'contacto@indiztapalapa.com.mx', giro: 'Manufactura', sector: 'Público', telefono: '5512345678', constanciaUrl: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf' },
-    { id: 2, razonSocial: 'Tecnologías Iztacalco S. de R.L.', correo: 'admin@teciztacalco.mx', giro: 'Desarrollo de Software', sector: 'Privado', telefono: '5587654321', constanciaUrl: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf' }
+    { 
+      id: 1, 
+      razonSocial: 'Industrias Iztapalapa S.A. de C.V.', 
+      rfc: 'IIZ010203ABC', 
+      correo: 'contacto@indiztapalapa.com.mx', 
+      giro: 'Manufactura', 
+      sector: 'Público', 
+      telefono: '5512345678', 
+      constanciaUrl: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf' 
+    },
+    { 
+      id: 2, 
+      razonSocial: 'Tecnologías Iztacalco S. de R.L.', 
+      rfc: 'TIZ040506DEF',
+      correo: 'admin@teciztacalco.mx', 
+      giro: 'Desarrollo de Software', 
+      sector: 'Privado', 
+      telefono: '5587654321', 
+      constanciaUrl: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf' 
+    }
   ]);
 
   const [sortConfig, setSortConfig] = useState({ clave: null, direccion: 'asc' });
@@ -79,6 +97,7 @@ const AprobacionEmpresas = () => {
 
   const columnas = [
     { clave: 'razonSocial', encabezado: 'Razón Social', width: '20%' },
+    { clave: 'rfc', encabezado: 'RFC', width: '10%' }, // <-- NUEVA COLUMNA
     { clave: 'correo', encabezado: 'Correo Electrónico', width: '15%' },
     { clave: 'giro', encabezado: 'Giro', width: '10%' },
     { clave: 'sector', encabezado: 'Sector', width: '10%' },
@@ -218,7 +237,7 @@ const AprobacionEmpresas = () => {
 
           .btn-animado {
             font-size: 0.8rem;
-            padding: 6px 8px; /* Botones un poco más compactos */
+            padding: 6px 8px; 
             gap: 4px;
           }
 
@@ -231,7 +250,7 @@ const AprobacionEmpresas = () => {
             padding: 12px 16px;
             bottom: 20px;
             right: 20px;
-            left: 20px; /* Hacemos que el toast ocupe más ancho en móviles */
+            left: 20px; 
             text-align: center;
           }
         }

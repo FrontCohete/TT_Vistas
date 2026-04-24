@@ -12,7 +12,7 @@ const ModalVisualizacion = ({ empresa, alCerrar, onAprobar, onRechazar }) => {
             <div>
               <h2 style={styles.title}>{empresa.razonSocial}</h2>
               <p style={styles.subtitle}>
-                <strong>Giro:</strong> {empresa.giro} | <strong>Sector:</strong> {empresa.sector}
+                <strong>RFC:</strong> {empresa.rfc} | <strong>Giro:</strong> {empresa.giro} | <strong>Sector:</strong> {empresa.sector}
               </p>
             </div>
             <button onClick={alCerrar} style={styles.closeButton} className="hover-rotate">&times;</button>
@@ -63,13 +63,13 @@ const styles = {
     position: 'fixed', top: 0, left: 0, right: 0, bottom: 0,
     backgroundColor: 'rgba(0, 0, 0, 0.5)', display: 'flex', justifyContent: 'center', alignItems: 'center',
     zIndex: 1000, backdropFilter: 'blur(4px)',
-    animation: 'fadeInOverlay 0.3s ease-out' // <--- Animación del fondo
+    animation: 'fadeInOverlay 0.3s ease-out'
   },
   modal: {
     backgroundColor: '#fff', width: '90%', maxWidth: '1000px', height: '90vh',
     borderRadius: '12px', display: 'flex', flexDirection: 'column', overflow: 'hidden',
     boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
-    animation: 'scaleUpModal 0.4s cubic-bezier(0.16, 1, 0.3, 1)' // <--- Animación del cuadro
+    animation: 'scaleUpModal 0.4s cubic-bezier(0.16, 1, 0.3, 1)'
   },
   header: {
     padding: '16px 24px', borderBottom: '1px solid #e5e7eb', display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: '#f9fafb'
