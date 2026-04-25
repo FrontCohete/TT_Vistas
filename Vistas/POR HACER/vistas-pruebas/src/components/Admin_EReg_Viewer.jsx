@@ -326,7 +326,7 @@ const EmpresaViewer = () => {
           text-align: center;
         }
 
-        /* Colores semánticos para las píldoras */
+        /* Colores para las píldoras */
         .val-blue   { background-color: #eff6ff; color: #2563eb; }
         .val-purple { background-color: #f3e8ff; color: #9333ea; }
         .val-rose   { background-color: #fff1f2; color: #e11d48; }
@@ -364,20 +364,25 @@ const EmpresaViewer = () => {
         }
         .modal-content { 
           background: white; border-radius: 12px; width: 90%; max-width: 650px; 
+          max-height: 90vh; /* Límite de altura para móviles añadido */
           box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25); animation: scaleUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-          display: flex; flexDirection: column; overflow: hidden;
+          display: flex; flex-direction: column; /* flex-direction corregido */ overflow: hidden;
         }
         
         .modal-header { 
           display: flex; justify-content: space-between; align-items: flex-start; 
           padding: 20px 24px; background-color: #ffffff; border-bottom: 1px solid #f1f5f9;
+          flex-shrink: 0; /* Añadido para evitar que se aplaste */
         }
         .modal-header h2 { margin: 0; font-size: 1.5rem; color: #0f172a; }
         .modal-subtitle { margin: 4px 0 0 0; color: #64748b; display: flex; alignItems: center; gap: 6px; font-size: 0.95rem; }
         .close-btn { background: none; border: none; font-size: 1.8rem; cursor: pointer; color: #94a3b8; transition: color 0.2s; line-height: 1; }
         .close-btn:hover { color: #ef4444; }
 
-        .modal-body { padding: 24px; background-color: #f8fafc; /* Fondo del body ligeramente gris para contrastar tarjetas */ }
+        .modal-body { 
+          padding: 24px; background-color: #f8fafc; 
+          overflow-y: auto; /* Scroll interno añadido */
+        }
         .section-title { margin: 0 0 16px 0; font-size: 1.1rem; color: #334155; font-weight: 600; }
         .stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
         
@@ -395,6 +400,7 @@ const EmpresaViewer = () => {
         .modal-footer { 
           display: flex; justify-content: space-between; padding: 16px 24px; 
           background-color: #ffffff; border-top: 1px solid #f1f5f9;
+          flex-shrink: 0; /* Añadido para evitar que se aplaste */
         }
         
         .btn-modal {

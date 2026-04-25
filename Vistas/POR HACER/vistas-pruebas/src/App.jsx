@@ -14,8 +14,8 @@ import HomeEmp from './components/pre-pages/Home_Emp.jsx';
 import HomeReclu from './components/pre-pages/Home_Reclu.jsx';
 import HomeCandi from './components/pre-pages/Home_Candi.jsx';
 // COMPONENTES YA HECHOS
-import PreRegView from './components/PreReg_Viewer.jsx';
-import EmpView from './components/Empresa_Viewer.jsx';
+import PreRegView from './components/Admin_EPreReg_Viewer.jsx';
+import EmpView from './components/Admin_EReg_Viewer.jsx';
 //Solo hay un footer y es este :3
 import Footer from './components/FooterGlobalWave.jsx';
 
