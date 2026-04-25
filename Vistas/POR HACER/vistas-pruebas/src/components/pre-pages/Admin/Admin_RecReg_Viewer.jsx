@@ -464,10 +464,51 @@ const [datosReclutadores, setDatosReclutadores] = useState([
         @keyframes toastEntrada { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes toastSalida { from { opacity: 1; } to { opacity: 0; transform: translateY(20px); } }
         
-        @media (max-width: 600px) {
+        @media (max-width: 900px) {
           .stats-grid { grid-template-columns: 1fr; }
           .modal-footer { flex-direction: column-reverse; gap: 12px; }
           .btn-modal { width: 100%; }
+        }
+        /* ================= ADAPTACIÓN MÓVIL (< 416px) ================= */
+        @media (max-width: 416px) {
+          /* Reducir el texto de los encabezados */
+          .custom-table th > div { 
+            font-size: 0.6rem !important; 
+          }
+          
+          /* Reducir el texto principal de las celdas (Nombres de empresa/reclutador) */
+          .custom-table td { 
+            font-size: 0.6rem !important; 
+          }
+          
+          /* Reducir forzosamente los textos secundarios (Correos) que tienen inline-styles */
+          .custom-table td span { 
+            font-size: 0.6rem !important; 
+          }
+          
+          /* Ajustar los contenedores de métricas UX para que no saturen la celda */
+          .ux-metric-label { 
+            font-size: 0.6rem !important; 
+          }
+          .ux-metric-label i { 
+            font-size: 0.6rem !important; 
+          }
+          .ux-metric-value { 
+            font-size: 0.7rem !important; 
+            padding: 2px 6px !important; 
+            min-width: 20px !important;
+          }
+          
+          /* Achicar el botón de opciones */
+          .btn-animado { 
+            font-size: 0.7rem !important; 
+            padding: 4px 8px !important; 
+          }
+          
+          /* Si en tu table_global.css usas vista de tarjetas en móvil, esto ajusta los labels */
+          .custom-table td:before {
+            font-size: 0.7rem !important;
+          }
         }
       `}</style>
         
