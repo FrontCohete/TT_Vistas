@@ -43,7 +43,8 @@ const GraficoPastel = ({ datos }) => {
 
       <div className="chart-wrapper-pie">
         <ResponsiveContainer width="100%" height={300}>
-          <PieChart>
+          {/* Se agregó style={{ outline: 'none' }} para quitar el recuadro negro */}
+          <PieChart style={{ outline: 'none' }}>
             <Pie
               data={datos} cx="50%" cy="50%" labelLine={false}
               label={renderCustomizedLabel} outerRadius={135} 
@@ -65,7 +66,8 @@ const GraficoBarras = ({ datos, ejeXClave, barras }) => {
   return (
     <div className="chart-wrapper-bar">
       <ResponsiveContainer width="100%" height={320}>
-        <BarChart data={datos} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+        {/* Se agregó style={{ outline: 'none' }} para quitar el recuadro negro */}
+        <BarChart data={datos} margin={{ top: 10, right: 10, left: -20, bottom: 0 }} style={{ outline: 'none' }}>
           <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#E5E7EB" />
           <XAxis dataKey={ejeXClave} stroke="#9CA3AF" tick={{fill: '#6B7280', fontSize: 12}} tickLine={false} axisLine={false} />
           <YAxis stroke="#9CA3AF" tick={{fill: '#6B7280', fontSize: 12}} tickLine={false} axisLine={false} />
