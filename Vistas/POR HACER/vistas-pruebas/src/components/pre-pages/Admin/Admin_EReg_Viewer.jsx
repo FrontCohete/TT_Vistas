@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import FigureTable from './FigureTable';
+import FigureTable from '../../FigureTable';
 
 const EmpresaViewer = () => {
   const [datosEmpresas, setDatosEmpresas] = useState([

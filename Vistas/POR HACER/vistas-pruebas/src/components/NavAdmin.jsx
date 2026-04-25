@@ -13,16 +13,15 @@ const items = [
     name: " Empresas ", 
     icon: "fi fi-rr-building",
     items: [
-      { name: " Visualizar Preregistros ", path: "/empresas/preregistros", icon: "fi fi-rr-eye" },
-      { name: " Visualizar Existentes ", path: "/empresas/existentes", icon: "fi fi-rr-list-check" }
+      { name: " Visualizar Preregistros ", path: "/Admin/empresas/preregistros", icon: "fi fi-rr-eye" },
+      { name: " Visualizar Existentes ", path: "/Admin/empresas/existentes", icon: "fi fi-rr-list-check" }
     ] 
   },
   { 
     name: "Reclutadores ", 
     icon: "fi fi-rr-users",
     items: [
-      { name: " Visualizar Existentes", path: "/reclutadores/existentes", icon: "fi fi-rr-eye" },
-      { name: " Emitir Reportes", path: "/reclutadores/reportes", icon: "fi fi-rr-document" }
+      { name: " Visualizar Existentes", path: "/Admin/reclutadores/existentes", icon: "fi fi-rr-eye" }
     ] 
   },
   { 

@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
-import FigureTable from './FigureTable';
-import ModalVisualizacion from './ModalPreRegView';
-import ModalCorreccion from './ModalPreRegReq';
+import FigureTable from '../../FigureTable';
+import ModalVisualizacion from '../../ModalPreRegView';
+import ModalCorreccion from '../../ModalPreRegReq';
 
 const AprobacionEmpresas = () => {
   const [datosPendientes, setDatosPendientes] = useState([

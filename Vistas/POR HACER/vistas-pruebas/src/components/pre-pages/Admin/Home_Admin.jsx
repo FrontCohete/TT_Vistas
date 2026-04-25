@@ -1,6 +1,6 @@
 import React from 'react';
-import AdminAside from '../AsideAdmin.jsx'
-import GraphAdmin from '../GraphAdmin.jsx';
+import AdminAside from '../../AsideAdmin.jsx'
+import GraphAdmin from '../../GraphAdmin.jsx';
 
 const Home_Admin = () => {
   return (
