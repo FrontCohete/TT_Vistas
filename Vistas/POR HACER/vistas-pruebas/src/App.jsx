@@ -14,7 +14,8 @@ import HomeEmp from './components/pre-pages/Home_Emp.jsx';
 import HomeReclu from './components/pre-pages/Home_Reclu.jsx';
 import HomeCandi from './components/pre-pages/Home_Candi.jsx';
 // COMPONENTES YA HECHOS
-import PreReg from './components/PreReg_Viewer.jsx';
+import PreRegView from './components/PreReg_Viewer.jsx';
+import EmpView from './components/Empresa_Viewer.jsx';
 //Solo hay un footer y es este :3
 import Footer from './components/FooterGlobalWave.jsx';
 
@@ -25,13 +26,11 @@ function App () {
       <div className="page-container">
         <NavAdmin/> 
         <main className="main-content">
-          {/* El enrutador decide qué componente mostrar basado en la URL */}
           <Routes>
-            {/* Ruta por defecto (Inicio) */}
+            {/* Rutas encontradas en NavAdmin.jsx */}
             <Route path="/" element={<HomeAdmin />} />
-            
-            {/* Ruta que coincide con el 'path' de NavAdmin para Preregistros */}
-            <Route path="/empresas/preregistros" element={<PreReg />} />
+            <Route path="/empresas/preregistros" element={<PreRegView />} />
+            <Route path="/empresas/existentes" element={<EmpView />} />
           </Routes>
         </main>
         <Footer/>
