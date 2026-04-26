@@ -28,9 +28,8 @@ const items = [
     name: " Vacantes", 
     icon: "fi fi-rr-briefcase",
     items: [
-      { name: " Aprobar Publicaciones", path: "/vacantes/aprobar", icon: "fi fi-rr-check-circle" },
-      { name: " Corrección de Publicaciones", path: "/vacantes/corregir", icon: "fi fi-rr-edit" },
-      { name: " Visualizar Reportes", path: "/vacantes/reportes", icon: "fi fi-rr-document" }
+      { name: " Visualizar Existentes", path: "/Admin/vacantes/existentes", icon: "fi fi-rr-eye" },
+      { name: " Aprobar Publicaciones", path: "/Admin/vacantes/aprobar", icon: "fi fi-rr-check-circle" },
     ] 
   },
 ];
