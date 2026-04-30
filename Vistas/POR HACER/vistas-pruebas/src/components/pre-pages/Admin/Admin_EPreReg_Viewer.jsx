@@ -2,6 +2,7 @@ import React, { useState, useMemo } from 'react';
 import FigureTable from '../../FigureTable';
 import ModalVisualizacion from '../../ModalPreRegView';
 import ModalCorreccion from '../../ModalPreRegReq';
+import '../../../assets/css/admin_View.css';
 
 const AprobacionEmpresas = () => {
   const [datosPendientes, setDatosPendientes] = useState([
@@ -156,105 +157,6 @@ const AprobacionEmpresas = () => {
           {notificacion.mensaje}
         </div>
       )}
-
-      <style>{`
-        /* --- ESTILOS GENERALES (Escritorio por defecto) --- */
-        .contenedor-principal {
-          padding: 20px;
-          max-width: 1200px;
-          margin: 0 auto;
-          position: relative;
-        }
-
-        .titulo-principal {
-          margin-bottom: 20px;
-          color: #333;
-          font-size: 1.8rem;
-          transition: font-size 0.3s ease;
-        }
-
-        .link-documento {
-          color: #0056b3;
-          text-decoration: underline;
-          font-weight: 500;
-          display: flex;
-          align-items: center;
-          gap: 4px;
-        }
-
-        .btn-animado {
-          display: inline-flex; align-items: center; gap: 6px; justify-content: center;
-          padding: 6px 12px; border: none; border-radius: 4px; 
-          cursor: pointer; font-weight: bold; color: white;
-          transition: all 0.2s ease-in-out; box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-          font-size: 0.95rem;
-        }
-        .btn-animado i { font-size: 1.1rem; line-height: 1; transform: translateY(1px); }
-        .btn-animado:hover { transform: translateY(-2px); box-shadow: 0 4px 6px rgba(0,0,0,0.15); }
-        .btn-animado:active { transform: translateY(0); box-shadow: 0 1px 2px rgba(0,0,0,0.1); }
-        .btn-azul { background-color: #3b82f6; } .btn-azul:hover { background-color: #2563eb; }
-        .btn-naranja { background-color: #f59e0b; } .btn-naranja:hover { background-color: #d97706; }
-        
-        .fila-tabla { transition: all 0.3s ease-in-out; opacity: 1; transform: translateX(0); }
-        .fila-tabla.eliminando { opacity: 0; transform: translateX(-20px); background-color: #fef3c7 !important; }
-
-        @keyframes toastEntrada { from { opacity: 0; transform: translateY(50px) scale(0.9); } to { opacity: 1; transform: translateY(0) scale(1); } }
-        @keyframes toastSalida { from { opacity: 1; transform: translateY(0) scale(1); } to { opacity: 0; transform: translateY(20px) scale(0.9); } }
-        
-        .toast-notificacion {
-          position: fixed; bottom: 30px; right: 30px; padding: 16px 24px; border-radius: 8px;
-          color: white; font-weight: bold; z-index: 2000; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
-          animation: toastEntrada 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-          font-size: 1rem;
-        }
-        .toast-notificacion.saliendo { animation: toastSalida 0.3s ease-in forwards; }
-        .toast-notificacion.exito { background-color: #14b881b9; }
-        .toast-notificacion.error { background-color: #be1f1fb2; }
-        .toast-notificacion.advertencia { background-color: #ffbc03be; color: white; }
-        
-        
-        /* --- MEDIA QUERIES PARA DISPOSITIVOS MÓVILES (Menos de 768px) --- */
-        @media (max-width: 768px) {
-          .contenedor-principal {
-            padding: 10px; /* Reducimos el padding lateral para ganar espacio */
-          }
-          
-          .titulo-principal {
-            font-size: 1rem; /* Reducimos el tamaño del H2 */
-            margin-bottom: 15px;
-            
-          }
-
-          /* Aseguramos que la tabla completa reduzca su fuente */
-          .custom-table th, 
-          .custom-table td {
-            font-size: 0.7rem !important; /* Forzamos el tamaño sobre tu css global si es necesario */
-          }
-
-          .link-documento {
-            font-size: 0.85rem;
-          }
-
-          .btn-animado {
-            font-size: 0.8rem;
-            padding: 6px 8px; 
-            gap: 4px;
-          }
-
-          .btn-animado i {
-            font-size: 0.9rem;
-          }
-
-          .toast-notificacion {
-            font-size: 0.9rem;
-            padding: 12px 16px;
-            bottom: 20px;
-            right: 20px;
-            left: 20px; 
-            text-align: center;
-          }
-        }
-      `}</style>
     </div>
   );
 };

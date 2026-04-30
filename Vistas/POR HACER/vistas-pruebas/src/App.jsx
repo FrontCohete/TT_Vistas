@@ -17,7 +17,7 @@ import NavReclu from './components/NavReclu.jsx';
 import NavCandi from './components/NavCandi.jsx';
 // También prueben con estas en la sección main-content dentro de routes
 import HomeSubAdmin from './components/pre-pages/Home_SubAdmin.jsx';
-import HomeEmp from './components/pre-pages/Home_Emp.jsx';
+import HomeEmp from './components/pre-pages/Emp/Home_Emp.jsx';
 import HomeReclu from './components/pre-pages/Home_Reclu.jsx';
 import HomeCandi from './components/pre-pages/Home_Candi.jsx';
 // COMPONENTES YA HECHOS

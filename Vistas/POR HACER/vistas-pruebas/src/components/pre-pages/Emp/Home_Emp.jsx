@@ -1,6 +1,6 @@
 import React from 'react';
-import EmpAside from '../AsideEmp.jsx'
-import GraphEmp from '../GraphEmp.jsx';
+import EmpAside from '../../AsideEmp.jsx';
+import GraphEmp from '../../GraphEmp.jsx';
 
 const Home_Emp = () => {
   return (
