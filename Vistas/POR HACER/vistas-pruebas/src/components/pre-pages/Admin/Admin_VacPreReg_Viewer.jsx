@@ -4,7 +4,6 @@ import FigureTable from '../../FigureTable';
 import '../../../assets/css/admin_View.css';
 
 const Admin_VacPreReg_Viewer = () => {
-  // Datos simulados de pre-registros de vacantes con fecha de envío
   const [datosVacantes, setDatosVacantes] = useState([
     {
       id: 1,
@@ -15,6 +14,8 @@ const Admin_VacPreReg_Viewer = () => {
       descripcion: 'Creación de interfaces de usuario escalables usando React y consumo de APIs.',
       salario: '$20,000 - $25,000 MXN',
       modalidad: 'Híbrida',
+      contratacion: 'Tiempo Completo',
+      horario: 'Lunes a Viernes, 9:00 AM - 6:00 PM',
       perfil: 'ISC',
       softSkills: ['Trabajo en equipo', 'Proactividad', 'Resolución de problemas'],
       hardSkills: ['HTML', 'CSS', 'JavaScript', 'Reactjs']
@@ -28,6 +29,8 @@ const Admin_VacPreReg_Viewer = () => {
       descripcion: 'Análisis de bases de datos de envíos, creación de dashboards y reportes.',
       salario: '$18,000 - $22,000 MXN',
       modalidad: 'Home-Office',
+      contratacion: 'Medio Tiempo',
+      horario: 'Lunes a Viernes, 9:00 AM - 1:00 PM',
       perfil: 'LCD',
       softSkills: ['Pensamiento analítico', 'Comunicación asertiva'],
       hardSkills: ['SQL', 'Python', 'PowerBI', 'Excel Avanzado', 'Estadística']
@@ -41,6 +44,8 @@ const Admin_VacPreReg_Viewer = () => {
       descripcion: 'Entrenamiento de modelos de Machine Learning para visión computacional.',
       salario: '$35,000 - $45,000 MXN',
       modalidad: 'Presencial',
+      contratacion: 'Prácticas',
+      horario: 'Lunes a Jueves, 10:00 AM - 4:00 PM',
       perfil: 'IIA',
       softSkills: ['Pensamiento crítico', 'Autodidacta', 'Adaptabilidad', 'Liderazgo'],
       hardSkills: ['Python', 'TensorFlow', 'PyTorch', 'Computer Vision']
@@ -81,7 +86,6 @@ const Admin_VacPreReg_Viewer = () => {
         let valA = a[sortConfig.clave];
         let valB = b[sortConfig.clave];
         
-        // Ordenamiento especial para fechas DD/MM/YYYY
         if (sortConfig.clave === 'fechaEnvio') {
           valA = a.fechaEnvio.split('/').reverse().join('');
           valB = b.fechaEnvio.split('/').reverse().join('');
@@ -245,21 +249,22 @@ const Admin_VacPreReg_Viewer = () => {
 
             <div className="modal-body">
               <div className="grid-2-col">
-                <div className="data-group">
-                  <span className="data-label">Empresa</span>
-                  <span className="data-value">{vacanteSeleccionada.empresa}</span>
-                </div>
-                <div className="data-group">
-                  <span className="data-label">Fecha de Envío</span>
-                  <span className="data-value">{vacanteSeleccionada.fechaEnvio}</span>
-                </div>
+                {/* Campos separados individualmente */}
                 <div className="data-group">
                   <span className="data-label">Nombre de la Vacante</span>
                   <span className="data-value">{vacanteSeleccionada.nombreVacante}</span>
                 </div>
                 <div className="data-group">
+                  <span className="data-label">Empresa</span>
+                  <span className="data-value">{vacanteSeleccionada.empresa}</span>
+                </div>
+                <div className="data-group">
                   <span className="data-label">Ubicación</span>
                   <span className="data-value">{vacanteSeleccionada.ubicacion}</span>
+                </div>
+                <div className="data-group">
+                  <span className="data-label">Perfil Requerido</span>
+                  <span className="data-value">{vacanteSeleccionada.perfil}</span>
                 </div>
                 <div className="data-group">
                   <span className="data-label">Salario</span>
@@ -270,24 +275,37 @@ const Admin_VacPreReg_Viewer = () => {
                   <span className="data-value">{vacanteSeleccionada.modalidad}</span>
                 </div>
                 <div className="data-group">
-                  <span className="data-label">Perfil Requerido</span>
-                  <span className="data-value">{vacanteSeleccionada.perfil}</span>
+                  <span className="data-label">Tipo de Contratación</span>
+                  <span className="data-value">{vacanteSeleccionada.contratacion}</span>
                 </div>
+                <div className="data-group">
+                  <span className="data-label">Horario Laboral</span>
+                  <span className="data-value">{vacanteSeleccionada.horario}</span>
+                </div>
+
+                {/* Descripción a lo ancho del grid */}
                 <div className="data-group col-span-2">
                   <span className="data-label">Descripción de la Vacante</span>
                   <p className="data-text">{vacanteSeleccionada.descripcion}</p>
                 </div>
-                <div className="data-group">
-                  <span className="data-label">Competencias Interpersonales ({vacanteSeleccionada.softSkills.length})</span>
-                  <ul className="skills-list">
-                    {vacanteSeleccionada.softSkills.map((skill, idx) => <li key={idx}><i className="fi fi-rr-check"></i> {skill}</li>)}
-                  </ul>
-                </div>
-                <div className="data-group">
-                  <span className="data-label">Competencias Técnicas ({vacanteSeleccionada.hardSkills.length})</span>
-                  <ul className="skills-list">
-                    {vacanteSeleccionada.hardSkills.map((skill, idx) => <li key={idx}><i className="fi fi-rr-check"></i> {skill}</li>)}
-                  </ul>
+                
+                {/* Competencias unificadas a lo ancho del grid */}
+                <div className="data-group col-span-2">
+                  <span className="data-label">Competencias</span>
+                  <div className="grid-2-col" style={{ marginTop: '8px' }}>
+                    <div>
+                      <strong style={{ fontSize: '0.85rem' }}>Interpersonales (Soft):</strong>
+                      <ul className="skills-list">
+                        {vacanteSeleccionada.softSkills.map((skill, idx) => <li key={idx}><i className="fi fi-rr-check"></i> {skill}</li>)}
+                      </ul>
+                    </div>
+                    <div>
+                      <strong style={{ fontSize: '0.85rem' }}>Técnicas (Hard):</strong>
+                      <ul className="skills-list">
+                        {vacanteSeleccionada.hardSkills.map((skill, idx) => <li key={idx}><i className="fi fi-rr-check"></i> {skill}</li>)}
+                      </ul>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -322,14 +340,27 @@ const Admin_VacPreReg_Viewer = () => {
                 <span className="data-value">{vacanteSeleccionada.nombreVacante} - {vacanteSeleccionada.empresa}</span>
               </div>
 
+              {/* Información separada en el resumen visual antes de corregir */}
               <div className="grid-2-col" style={{ marginTop: '20px', opacity: '0.8', pointerEvents: 'none' }}>
-                <div className="data-group">
+                <div className="data-group col-span-2">
                   <span className="data-label">Descripción Actual</span>
                   <p className="data-text" style={{ fontSize: '0.85rem' }}>{vacanteSeleccionada.descripcion}</p>
                 </div>
                 <div className="data-group">
-                  <span className="data-label">Salario & Modalidad</span>
-                  <span className="data-value" style={{ fontSize: '0.85rem' }}>{vacanteSeleccionada.salario} | {vacanteSeleccionada.modalidad}</span>
+                  <span className="data-label">Salario</span>
+                  <span className="data-value" style={{ fontSize: '0.85rem' }}>{vacanteSeleccionada.salario}</span>
+                </div>
+                <div className="data-group">
+                  <span className="data-label">Modalidad</span>
+                  <span className="data-value" style={{ fontSize: '0.85rem' }}>{vacanteSeleccionada.modalidad}</span>
+                </div>
+                <div className="data-group">
+                  <span className="data-label">Tipo de Contratación</span>
+                  <span className="data-value" style={{ fontSize: '0.85rem' }}>{vacanteSeleccionada.contratacion}</span>
+                </div>
+                <div className="data-group">
+                  <span className="data-label">Horario</span>
+                  <span className="data-value" style={{ fontSize: '0.85rem' }}>{vacanteSeleccionada.horario}</span>
                 </div>
               </div>
 
@@ -347,6 +378,7 @@ const Admin_VacPreReg_Viewer = () => {
                   <option value="descripcion_vaga">Descripción vaga o insuficiente</option>
                   <option value="salario_irreal">Salario fuera del estándar de mercado</option>
                   <option value="perfil_incorrecto">El perfil (ISC, IIA, LCD) no coincide con las tareas</option>
+                  <option value="horario_inconsistente">El horario no concuerda con el tipo de contratación</option>
                   <option value="exceso_competencias">Exceso o incongruencia en competencias requeridas</option>
                   <option value="errores_ortograficos">Errores ortográficos o gramaticales múltiples</option>
                   <option value="otro">Otro (Revisión manual requerida)</option>

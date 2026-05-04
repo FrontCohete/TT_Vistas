@@ -4,7 +4,6 @@ import FigureTable from '../../FigureTable';
 import '../../../assets/css/admin_View.css';
 
 const AllVac_Viewer = () => {
-  // Datos simulados de vacantes existentes con status, reportes y fecha de publicación
   const [datosVacantes, setDatosVacantes] = useState([
     {
       id: 1,
@@ -15,6 +14,8 @@ const AllVac_Viewer = () => {
       descripcion: 'Creación de interfaces de usuario escalables usando React y consumo de APIs.',
       salario: '$20,000 - $25,000 MXN',
       modalidad: 'Híbrida',
+      contratacion: 'Tiempo Completo',
+      horario: 'Lunes a Viernes, 9:00 AM - 6:00 PM',
       perfil: 'ISC',
       softSkills: ['Trabajo en equipo', 'Proactividad', 'Resolución de problemas'],
       hardSkills: ['HTML', 'CSS', 'JavaScript', 'Reactjs'],
@@ -30,6 +31,8 @@ const AllVac_Viewer = () => {
       descripcion: 'Análisis de bases de datos de envíos, creación de dashboards y reportes.',
       salario: '$18,000 - $22,000 MXN',
       modalidad: 'Home-Office',
+      contratacion: 'Medio Tiempo',
+      horario: 'Lunes a Viernes, 9:00 AM - 1:00 PM',
       perfil: 'LCD',
       softSkills: ['Pensamiento analítico', 'Comunicación asertiva'],
       hardSkills: ['SQL', 'Python', 'PowerBI', 'Excel Avanzado', 'Estadística'],
@@ -47,6 +50,8 @@ const AllVac_Viewer = () => {
       descripcion: 'Entrenamiento de modelos de Machine Learning para visión computacional.',
       salario: '$35,000 - $45,000 MXN',
       modalidad: 'Presencial',
+      contratacion: 'Estancia Profesional',
+      horario: 'Lunes a Jueves, 10:00 AM - 4:00 PM',
       perfil: 'IIA',
       softSkills: ['Pensamiento crítico', 'Autodidacta', 'Adaptabilidad', 'Liderazgo'],
       hardSkills: ['Python', 'TensorFlow', 'PyTorch', 'Computer Vision'],
@@ -62,12 +67,10 @@ const AllVac_Viewer = () => {
   const [busqueda, setBusqueda] = useState('');
   const [notificacion, setNotificacion] = useState({ visible: false, mensaje: '', tipo: '', saliendo: false });
   
-  // Estado para modales
   const [modalAccionesAbierto, setModalAccionesAbierto] = useState(false);
   const [modalCorregirAbierto, setModalCorregirAbierto] = useState(false);
   const [vacanteSeleccionada, setVacanteSeleccionada] = useState(null);
   
-  // Estado para el formulario de corrección
   const [formCorreccion, setFormCorreccion] = useState({
     camposSeleccionados: [],
     motivo: ''
@@ -98,14 +101,11 @@ const AllVac_Viewer = () => {
         let valA = a[sortConfig.clave];
         let valB = b[sortConfig.clave];
         
-        // Manejo especial para conteo de reportes
         if (sortConfig.clave === 'numReportes') {
           valA = a.reportes.length;
           valB = b.reportes.length;
         }
         
-        // Manejo básico de fecha (asumiendo formato DD/MM/YYYY para el ejemplo, 
-        // en producción podrías usar Date.parse si lo necesitas más exacto)
         if (sortConfig.clave === 'fechaPublicacion') {
            valA = a.fechaPublicacion.split('/').reverse().join('');
            valB = b.fechaPublicacion.split('/').reverse().join('');
@@ -132,7 +132,7 @@ const AllVac_Viewer = () => {
 
   const abrirModalCorregir = (registro) => {
     setVacanteSeleccionada(registro);
-    setFormCorreccion({ camposSeleccionados: [], motivo: '' }); // Reiniciar formulario
+    setFormCorreccion({ camposSeleccionados: [], motivo: '' });
     setModalCorregirAbierto(true);
   };
 
@@ -274,49 +274,60 @@ ${formCorreccion.motivo || 'Revisar los campos marcados para su corrección urge
             </div>
 
             <div className="modal-body">
-              {/* SECCIÓN 1: DATOS DE LA VACANTE */}
               <h3 className="section-title"><i className="fi fi-rr-info"></i> Información de la Vacante</h3>
               <div className="grid-2-col" style={{ marginBottom: '24px' }}>
-                <div className="data-group">
-                  <span className="data-label">Empresa</span>
-                  <span className="data-value">{vacanteSeleccionada.empresa}</span>
-                </div>
+                {/* Elementos completamente separados */}
                 <div className="data-group">
                   <span className="data-label">Nombre de la Vacante</span>
                   <span className="data-value">{vacanteSeleccionada.nombreVacante}</span>
                 </div>
                 <div className="data-group">
-                  <span className="data-label">Fecha de Publicación</span>
-                  <span className="data-value">{vacanteSeleccionada.fechaPublicacion}</span>
+                  <span className="data-label">Empresa</span>
+                  <span className="data-value">{vacanteSeleccionada.empresa}</span>
                 </div>
                 <div className="data-group">
                   <span className="data-label">Ubicación</span>
                   <span className="data-value">{vacanteSeleccionada.ubicacion}</span>
                 </div>
                 <div className="data-group">
-                  <span className="data-label">Salario & Modalidad</span>
-                  <span className="data-value">{vacanteSeleccionada.salario} | {vacanteSeleccionada.modalidad}</span>
-                </div>
-                <div className="data-group">
-                  <span className="data-label">Perfil</span>
+                  <span className="data-label">Perfil Requerido</span>
                   <span className="data-value">{vacanteSeleccionada.perfil}</span>
                 </div>
+                <div className="data-group">
+                  <span className="data-label">Salario</span>
+                  <span className="data-value">{vacanteSeleccionada.salario}</span>
+                </div>
+                <div className="data-group">
+                  <span className="data-label">Modalidad</span>
+                  <span className="data-value">{vacanteSeleccionada.modalidad}</span>
+                </div>
+                <div className="data-group">
+                  <span className="data-label">Tipo de Contratación</span>
+                  <span className="data-value">{vacanteSeleccionada.contratacion}</span>
+                </div>
+                <div className="data-group">
+                  <span className="data-label">Horario Laboral</span>
+                  <span className="data-value">{vacanteSeleccionada.horario}</span>
+                </div>
+                
+                {/* La descripción abarca todo el ancho */}
                 <div className="data-group col-span-2">
                   <span className="data-label">Descripción de la Vacante</span>
                   <p className="data-text">{vacanteSeleccionada.descripcion}</p>
                 </div>
+
+                {/* Competencias juntas en un solo bloque, abarcando todo el ancho */}
                 <div className="data-group col-span-2">
                   <span className="data-label">Competencias</span>
                   <p className="data-text" style={{ fontSize: '0.85rem' }}>
-                    <strong>Soft Skills:</strong> {vacanteSeleccionada.softSkills.join(', ')}<br/>
-                    <strong>Hard Skills:</strong> {vacanteSeleccionada.hardSkills.join(', ')}
+                    <strong>Interpersonales (Soft):</strong> {vacanteSeleccionada.softSkills.join(', ')}<br/>
+                    <strong>Técnicas (Hard):</strong> {vacanteSeleccionada.hardSkills.join(', ')}
                   </p>
                 </div>
               </div>
 
               <div className="divider"></div>
 
-              {/* SECCIÓN 2: REPORTES */}
               <h3 className="section-title" style={{ color: '#ea580c' }}><i className="fi fi-rr-exclamation"></i> Reportes ({vacanteSeleccionada.reportes.length})</h3>
               {vacanteSeleccionada.reportes.length === 0 ? (
                 <div className="empty-state-box">Esta vacante no tiene reportes asociados.</div>
@@ -358,7 +369,6 @@ ${formCorreccion.motivo || 'Revisar los campos marcados para su corrección urge
             </div>
 
             <div className="modal-body">
-              {/* SECCIÓN 1: RESUMEN DE LA VACANTE */}
               <div className="resume-box" style={{ marginBottom: '16px' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                   <div>
@@ -369,7 +379,6 @@ ${formCorreccion.motivo || 'Revisar los campos marcados para su corrección urge
                 </div>
               </div>
 
-              {/* SECCIÓN 2: REPORTES PREVIOS */}
               {vacanteSeleccionada.reportes.length > 0 && (
                 <div style={{ marginBottom: '24px' }}>
                   <span className="data-label" style={{ color: '#ea580c' }}><i className="fi fi-rr-exclamation"></i> Alertas detectadas por los usuarios:</span>
@@ -383,13 +392,12 @@ ${formCorreccion.motivo || 'Revisar los campos marcados para su corrección urge
 
               <div className="divider" style={{ margin: '16px 0' }}></div>
 
-              {/* SECCIÓN 3: FORMULARIO DE CORRECCIÓN */}
               <h3 className="section-title">Formulario de Corrección</h3>
               
               <div className="form-group" style={{ marginBottom: '16px' }}>
                 <label>Selecciona los campos que el reclutador debe modificar:</label>
                 <div className="checkbox-grid">
-                  {['Nombre de la Vacante', 'Descripción', 'Salario', 'Modalidad', 'Ubicación', 'Perfil', 'Competencias Interpersonales', 'Competencias Técnicas'].map(campo => (
+                  {['Nombre de la Vacante', 'Descripción', 'Salario', 'Modalidad', 'Tipo de Contratación', 'Horario Laboral', 'Ubicación', 'Perfil', 'Competencias Interpersonales', 'Competencias Técnicas'].map(campo => (
                     <label key={campo} className="checkbox-item">
                       <input 
                         type="checkbox" 

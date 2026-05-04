@@ -13,15 +13,14 @@ const items = [
     icon: "fi fi-rr-users",
     items: [
       { name: "Visualizar Existentes", path: "/reclutadores/existentes", icon: "fi fi-rr-eye" },
-      { name: "Visualizar Reportes", path: "/reclutadores/existentes", icon: "fi fi-rs-comment-info" }
+      { name: "Visualizar Reportes", path: "/reclutadores/reportados", icon: "fi fi-rs-comment-info" }
     ] 
   },
   { 
     name: "Vacantes", 
     icon: "fi fi-rr-briefcase",
     items: [
-      { name: "Publicaciones Activas", path: "/vacantes/aprobar", icon: "fi fi-rr-check-circle" },
-      { name: "Visualizar Reportes", path: "/vacantes/reportes", icon: "fi fi-rs-comment-info" }
+      { name: "Visualizar Existentes", path: "/vacantes/existentes", icon: "fi fi-rr-eye" }
     ] 
   },
   { 
@@ -41,8 +40,6 @@ const NavItem = ({ item, activeItem, onEnter, onLeave }) => {
     onEnter(item, `${leftPosition}px`);
   };
 
-  // Si el item tiene un 'path' (como Inicio), usamos Link. 
-  // Si no tiene 'path' (es solo un menú desplegable), usamos una etiqueta normal.
   return item.path ? (
     <Link
       to={item.path}
@@ -73,12 +70,10 @@ export default function NavEmp() {
   const [activeItem, setActiveItem] = useState(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   
-  // Estados de menús y notificaciones
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
   const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
   const [notifications, setNotifications] = useState([]); 
   
-  // Estados para el Hide-on-Scroll
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   
@@ -88,7 +83,6 @@ export default function NavEmp() {
   const notificationsRef = useRef(null);
   const timeoutRef = useRef(null);
 
-  // Hook para detectar el scroll
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
@@ -125,7 +119,6 @@ export default function NavEmp() {
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
   const closeProfileMenu = () => setIsProfileMenuOpen(false);
 
-  // Funciones para alternar menús asegurando que solo haya uno abierto
   const toggleNotifications = () => {
     setIsNotificationsOpen(!isNotificationsOpen);
     setIsProfileMenuOpen(false);
@@ -138,7 +131,6 @@ export default function NavEmp() {
 
   return (
     <nav className="page navbar">
-      {/* Contenedor dinámico según el scroll */}
       <section className={`navbar-container ${isVisible ? "" : "navbar-hidden"}`}>
         
         {/* SECCIÓN IZQUIERDA */}
@@ -249,8 +241,7 @@ export default function NavEmp() {
               ref={profileMenuRef}
               className="profile-dropdown-menu" 
             >
-              {/* Menú original conservado */}
-              <Link to="/perfil/editar" className="profile-item" onClick={closeProfileMenu}>
+              <Link to="empresa/perfil/editar" className="profile-item" onClick={closeProfileMenu}>
                 <i className="fi fi-rr-user-pen"></i> Editar Perfil
               </Link>
               <div className="profile-divider"></div>
