@@ -1,6 +1,6 @@
 import React from 'react';
-import RecluAside from '../AsideReclu.jsx'
-import GraphReclu from '../GraphReclu.jsx';
+import RecluAside from '../../AsideReclu.jsx'
+import GraphReclu from '../../GraphReclu.jsx';
 
 const Home_Reclu = () => {
   return (

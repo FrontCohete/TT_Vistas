@@ -12,9 +12,8 @@ const items = [
     name: "Vacantes", 
     icon: "fi fi-rr-briefcase",
     items: [
-      { name: "Publicaciones Activas", path: "/vacantes/aprobar", icon: "fi fi-rr-check-circle" },
-      { name: "Crear Publicación", path: "/vacantes/reportes", icon: "fi fi-rr-add-document" },
-      { name: "Visualizar Reportes", path: "/vacantes/reportes", icon: "fi fi-rs-comment-info" },
+      { name: "Publicaciones Existentes", path: "/vacantes/existentes", icon: "fi fi-rr-check-circle" },
+      { name: "Crear Publicación", path: "/vacantes/crear-vacante", icon: "fi fi-rr-add-document" }
     ] 
   },
   { 
