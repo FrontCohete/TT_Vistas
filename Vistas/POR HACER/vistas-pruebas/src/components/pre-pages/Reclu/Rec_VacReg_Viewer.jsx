@@ -158,17 +158,19 @@ const Rec_VacReg_Viewer = () => {
     setTimeout(() => setNotificacion({ visible: false, mensaje: '', tipo: '', saliendo: false }), 4000);
   };
 
-  //MANEJADORES DE MODAL (INFO)
   const abrirModalInfo = (registro) => {
     setVacanteSeleccionada(registro);
     setModalInfoAbierto(true);
   };
 
-  const handleVerPostulados = () => {
+   const handleVerPostulados = () => {
     if (!vacanteSeleccionada) return;
     setModalInfoAbierto(false); 
-    // Redirigimos a la ruta dinámica utilizando el ID de la vacante
-    navigate(`/vacantes/${vacanteSeleccionada.id}/postulantes`);
+    
+    // Envio del objeto completo 'vacanteSeleccionada' bajo el nombre 'vacante'
+    navigate(`/vacantes/${vacanteSeleccionada.id}/postulantes`, {
+      state: { vacante: vacanteSeleccionada }
+    });
   };
 
   const handleFinalizarProceso = () => {
@@ -187,7 +189,6 @@ const Rec_VacReg_Viewer = () => {
     mostrarNotificacion('La vacante ha sido eliminada permanentemente.', 'error'); 
   };
 
-  // --- MANEJADORES DE MODAL (CORRECCIÓN)
   const abrirModalCorregir = (registro) => {
     setVacanteSeleccionada(registro);
     setFormularioCorreccion({
@@ -239,7 +240,7 @@ const Rec_VacReg_Viewer = () => {
     { 
       clave: 'nombreVacante', 
       encabezado: 'Nombre de Vacante', 
-      width: '25%',
+      width: '20%',
       render: (fila) => <span style={{ fontWeight: '600', color: '#1e293b' }}>{fila.nombreVacante}</span>
     },
     { clave: 'ubicacion', encabezado: 'Ubicación', width: '15%' },
@@ -254,10 +255,23 @@ const Rec_VacReg_Viewer = () => {
         </span>
       )
     },
+    {
+      clave: 'reportes',
+      encabezado: 'Reportes',
+      width: '8%',
+      render: (fila) => (
+        <span style={{ 
+          fontWeight: '600', 
+          color: fila.reportes > 0 ? '#ea580c' : '#10b981' 
+        }}>
+          {fila.reportes}
+        </span>
+      )
+    },
     { 
       clave: 'status', 
       encabezado: 'Status', 
-      width: '15%',
+      width: '12%',
       render: (fila) => {
         let claseBadge = '';
         switch (fila.status) {
@@ -300,7 +314,11 @@ const Rec_VacReg_Viewer = () => {
     }
   ];
 
+  // Lógica para botones del footer del modal
   const permiteBorrar = vacanteSeleccionada?.status === 'Concluida' || vacanteSeleccionada?.status === 'Suspendida';
+  
+  // Lógica para ocultar botón "Ver postulados" según los estatus indicados
+  const mostrarBotonCandidatos = !['Suspendida', 'Revisión', 'Requiere Corrección'].includes(vacanteSeleccionada?.status);
 
   return (
     <div className="contenedor-rec">
@@ -444,18 +462,22 @@ const Rec_VacReg_Viewer = () => {
                 </button>
               )}
 
-              <button 
-                className="btn-modal btn-modal-gris" 
-                style={!permiteBorrar ? { marginRight: 'auto' } : {}} 
-                onClick={handleVerPostulados}
-              >
-                <i className="fi fi-rr-users"></i> Ver Postulados
-              </button>
+              {/* VER POSTULADOS */}
+              {mostrarBotonCandidatos && (
+                <button 
+                  className="btn-modal btn-modal-gris" 
+                  style={!permiteBorrar ? { marginRight: 'auto' } : {}} 
+                  onClick={handleVerPostulados}
+                >
+                  <i className="fi fi-rr-users"></i> Ver Postulados
+                </button>
+              )}
 
               <button 
                 className="btn-modal btn-modal-verde" 
                 onClick={handleFinalizarProceso}
                 disabled={vacanteSeleccionada.status === 'Concluida'}
+                style={!mostrarBotonCandidatos && !permiteBorrar ? { marginLeft: 'auto' } : {}}
               >
                 <i className="fi fi-rr-checkbox"></i> Finalizar Proceso
               </button>
