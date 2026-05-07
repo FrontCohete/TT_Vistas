@@ -20,8 +20,8 @@ const items = [
     name: "Pruebas", 
     icon: "fi fi-rs-book-bookmark",
     items: [
-      { name: "Ver Pruebas", path: "/vacantes/aprobar", icon: "fi fi-rs-book-bookmark" },
-      { name: "Crear Pruebas", path: "/vacantes/aprobar", icon: "fi fi-rs-book-plus" },
+      { name: "Ver Pruebas", path: "/pruebas/existentes", icon: "fi fi-rs-book-bookmark" },
+      { name: "Crear Pruebas", path: "/pruebas/crear-prueba", icon: "fi fi-rs-book-plus" },
     ] 
   },
 ];
@@ -81,7 +81,6 @@ export default function NavReclu() {
   const notificationsRef = useRef(null);
   const timeoutRef = useRef(null);
 
-  // Hook para detectar el scroll
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
@@ -118,7 +117,6 @@ export default function NavReclu() {
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
   const closeProfileMenu = () => setIsProfileMenuOpen(false);
 
-  // Funciones para alternar menús
   const toggleNotifications = () => {
     setIsNotificationsOpen(!isNotificationsOpen);
     setIsProfileMenuOpen(false);
