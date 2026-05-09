@@ -1,30 +1,3 @@
-:root {
-  /*Base*/
-  --color-primario: #132f70;     
-  --color-primario-suave: #122552; 
-  --color-secundario: #2a94f4;    
-  --guinda: #8b0f55;
-  --color-exito: #00f5a3;
-  --color-alerta: #ffbe55;
-  --color-peligro: #d31131;
-  
-  /*Fondos*/
-  --fondo-pantalla: #ffffff50;      
-  --fondo-tarjeta: #ffffffc5;       
-  --fondo-pestana: #F3F4F6;       
-  --borde-tarjeta: #F3F4F6;       
-  --borde-hover: #E5E7EB;        
-
-  /*Textos*/
-  --texto-titulo: #111827;        
-  --texto-subtitulo: #374151;     
-  --texto-cuerpo: #4B5563;        
-  --texto-secundario: #6B7280;    
-
-  --sombra-tarjeta: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
-  --sombra-boton: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
 /* =========================================
    LAYOUT PRINCIPAL
 ========================================= */
@@ -42,7 +15,7 @@
 }
 
 .home-admin-main-wrapper {
-  background-color: var(--fondo-pantalla);
+  background-color: #ffffff50;
 }
 
 /* =========================================
@@ -53,8 +26,8 @@
   flex-direction: column; 
   width: 100%;
   min-height: 100vh; 
-  background-color: var(--fondo-tarjeta, #FFFFFF);
-  border-right: 1px solid var(--borde-tarjeta, #F3F4F6);
+  background-color: #ffffffc5;
+  border-right: 1px solid #F3F4F6;
   padding: 32px 24px;
   gap: 20px; /* Reducido un poco para acomodar más secciones */
   box-sizing: border-box;
@@ -72,7 +45,7 @@
 
 .greeting-text {
   font-size: 14px;
-  color: var(--texto-secundario, #6B7280);
+  color: #6B7280;
   margin: 0 0 12px 0;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -84,20 +57,20 @@
   border-radius: 10em; 
   object-fit: cover;
   margin-bottom: 16px;
-  border: 4px solid var(--fondo-pestana, #F3F4F6);
-  box-shadow: var(--sombra-tarjeta);
+  border: 4px solid #F3F4F6;
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
 }
 
 .profile-role {
   font-size: 16px;
   font-weight: 700;
-  color: var(--texto-titulo, #111827);
+  color: #111827;
   margin: 0 0 4px 0;
 }
 
 .profile-name {
   font-size: 15px;
-  color: var(--texto-cuerpo, #4B5563);
+  color: #4B5563;
   margin: 0;
   font-weight: 600;
 }
@@ -105,14 +78,14 @@
 /* Nuevas clases para Candidato */
 .profile-career {
   font-size: 13px;
-  color: var(--color-secundario);
+  color: #2a94f4;
   margin: 6px 0 2px 0;
   font-weight: 600;
 }
 
 .profile-location {
   font-size: 12px;
-  color: var(--texto-secundario);
+  color: #6B7280;
   margin: 0;
 }
 
@@ -121,14 +94,14 @@
 ========================================= */
 .aside-divider {
   border: none;
-  border-top: 2px solid var(--borde-tarjeta);
+  border-top: 2px solid #F3F4F6;
   width: 100%;
   margin: 5px 0;
 }
 
 .section-subtitle {
   font-size: 13px;
-  color: var(--texto-subtitulo);
+  color: #374151;
   text-transform: uppercase;
   letter-spacing: 1px;
   margin: 0 0 15px 0;
@@ -150,31 +123,31 @@
   align-items: center;
   justify-content: center;
   gap: 10px;
-  background-color: var(--fondo-pantalla);
-  color: var(--texto-cuerpo);
+  background-color: #ffffff50;
+  color: #4B5563;
   padding: 12px;
   border-radius: 8px;
   text-decoration: none;
-  border: 1px solid var(--borde-tarjeta);
+  border: 1px solid #F3F4F6;
   font-size: 14px;
   font-weight: 600;
   transition: all 0.3s ease;
 }
 
 .cv-link-item:hover {
-  background-color: var(--borde-hover);
-  color: var(--color-primario);
+  background-color: #E5E7EB;
+  color: #132f70;
 }
 
 .cv-link-item i {
   font-size: 18px;
-  color: var(--guinda);
+  color: #8b0f55;
 }
 
 
 .create-cv-btn {
   display: block;
-  background-color: var(--color-primario);
+  background-color: #132f70;
   color: #fff;
   text-align: center;
   padding: 12px;
@@ -183,11 +156,11 @@
   font-weight: 700;
   font-size: 14px;
   transition: background-color 0.3s ease;
-  box-shadow: var(--sombra-boton);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .create-cv-btn:hover {
-  background-color: var(--color-primario-suave);
+  background-color: #122552;
 }
 
 /* =========================================
@@ -206,14 +179,14 @@
 }
 
 .social-icons-grid a {
-  color: var(--texto-secundario);
+  color: #6B7280;
   font-size: 24px;
   transition: all 0.3s ease;
   text-decoration: none;
 }
 
 .social-icons-grid a:hover {
-  color: var(--color-primario);
+  color: #132f70;
   transform: translateY(-3px);
 }
 
@@ -229,15 +202,15 @@
 .info-card {
   display: flex;
   flex-direction: column;
-  background-color: var(--fondo-pantalla);
+  background-color: #ffffff50;
   padding: 12px 16px;
   border-radius: 8px;
-  border: 1px solid var(--borde-tarjeta);
+  border: 1px solid #F3F4F6;
 }
 
 .info-label {
   font-size: 12px;
-  color:  var(--color-secundario);
+  color:  #2a94f4;
   font-weight: 600;
   margin-bottom: 4px;
 }
@@ -245,7 +218,7 @@
 .info-value {
   font-size: 18px;
   font-weight: 700;
-  color: var(--guinda); 
+  color: #8b0f55; 
 }
 
 .info-value.alerta {
@@ -290,7 +263,7 @@
     flex-direction: column; 
     min-height: auto; 
     border-right: none;
-    border-bottom: 1px solid var(--borde-tarjeta);
+    border-bottom: 1px solid #F3F4F6;
     padding: 24px;
     gap: 24px;
   }

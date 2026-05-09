@@ -1,0 +1,424 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Inline&display=swap');
+
+/* --- Reset Básico --- */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Lato', sans-serif;
+  background-color: #f4f7f6;
+  color: #222222;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* --- Navegación --- */
+.navbar {
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  padding: 1.5rem 5%;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.nav-slogan h2 {
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: #132f70;
+  text-align: center;
+}
+
+.nav-slogan h2 span {
+  color: #2a94f4;
+}
+
+/* --- Botones --- */
+.btn-solid-bld, .btn-solid-guinda {
+  padding: 0.8rem 1.5rem;
+  border-radius: 2rem;
+  text-decoration: none;
+  font-weight: 700;
+  color: #ffffff;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  display: inline-block;
+  text-align: center;
+}
+
+.btn-solid-bld { background-color: #132f70; }
+.btn-solid-guinda { background-color: #8b0f55; }
+.btn-solid-bld:hover, .btn-solid-guinda:hover { transform: scale(1.05); opacity: 0.9; color: #ffffff; }
+
+.btn-outline-azl {
+  display: inline-block;
+  padding: 0.5rem 2rem;
+  border: 2px solid #2a94f4;
+  color: #2a94f4;
+  border-radius: 1rem;
+  text-decoration: none;
+  font-weight: 700;
+  transition: all 0.3s ease;
+}
+
+.btn-outline-azl:hover {
+  background-color: #2a94f4;
+  color: #ffffff;
+}
+
+/* --- Hero Section (Reducido) --- */
+.hero-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2.5rem 5%; /* Se redujo de 4rem a 2.5rem */
+  background-color: rgba(246, 249, 255, 0.59); 
+  /* Se eliminó min-height: 50vh para que el contenido dicte la altura */
+}
+
+.hero-text {
+  width: 50%;
+}
+
+.hero-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1rem; /* Se redujo de 1.5rem */
+}
+
+.hero-logo img {
+  width: 10rem; /* Se redujo de 15rem */
+  height: auto;
+  transition: all 0.4s ease-in-out;
+}
+
+.hero-logo h1 {
+  margin: 0.2em 0 0 0;
+  color: #132f70;
+  font-family: "Bungee Inline", sans-serif;
+  font-size: 2.2rem; /* Se redujo de 3rem */
+  font-weight: 400;
+  cursor: default;
+}
+
+.hero-logo:has(h1:hover) img {
+  filter: brightness(1.8) contrast(1.1);
+  transform: scale(1.05); 
+}
+
+.hero-text p {
+  font-size: 1.1rem; /* Se redujo de 1.2rem */
+  margin: 1rem 0 1.5rem 0; /* Se redujeron los márgenes superior e inferior */
+  text-align: center;
+  font-weight: bold;
+  color: #2a94f4;
+}
+
+.hero-buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.8rem; /* Se redujo el espacio entre botones */
+}
+
+.hero-image-container {
+  width: 40%; /* Se ajustó el contenedor de la imagen */
+  display: flex;
+  justify-content: center;
+}
+
+.hero-image-container img {
+  padding-top: 1rem; /* Se redujo de 3rem para evitar espacio vacío arriba */
+  width: 85%; /* Se escaló ligeramente la ilustración */
+  height: auto;
+}
+
+/* --- Institutional Section (Misión y Visión) --- */
+.caspita-mv-section {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  flex-wrap: wrap; 
+  gap: 3rem; 
+  padding: 2rem 2em; 
+  background: linear-gradient(135deg, #0b1a30c5 0%, #1a3b75a9 100%); 
+  position: relative;
+  z-index: 10;
+}
+
+.info-card-login {
+  background-color: #ffffff; 
+  padding: 3.5rem 2.5rem;
+  border-radius: 1.25rem; 
+  flex: 1 1 400px; 
+  max-width: 550px; 
+  position: relative; 
+  overflow: hidden; 
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; 
+}
+
+.info-card-login:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 25px 45px rgba(167, 167, 167, 0.274);
+}
+
+.info-card-login:hover .watermark-img {
+  opacity: 0.08;
+  transform: scale(1.05);
+}
+
+.watermark-img {
+  position: absolute;
+  bottom: -20px;
+  right: -20px;
+  width: 140px; 
+  height: auto;
+  opacity: 0.04; 
+  z-index: 0; 
+  pointer-events: none; 
+  transition: all 0.4s ease;
+}
+
+.card-content {
+  position: relative;
+  z-index: 1; 
+  display: flex;
+  flex-direction: column;
+  height: 100%; 
+}
+
+.card-content h3 {
+  color: #132f70;
+  font-weight: 900;
+  font-size: 1.6rem;
+  margin-bottom: 1.2rem;
+  letter-spacing: 0.5px;
+  text-align: center;
+}
+
+.card-content p {
+  line-height: 1.7; 
+  color: #475569; 
+  margin: 0;
+  font-size: 1.05rem;
+  text-align: center; 
+  flex-grow: 1; 
+}
+
+/* --- Login Section (Formulario Único Centrado) --- */
+.login-section-wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 5rem 5%;
+  background-color: #f4f7f675;
+}
+
+.login-card-wrapper {
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Tarjeta Principal */
+.login-card {
+  width: 100%;
+  background-color: #ffffff;
+  border-radius: 1.5rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15); 
+  overflow: hidden; 
+}
+
+.login-content {
+  width: 100%;
+  padding: 4rem 3.5rem;
+  background-color: #ffffff;
+}
+
+.login-header {
+  margin-bottom: 2.5rem;
+  text-align: center;
+}
+
+.login-header h2 {
+  color: #132f70;
+  font-weight: 900;
+  font-size: 2.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.login-header p {
+  color: #64748b;
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.modern-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+}
+
+.modern-input-group label {
+  display: block;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 0.6rem;
+  font-size: 0.95rem;
+}
+
+.input-icon-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon {
+  position: absolute;
+  left: 1.2rem;
+  width: 22px;
+  height: 22px;
+  color: #94a3b8;
+  transition: color 0.3s ease;
+  pointer-events: none;
+}
+
+.modern-input {
+  width: 100%;
+  padding: 1.1rem 1.1rem 1.1rem 3.8rem;
+  border: 2px solid transparent; 
+  border-radius: 0.75rem;
+  font-family: inherit;
+  font-size: 1rem;
+  color: #0f172a;
+  background-color: #f1f5f9; 
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.modern-input::placeholder {
+  color: #94a3b8;
+}
+
+.modern-input:focus {
+  border-color: #2a94f4;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 4px rgba(42, 148, 244, 0.15);
+}
+
+.modern-input:focus ~ .input-icon {
+  color: #2a94f4;
+}
+
+.form-options {
+  display: flex;
+  justify-content: flex-end; 
+  align-items: center;
+  font-size: 0.95rem;
+}
+
+.forgot-password {
+  color: #2a94f4;
+  text-decoration: none;
+  font-weight: 700;
+  transition: color 0.2s ease;
+}
+
+.forgot-password:hover {
+  color: #132f70;
+  text-decoration: underline;
+}
+
+.btn-modern-submit {
+  margin-top: 0.5rem;
+  padding: 1.2rem;
+  background: linear-gradient(135deg, #2a94f4 0%, #1a75ce 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: 0.75rem;
+  font-weight: 700;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 15px rgba(42, 148, 244, 0.3);
+}
+
+.btn-modern-submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(42, 148, 244, 0.4);
+}
+
+/* --- Media Queries (Móvil) --- */
+@media (max-width: 900px) {
+  /* Hero */
+  .hero-section { 
+    flex-direction: column; 
+    text-align: center; 
+    padding: 2rem 5%; /* Padding reducido para móvil */
+  }
+  
+  .hero-text { width: 100%; }
+  .hero-logo { align-items: center; }
+  .hero-logo img { width: 8rem; } /* Logo aún más compacto en tablet/móvil */
+  .hero-buttons { justify-content: center; flex-direction: column; }
+  .hero-image-container { display: none; } 
+
+  /* Institucional (Misión/Visión) */
+  .caspita-mv-section { 
+    gap: 1rem; 
+  }
+  
+  .info-card-login { 
+    flex-basis: 100%; 
+    max-width: 500px; 
+    padding: 2.5rem 1.5rem; 
+  }
+
+  .card-content h3 { font-size: 1.4rem; }
+
+  /* Login */
+  .login-section-wrapper { padding: 3rem 5%; }
+  
+  .login-card { 
+    border-radius: 1.5rem; 
+  }
+  
+  .login-content { 
+    width: 100%; 
+    padding: 3rem 2rem; 
+  }
+
+  .login-header h2 { font-size: 1.8rem; }
+}
+
+/* Ajustes para teléfonos muy pequeños */
+@media (max-width: 480px) {
+  .caspita-mv-section {
+    padding: 3rem 5%;
+    gap: 2rem;
+  }
+
+  .info-card-login {
+    padding: 2rem 1.2rem;
+    border-radius: 1rem;
+  }
+
+  .card-content h3 {
+    font-size: 1.25rem;
+  }
+
+  .card-content p {
+    font-size: 0.95rem;
+  }
+
+  .login-content {
+    padding: 2.5rem 1.5rem;
+  }
+}

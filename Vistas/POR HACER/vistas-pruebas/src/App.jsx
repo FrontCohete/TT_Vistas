@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 
-
+import Index from './components/Index.jsx';
 // Prueben con estas rutas en page-contaniner
 import NavSubAdmin from './components/NavSubAdmin.jsx';
 import NavCandi from './components/NavCandi.jsx';
@@ -40,8 +40,7 @@ export default App;
 */
 
 //ADMIN - Falta (n): Editar perfil y Gestión deSubAdministradores
-
-
+/*
 import NavAdmin from './components/NavAdmin.jsx';
 import HomeAdmin from './components/pre-pages/Admin/Home_Admin.jsx';
 import PreRegView from './components/pre-pages/Admin/Admin_EPreReg_Viewer.jsx';
@@ -70,7 +69,7 @@ function App () {
   )
 }
 export default App;
-
+*/
 
 // EMPRESA - Falta (n): Editar perfil y Gestión de Pruebas
 /*
@@ -100,3 +99,45 @@ function App () {
 }
 export default App;
 */
+
+// CANDIDATO - Falta (n): Todo 
+/*
+function App () { 
+  return(
+    <Router> 
+      <div className="page-container"> 
+        <NavCandi/>  
+        <main className="main-content">
+          <Routes> 
+            <Route path="/" element={<HomeCandi />} />
+          </Routes>
+        </main>
+        <Footer/>
+      </div>
+    </Router>
+  )
+}
+export default App;
+
+// LOGIN
+*/
+function App () { 
+  return(
+
+
+
+    <Router> 
+      
+      <div className="page-container"> 
+         
+        <main className="main-content">
+          <Routes> 
+            <Route path="/" element={<Index />} />
+          </Routes>
+        </main>
+        <Footer/>
+      </div>
+    </Router>
+  )
+}
+export default App;

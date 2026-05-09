@@ -17,6 +17,7 @@
     "@mui/material": "^7.3.9",
     "bootstrap": "^5.3.8",
     "formik": "^2.4.9",
+    "framer-motion": "^12.38.0",
     "normalize.css": "^8.0.1",
     "react": "^19.2.0",
     "react-bootstrap": "^2.10.10",
