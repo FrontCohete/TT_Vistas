@@ -15,7 +15,7 @@ body {
   overflow-x: hidden;
 }
 
-/* --- Navegación --- */
+/* Nav */
 .navbar {
   background-color: #ffffff;
   display: flex;
@@ -37,7 +37,6 @@ body {
   color: #2a94f4;
 }
 
-/* --- Botones --- */
 .btn-solid-bld, .btn-solid-guinda {
   padding: 0.8rem 1.5rem;
   border-radius: 2rem;
@@ -69,14 +68,12 @@ body {
   color: #ffffff;
 }
 
-/* --- Hero Section (Reducido) --- */
 .hero-section {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 2.5rem 5%; /* Se redujo de 4rem a 2.5rem */
+  padding: 2.5rem 5%;
   background-color: rgba(246, 249, 255, 0.59); 
-  /* Se eliminó min-height: 50vh para que el contenido dicte la altura */
 }
 
 .hero-text {
@@ -87,11 +84,11 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 1rem; /* Se redujo de 1.5rem */
+  margin-bottom: 1rem; 
 }
 
 .hero-logo img {
-  width: 10rem; /* Se redujo de 15rem */
+  width: 10rem; 
   height: auto;
   transition: all 0.4s ease-in-out;
 }
@@ -100,7 +97,7 @@ body {
   margin: 0.2em 0 0 0;
   color: #132f70;
   font-family: "Bungee Inline", sans-serif;
-  font-size: 2.2rem; /* Se redujo de 3rem */
+  font-size: 2.2rem; 
   font-weight: 400;
   cursor: default;
 }
@@ -111,8 +108,8 @@ body {
 }
 
 .hero-text p {
-  font-size: 1.1rem; /* Se redujo de 1.2rem */
-  margin: 1rem 0 1.5rem 0; /* Se redujeron los márgenes superior e inferior */
+  font-size: 1.1rem;
+  margin: 1rem 0 1.5rem 0; 
   text-align: center;
   font-weight: bold;
   color: #2a94f4;
@@ -122,22 +119,21 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 0.8rem; /* Se redujo el espacio entre botones */
+  gap: 0.8rem; 
 }
 
 .hero-image-container {
-  width: 40%; /* Se ajustó el contenedor de la imagen */
+  width: 40%; 
   display: flex;
   justify-content: center;
 }
 
 .hero-image-container img {
-  padding-top: 1rem; /* Se redujo de 3rem para evitar espacio vacío arriba */
-  width: 85%; /* Se escaló ligeramente la ilustración */
+  padding-top: 1rem; 
+  width: 85%; 
   height: auto;
 }
 
-/* --- Institutional Section (Misión y Visión) --- */
 .caspita-mv-section {
   display: flex;
   justify-content: center;
@@ -211,7 +207,7 @@ body {
   flex-grow: 1; 
 }
 
-/* --- Login Section (Formulario Único Centrado) --- */
+/* --- Login  --- */
 .login-section-wrapper {
   display: flex;
   justify-content: center;
@@ -227,7 +223,6 @@ body {
   align-items: center;
 }
 
-/* Tarjeta Principal */
 .login-card {
   width: 100%;
   background-color: #ffffff;
@@ -355,7 +350,6 @@ body {
   box-shadow: 0 6px 20px rgba(42, 148, 244, 0.4);
 }
 
-/* --- Media Queries (Móvil) --- */
 @media (max-width: 900px) {
   /* Hero */
   .hero-section { 
@@ -370,7 +364,6 @@ body {
   .hero-buttons { justify-content: center; flex-direction: column; }
   .hero-image-container { display: none; } 
 
-  /* Institucional (Misión/Visión) */
   .caspita-mv-section { 
     gap: 1rem; 
   }
@@ -383,7 +376,6 @@ body {
 
   .card-content h3 { font-size: 1.4rem; }
 
-  /* Login */
   .login-section-wrapper { padding: 3rem 5%; }
   
   .login-card { 
@@ -398,7 +390,6 @@ body {
   .login-header h2 { font-size: 1.8rem; }
 }
 
-/* Ajustes para teléfonos muy pequeños */
 @media (max-width: 480px) {
   .caspita-mv-section {
     padding: 3rem 5%;
