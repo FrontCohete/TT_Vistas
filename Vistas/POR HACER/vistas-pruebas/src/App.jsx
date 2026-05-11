@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 
-import Index from './components/Index.jsx';
 // Prueben con estas rutas en page-contaniner
 import NavSubAdmin from './components/NavSubAdmin.jsx';
 import NavCandi from './components/NavCandi.jsx';
@@ -118,21 +117,24 @@ function App () {
   )
 }
 export default App;
+*/
+
 
 // LOGIN
-*/
+
+import Index from './components/Login.jsx';
+import FormPreReg from './components/FormPreReg.jsx';
+import FormRegCandi from './components/FormRegCandi.jsx';
+
 function App () { 
   return(
-
-
-
     <Router> 
-      
       <div className="page-container"> 
-         
         <main className="main-content">
           <Routes> 
             <Route path="/" element={<Index />} />
+            <Route path="/registro-empresa" element={<FormPreReg />} />
+            <Route path="/registro-candidato" element={<FormRegCandi />} />
           </Routes>
         </main>
         <Footer/>

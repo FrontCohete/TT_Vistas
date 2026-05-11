@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom'; 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../assets/css/login_page.css'; 
 
@@ -12,9 +13,32 @@ export default function LandingPage() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(`Enviando login:`, { email, password });
+        
+        // Estructura preparada para el consumo del endpoint y pruebas de integración 
+        try {
+            /* 
+            const response = await fetch('https://localhost:TU_PUERTO/api/auth/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email, password })
+            });
+            
+            if (!response.ok) {
+                throw new Error('Error de autenticación');
+            }
+            
+            const data = await response.json();
+            console.log('Autenticación exitosa:', data);
+            */
+            
+            console.log(`Simulando envío a endpoint:`, { email, password });
+        } catch (error) {
+            console.error("Error en la petición de login:", error);
+        }
     };
 
     return (
@@ -36,9 +60,14 @@ export default function LandingPage() {
                             <h1>CASPITA</h1>
                         </div>
                         <p>Vinculando a los estudiantes con el mercado laboral</p>
+                        
                         <div className="hero-buttons">
-                            <a href="#registro-candidato" className="btn-solid-bld">Regístrate como Candidato</a>
-                            <a href="#registro-empresa" className="btn-solid-guinda">Publica Oferta como Empresa</a>
+                            <Link to="/registro-candidato" className="btn-solid-bld">
+                                Regístrate como Candidato
+                            </Link>
+                            <Link to="/registro-empresa" className="btn-solid-guinda">
+                                Publica Oferta como Empresa
+                            </Link>
                         </div>
                     </div>
                     <div className="hero-image-container">
@@ -46,7 +75,6 @@ export default function LandingPage() {
                     </div>
                 </section>
 
-                {/* SECCIÓN MISIÓN Y VISIÓN */}
                 <section id="nosotros" className="caspita-mv-section">
                     <div className="info-card-login">
                         <img src={img_mision} alt="Fondo Misión" className="watermark-img" />
