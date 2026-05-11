@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom'; 
+import { Link, useNavigate } from 'react-router-dom'; 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../assets/css/login_page.css'; 
 
@@ -12,32 +12,19 @@ export default function LandingPage() {
     // Estado del formulario
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    
+    // Instanciamos la navegación
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         
-        // Estructura preparada para el consumo del endpoint y pruebas de integración 
-        try {
-            /* 
-            const response = await fetch('https://localhost:TU_PUERTO/api/auth/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ email, password })
-            });
-            
-            if (!response.ok) {
-                throw new Error('Error de autenticación');
-            }
-            
-            const data = await response.json();
-            console.log('Autenticación exitosa:', data);
-            */
-            
-            console.log(`Simulando envío a endpoint:`, { email, password });
-        } catch (error) {
-            console.error("Error en la petición de login:", error);
+        // Simulación temporal para la presentación
+        if (email === 'yo@admin.com' && password === 'qwerty10') {
+            console.log("Acceso concedido al panel de Admin");
+            navigate('/Admin'); // Te empuja a la ruta base del layout Admin
+        } else {
+            alert("Credenciales incorrectas. Para la demo usa: yo@admin.com / qwerty10");
         }
     };
 
@@ -75,6 +62,7 @@ export default function LandingPage() {
                     </div>
                 </section>
 
+                {/* SECCIÓN MISIÓN Y VISIÓN */}
                 <section id="nosotros" className="caspita-mv-section">
                     <div className="info-card-login">
                         <img src={img_mision} alt="Fondo Misión" className="watermark-img" />

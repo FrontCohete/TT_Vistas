@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Outlet } from 'react-router-dom';
 import './App.css';
 
 // Prueben con estas rutas en page-contaniner
@@ -120,23 +120,68 @@ export default App;
 */
 
 
-// LOGIN
+// --- COMPONENTES ACTIVOS PARA LA INTEGRACIÓN ACTUAL ---
 
 import Index from './components/Login.jsx';
 import FormPreReg from './components/FormPreReg.jsx';
 import FormRegCandi from './components/FormRegCandi.jsx';
 
+// Importaciones de Admin
+import NavAdmin from './components/NavAdmin.jsx';
+import HomeAdmin from './components/pre-pages/Admin/Home_Admin.jsx';
+import PreRegView from './components/pre-pages/Admin/Admin_EPreReg_Viewer.jsx';
+import EmpView from './components/pre-pages/Admin/Admin_EReg_Viewer.jsx';
+import RecView from './components/pre-pages/Admin/Admin_RecReg_Viewer.jsx';
+import VacPreRegView from './components/pre-pages/Admin/Admin_VacPreReg_Viewer.jsx';
+import VacRegView from './components/pre-pages/Admin/Admin_VacReg_Viewer.jsx';
+
+// -- LAYOUT PARA ADMIN (Incluye el NavAdmin) --
+const AdminLayout = () => {
+  return (
+    <>
+      <NavAdmin />
+      <main className="main-content">
+        <Outlet />
+      </main>
+    </>
+  );
+};
+
+// -- LAYOUT PÚBLICO (Sin barra de navegación superior) --
+const PublicLayout = () => {
+  return (
+    <>
+      <main className="main-content">
+        <Outlet />
+      </main>
+    </>
+  );
+};
+
 function App () { 
   return(
     <Router> 
       <div className="page-container"> 
-        <main className="main-content">
-          <Routes> 
+        <Routes> 
+          
+          {/* SECCIÓN PÚBLICA */}
+          <Route element={<PublicLayout />}>
             <Route path="/" element={<Index />} />
             <Route path="/registro-empresa" element={<FormPreReg />} />
             <Route path="/registro-candidato" element={<FormRegCandi />} />
-          </Routes>
-        </main>
+          </Route>
+
+          {/* SECCIÓN ADMIN */}
+          <Route path="/Admin" element={<AdminLayout />}>
+            <Route index element={<HomeAdmin />} /> 
+            <Route path="empresas/preregistros" element={<PreRegView />} />
+            <Route path="empresas/existentes" element={<EmpView />} />
+            <Route path="reclutadores/existentes" element={<RecView />} />
+            <Route path="vacantes/existentes" element={<VacPreRegView />} />
+            <Route path="vacantes/aprobar" element={<VacRegView />} />
+          </Route>
+
+        </Routes>
         <Footer/>
       </div>
     </Router>
