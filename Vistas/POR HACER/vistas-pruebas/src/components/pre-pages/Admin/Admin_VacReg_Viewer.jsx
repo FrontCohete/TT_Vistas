@@ -1,4 +1,3 @@
-// AllVac_Viewer.jsx
 import React, { useState, useMemo } from 'react';
 import FigureTable from '../../FigureTable';
 import '../../../assets/css/admin_View.css';
@@ -239,7 +238,7 @@ ${formCorreccion.motivo || 'Revisar los campos marcados para su corrección urge
 
   return (
     <div className="contenedor-principal">
-      <h2 className="titulo-principal">Gestión General de Vacantes</h2>
+      <h2 className="titulo-principal">Vacantes en Caspita</h2>
       
       <div className="barra-busqueda-container">
         <i className="fi fi-rr-search"></i>

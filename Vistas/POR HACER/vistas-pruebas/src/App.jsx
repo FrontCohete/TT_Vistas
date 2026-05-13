@@ -177,8 +177,8 @@ function App () {
             <Route path="empresas/preregistros" element={<PreRegView />} />
             <Route path="empresas/existentes" element={<EmpView />} />
             <Route path="reclutadores/existentes" element={<RecView />} />
-            <Route path="vacantes/existentes" element={<VacPreRegView />} />
-            <Route path="vacantes/aprobar" element={<VacRegView />} />
+            <Route path="vacantes/existentes" element={<VacRegView />} />
+            <Route path="vacantes/aprobar" element={<VacPreRegView />} />
           </Route>
 
         </Routes>
